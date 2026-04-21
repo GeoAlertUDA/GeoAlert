@@ -118,7 +118,8 @@ npx expo start --android
 
 ## Documentación
 
-Ver [DOCUMENTACION.md](./DOCUMENTACION.md) para el detalle de cada feature implementada y aprobada.
+Ver https://docs.google.com/document/d/1kRK9Bq-zHsbzfDOeFmqHY7taNy15VEIX6R7IiKpPpik/edit?usp=sharing
+para el detalle de cada feature implementada y aprobada.
 
 ---
 
