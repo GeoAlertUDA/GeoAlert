@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "geoalert",
+    "name": "GeoAlert",
     "slug": "geoalert",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,9 +9,14 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.geoalertuda.geoalert",
+      "config": {
+        "googleMapsApiKey": "${EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS}"
+      }
     },
     "android": {
+      "package": "com.geoalertuda.geoalert",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -19,7 +24,12 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "config": {
+        "googleMaps": {
+          "apiKey": "${EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID}"
+        }
+      }
     },
     "web": {
       "bundler": "metro",
