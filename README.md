@@ -104,6 +104,10 @@ chore: actualizar dependencias de expo
 git clone https://github.com/GeoAlertUDA/GeoAlert.git
 cd GeoAlert
 
+# Variables de entorno (obligatorio al clonar)
+cp .env.example .env
+# Editá `.env` con tus valores locales; no se sube al repositorio.
+
 # Instalar dependencias
 npm install
 
