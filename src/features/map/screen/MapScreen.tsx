@@ -41,9 +41,12 @@ export const MapScreen = () => {
     Keyboard.dismiss();
   };
 
-  function handleClearSelection(): void {
-    throw new Error("Function not implemented.");
-  }
+ const handleClearSelection = () => {
+  setSelectedLocation(null);
+  searchRef.current?.setAddressText('');
+  
+  Keyboard.dismiss();
+};
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

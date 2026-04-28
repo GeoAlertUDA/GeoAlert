@@ -1,11 +1,12 @@
 import React, { forwardRef, useRef, useState } from "react";
-import { StyleSheet, View, TouchableOpacity, Keyboard } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Keyboard, Platform } from "react-native";
 import {
   GooglePlacesAutocomplete,
   GooglePlacesAutocompleteRef,
 } from "react-native-google-places-autocomplete";
 import { X, Search } from "lucide-react-native";
 import { LocationCoordinates } from "../types";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface LocationSearchBarProps {
   hasSelection: boolean;
@@ -18,16 +19,16 @@ export const LocationSearchBar = forwardRef<GooglePlacesAutocompleteRef, Locatio
   ({ hasSelection, onLocationSelect, onClear, onClose }, ref) => {
     const [searchText, setSearchText] = useState("");
 
-  const showClearButton = searchText.length > 0 || hasSelection;
+    const showClearButton = searchText.length > 0 || hasSelection;
 
-  const handleClear = () => {
-    setSearchText("");
-    // @ts-ignore 
-    if (ref && "current" in ref) ref.current?.setAddressText("");
-    onClose();
-  };
+    const handleClear = () => {
+      setSearchText("");
+      // @ts-ignore 
+      if (ref && "current" in ref) ref.current?.setAddressText("");
+      onClose();
+    };
 
-  const handleIconPress = () => {
+    const handleIconPress = () => {
       if (showClearButton) {
         setSearchText("");
         if (typeof ref !== 'function' && ref?.current) {
@@ -41,50 +42,56 @@ export const LocationSearchBar = forwardRef<GooglePlacesAutocompleteRef, Locatio
       }
     };
 
-  return (
-    <View style={styles.searchContainer}>
-      <GooglePlacesAutocomplete
-        ref={ref}
-        placeholder="¿A dónde vas hoy?"
-        fetchDetails={true}
-        onPress={(data, details = null) => {
-          if (details) {
-            onLocationSelect({
-              latitude: details.geometry.location.lat,
-              longitude: details.geometry.location.lng,
-            });
-          }
-        }}
-        textInputProps={{
-          onChangeText: setSearchText,
-          placeholderTextColor: "#333333",
-          clearButtonMode: "never",
-        }}
-        query={{
-          key: process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS,
-          language: "es",
-          components: "country:ar",
-        }}
-       renderRightButton={() => (
+    return (
+      <SafeAreaView style={[styles.searchContainer, { elevation: 10 }]}>
+        <GooglePlacesAutocomplete
+          ref={ref}
+          debounce={300}
+          placeholder="¿A dónde vas hoy?"
+          fetchDetails={true}
+          onPress={(data, details = null) => {
+            if (details) {
+              onLocationSelect({
+                latitude: details.geometry.location.lat,
+                longitude: details.geometry.location.lng,
+              });
+            }
+          }}
+          textInputProps={{
+            onChangeText: setSearchText,
+            placeholderTextColor: "#333333",
+            clearButtonMode: "never",
+          }}
+          query={{
+            key: Platform.OS === 'ios'
+              ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS
+              : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID,
+            language: "es",
+            components: "country:ar",
+            location: "-32.8895,-68.8458",
+            radius: "30000",
+            strictbounds: false,
+          }}
+          renderRightButton={() => (
             <TouchableOpacity onPress={handleIconPress} style={styles.iconContainer}>
               {showClearButton ? <X size={20} color="#333" /> : <Search size={20} color="#333" />}
             </TouchableOpacity>
           )}
-        styles={{
-          textInputContainer: styles.textInputContainer,
-          textInput: styles.textInput,
-          listView: styles.listView,
-        }}
-        enablePoweredByContainer={false}
-      />
-    </View>
-  );
-});
+          styles={{
+            textInputContainer: styles.textInputContainer,
+            textInput: styles.textInput,
+            listView: styles.listView,
+          }}
+          enablePoweredByContainer={false}
+        />
+      </SafeAreaView>
+    );
+  });
 
 const styles = StyleSheet.create({
   searchContainer: {
     position: "absolute",
-    top: 60,
+    top: 5,
     width: "94%",
     alignSelf: "center",
     zIndex: 10,
