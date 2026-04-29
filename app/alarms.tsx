@@ -1,11 +1,9 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { AlarmScreen } from '@/features/alerts/components/AlarmScreen'
 
 const alarms = () => {
   return (
-    <View>
-      <Text>alarms</Text>
-    </View>
+    <AlarmScreen />
   )
 }
 
