@@ -13,4 +13,5 @@ export interface IAlarm {
 interface ILocation {
   street: string;
   number: number;
+  city: string;
 }
