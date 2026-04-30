@@ -1,4 +1,4 @@
-import { SplashScreen } from "expo-router";
+import { MenuProvider } from "react-native-popup-menu";
 import TabLayout from "../src/navigation/AppNavigator";
 import {
   useFonts,
@@ -20,5 +20,9 @@ export default function App() {
     return null; // O un indicador de carga
   }
 
-  return <TabLayout />;
+  return (
+    <MenuProvider>
+      <TabLayout />
+    </MenuProvider>
+  );
 }
