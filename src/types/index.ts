@@ -1,1 +1,2 @@
-/** Tipos e interfaces compartidas entre features. */
+export type { IAlarm } from './IAlarm';
+export type { IConfig } from './IConfig';
