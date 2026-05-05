@@ -11,11 +11,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 interface AlarmBottomSheetProps {
   locationData: PlaceDetails | null;
   isLoading: boolean | null;
-  onClose: () => void;
 }
 
 const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
-  ({ locationData, isLoading, onClose }, ref) => {
+  ({ locationData, isLoading }, ref) => {
     const [isConfigExpanded, setIsConfigExpanded] = useState(false);
     const insets = useSafeAreaInsets();
 
@@ -36,7 +35,6 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
         ref={ref}
         index={0}
         enableDynamicSizing={true}
-        onDismiss={onClose}
         backdropComponent={renderBackdrop}
         enablePanDownToClose={true}
         failOffsetX={[-5, 5]}
