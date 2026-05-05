@@ -9,6 +9,8 @@ import { LocationSearchBar } from "../components/LocationSearchBar";
 import AlarmBottomSheet from "../components/AlarmBottomSheet";
 import { usePlaceDetails } from "../hooks/usePlaceDetails";
 import { useUserLocation } from "../hooks/useUserLocation";
+import { useDebouncedBusStopsSync } from "../hooks/useDebouncedBusStopsSync";
+import { useBusStopsStore } from "../store/busStopsStore";
 import { LocationCoordinates, MapRegion } from "../types";
 
 const FALLBACK_REGION: MapRegion = {
@@ -27,9 +29,13 @@ export const MapScreen = () => {
   const searchRef = useRef<GooglePlacesAutocompleteRef>(null);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const [pendingSheet, setPendingSheet] = useState(false);
+  const [mapRegion, setMapRegion] = useState<MapRegion>(FALLBACK_REGION);
   const [selectedLocation, setSelectedLocation] = useState<LocationCoordinates | null>(null);
   const { userLocation, heading } = useUserLocation({ latitude: FALLBACK_REGION.latitude, longitude: FALLBACK_REGION.longitude });
   const { placeDetails, isLoading } = usePlaceDetails(selectedLocation, userLocation);
+  const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
+
+  useDebouncedBusStopsSync(mapRegion);
   
   const [alarmRadius, setAlarmRadius] = useState(300); //RADIO HARDCODEADO
 
@@ -77,13 +83,24 @@ export const MapScreen = () => {
           showsMyLocationButton={false}
           initialRegion={FALLBACK_REGION}
           onLongPress={onMapPress}
-          onRegionChangeComplete={() => {
+          onRegionChangeComplete={(region) => {
+            setMapRegion(region);
             if (pendingSheet) {
               bottomSheetModalRef.current?.present();
               setPendingSheet(false);
             }
           }}
         >
+          {visibleBusStops.map((stop, index) => (
+            <Marker
+              key={`bus-stop-${stop.id}-${index}`}
+              coordinate={{ latitude: stop.lat, longitude: stop.lon }}
+              tracksViewChanges={false}
+              pinColor="#6B7280"
+              title={stop.nombre}
+            />
+          ))}
+
           {selectedLocation && (
             <>
               <Circle
