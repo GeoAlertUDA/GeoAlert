@@ -1,13 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
-import MapView, { Marker, PROVIDER_GOOGLE, LongPressEvent } from "react-native-maps";
+import React, { useRef, useState } from "react";
+import { StyleSheet, View, Keyboard, Platform } from "react-native";
+import MapView, { Marker, PROVIDER_GOOGLE, LongPressEvent, Circle } from "react-native-maps";
 import { GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import * as Location from 'expo-location';
+import MapViewDirections from 'react-native-maps-directions';
+import { MousePointer2 } from "lucide-react-native";
 import { LocationSearchBar } from "../components/LocationSearchBar";
 import AlarmBottomSheet from "../components/AlarmBottomSheet";
-import { LocationCoordinates, MapRegion } from "../types";
 import { usePlaceDetails } from "../hooks/usePlaceDetails";
+import { useUserLocation } from "../hooks/useUserLocation";
+import { LocationCoordinates, MapRegion } from "../types";
 
 const FALLBACK_REGION: MapRegion = {
   latitude: -32.8895,
@@ -16,51 +18,30 @@ const FALLBACK_REGION: MapRegion = {
   longitudeDelta: 0.0421,
 };
 
+const GOOGLE_MAPS_APIKEY = Platform.OS === 'ios'
+  ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS!
+  : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
+
 export const MapScreen = () => {
   const mapRef = useRef<MapView>(null);
   const searchRef = useRef<GooglePlacesAutocompleteRef>(null);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const [pendingSheet, setPendingSheet] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<LocationCoordinates | null>(null);
-  const [userLocation, setUserLocation] = useState<LocationCoordinates | null>(null);
+  const { userLocation, heading } = useUserLocation({ latitude: FALLBACK_REGION.latitude, longitude: FALLBACK_REGION.longitude });
   const { placeDetails, isLoading } = usePlaceDetails(selectedLocation, userLocation);
+  
+  const [alarmRadius, setAlarmRadius] = useState(300); //RADIO HARDCODEADO
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Permiso denegado', 'Necesitamos acceso a tu ubicación para calcular el tiempo de viaje.');
-        setUserLocation({ latitude: FALLBACK_REGION.latitude, longitude: FALLBACK_REGION.longitude });
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      const currentCoords = {
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      };
-
-      setUserLocation(currentCoords);
-
-      mapRef.current?.animateToRegion({
-        ...currentCoords,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }, 0);
-    })();
-  }, []);
 
   const handleLocationUpdate = (location: LocationCoordinates, updateSearchText: boolean = false) => {
     Keyboard.dismiss();
-    const isSameLocation = 
-      selectedLocation?.latitude === location.latitude && 
-      selectedLocation?.longitude === location.longitude;
+    const isSameLocation = selectedLocation?.latitude === location.latitude && selectedLocation?.longitude === location.longitude;
 
     setSelectedLocation(location);
 
     if (updateSearchText) {
-      const coordString = `${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)}`;
-      searchRef.current?.setAddressText(coordString);
+      searchRef.current?.setAddressText(`${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)}`);
     }
 
     if (isSameLocation) {
@@ -69,13 +50,8 @@ export const MapScreen = () => {
     }
 
     setPendingSheet(true);
-
     mapRef.current?.animateToRegion(
-      {
-        ...location,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
-      },
+      { ...location, latitudeDelta: 0.005, longitudeDelta: 0.005 },
       1000
     );
   };
@@ -84,12 +60,11 @@ export const MapScreen = () => {
     setSelectedLocation(null);
     searchRef.current?.setAddressText("");
     Keyboard.dismiss();
-    bottomSheetModalRef.current?.dismiss(); 
+    bottomSheetModalRef.current?.dismiss();
   };
 
-  const onMapPress = (e: LongPressEvent) => {
-    handleLocationUpdate(e.nativeEvent.coordinate, true);
-  };
+  const onMapPress = (e: LongPressEvent) => handleLocationUpdate(e.nativeEvent.coordinate, true);
+
 
   return (
     <>
@@ -98,12 +73,11 @@ export const MapScreen = () => {
           ref={mapRef}
           provider={PROVIDER_GOOGLE}
           style={styles.map}
-          showsUserLocation={true}
+          showsUserLocation={!selectedLocation}
           showsMyLocationButton={false}
           initialRegion={FALLBACK_REGION}
           onLongPress={onMapPress}
           onRegionChangeComplete={() => {
-            // 3. El mapa avisa que terminó de moverse. ¿Había un modal pendiente? ¡Ábrelo!
             if (pendingSheet) {
               bottomSheetModalRef.current?.present();
               setPendingSheet(false);
@@ -111,11 +85,40 @@ export const MapScreen = () => {
           }}
         >
           {selectedLocation && (
-            <Marker
-              coordinate={selectedLocation}
-              onPress={() => {
-                // Si tocan el marcador directamente, el mapa no se mueve, solo abrimos
-                bottomSheetModalRef.current?.present();
+            <>
+              <Circle
+                center={selectedLocation}
+                radius={alarmRadius}
+                fillColor="rgba(249, 191, 83, 0.3)"
+                strokeColor="rgba(249, 191, 83, 0.5)"
+                strokeWidth={2}
+              />
+              <Marker pinColor={"#0D393C"} coordinate={selectedLocation} onPress={() => bottomSheetModalRef.current?.present()} />
+            </>
+          )}
+
+          {userLocation && selectedLocation && (
+            <Marker coordinate={userLocation} rotation={heading} flat={true} anchor={{ x: 0.5, y: 0.5 }}>
+              <View>
+                <MousePointer2 size={24} color="#0D393C" fill={"#0D393C"} />
+              </View>
+            </Marker>
+          )}
+
+          {userLocation && selectedLocation && (
+            <MapViewDirections
+              origin={userLocation}
+              destination={selectedLocation}
+              apikey={GOOGLE_MAPS_APIKEY}
+              strokeWidth={8}
+              strokeColor="rgba(249, 191, 83, 1)"
+              mode="TRANSIT"
+              precision="high"
+              lineDashPattern={[0]}
+              onReady={(result) => {
+                mapRef.current?.fitToCoordinates(result.coordinates, {
+                  edgePadding: { right: 50, bottom: 50, left: 50, top: 100 },
+                });
               }}
             />
           )}
@@ -139,7 +142,6 @@ export const MapScreen = () => {
     </>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
