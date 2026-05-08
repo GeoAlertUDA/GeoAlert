@@ -35,4 +35,5 @@ export default function ConfigAccordion({ isExpanded, onToggle, children }: Conf
       )}
     </View>
   );
+  
 }
