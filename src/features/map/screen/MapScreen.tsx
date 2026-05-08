@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import { StyleSheet, View, Keyboard, Platform } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE, LongPressEvent, Circle } from "react-native-maps";
+import ClusteredMapView from "react-native-map-clustering";
 import { GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import MapViewDirections from 'react-native-maps-directions';
+import MapViewDirections from "react-native-maps-directions";
 import { MousePointer2 } from "lucide-react-native";
 import { LocationSearchBar } from "../components/LocationSearchBar";
 import AlarmBottomSheet from "../components/AlarmBottomSheet";
+import BusStopMarker from "../components/BusStopMarker";
 import { usePlaceDetails } from "../hooks/usePlaceDetails";
 import { useUserLocation } from "../hooks/useUserLocation";
 import { useDebouncedBusStopsSync } from "../hooks/useDebouncedBusStopsSync";
@@ -20,9 +22,10 @@ const FALLBACK_REGION: MapRegion = {
   longitudeDelta: 0.0421,
 };
 
-const GOOGLE_MAPS_APIKEY = Platform.OS === 'ios'
-  ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS!
-  : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
+const GOOGLE_MAPS_APIKEY =
+  Platform.OS === "ios"
+    ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS!
+    : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
 
 export const MapScreen = () => {
   const mapRef = useRef<MapView>(null);
@@ -31,23 +34,29 @@ export const MapScreen = () => {
   const [pendingSheet, setPendingSheet] = useState(false);
   const [mapRegion, setMapRegion] = useState<MapRegion>(FALLBACK_REGION);
   const [selectedLocation, setSelectedLocation] = useState<LocationCoordinates | null>(null);
-  const { userLocation, heading } = useUserLocation({ latitude: FALLBACK_REGION.latitude, longitude: FALLBACK_REGION.longitude });
+  const { userLocation, heading } = useUserLocation({
+    latitude: FALLBACK_REGION.latitude,
+    longitude: FALLBACK_REGION.longitude,
+  });
   const { placeDetails, isLoading } = usePlaceDetails(selectedLocation, userLocation);
   const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
 
   useDebouncedBusStopsSync(mapRegion);
-  
+
   const [alarmRadius, setAlarmRadius] = useState(300); //RADIO HARDCODEADO
 
-
-  const handleLocationUpdate = (location: LocationCoordinates, updateSearchText: boolean = false) => {
+  const handleLocationUpdate = (location: LocationCoordinates, updateSearchText = false) => {
     Keyboard.dismiss();
-    const isSameLocation = selectedLocation?.latitude === location.latitude && selectedLocation?.longitude === location.longitude;
+    const isSameLocation =
+      selectedLocation?.latitude === location.latitude &&
+      selectedLocation?.longitude === location.longitude;
 
     setSelectedLocation(location);
 
     if (updateSearchText) {
-      searchRef.current?.setAddressText(`${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)}`);
+      searchRef.current?.setAddressText(
+        `${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)}`
+      );
     }
 
     if (isSameLocation) {
@@ -71,11 +80,10 @@ export const MapScreen = () => {
 
   const onMapPress = (e: LongPressEvent) => handleLocationUpdate(e.nativeEvent.coordinate, true);
 
-
   return (
     <>
       <View style={styles.container}>
-        <MapView
+        <ClusteredMapView
           ref={mapRef}
           provider={PROVIDER_GOOGLE}
           style={styles.map}
@@ -83,6 +91,11 @@ export const MapScreen = () => {
           showsMyLocationButton={false}
           initialRegion={FALLBACK_REGION}
           onLongPress={onMapPress}
+          clusterColor="#0D393C"
+          clusterTextColor="#F9BF53"
+          radius={40}
+          maxZoom={16}
+          minPoints={3}
           onRegionChangeComplete={(region) => {
             setMapRegion(region);
             if (pendingSheet) {
@@ -91,14 +104,8 @@ export const MapScreen = () => {
             }
           }}
         >
-          {visibleBusStops.map((stop, index) => (
-            <Marker
-              key={`bus-stop-${stop.id}-${index}`}
-              coordinate={{ latitude: stop.lat, longitude: stop.lon }}
-              tracksViewChanges={false}
-              pinColor="#6B7280"
-              title={stop.nombre}
-            />
+          {visibleBusStops.map((stop) => (
+            <BusStopMarker key={`bus-stop-${stop.id}`} stop={stop} />
           ))}
 
           {selectedLocation && (
@@ -110,14 +117,23 @@ export const MapScreen = () => {
                 strokeColor="rgba(249, 191, 83, 0.5)"
                 strokeWidth={2}
               />
-              <Marker pinColor={"#0D393C"} coordinate={selectedLocation} onPress={() => bottomSheetModalRef.current?.present()} />
+              <Marker
+                pinColor="#0D393C"
+                coordinate={selectedLocation}
+                onPress={() => bottomSheetModalRef.current?.present()}
+              />
             </>
           )}
 
           {userLocation && selectedLocation && (
-            <Marker coordinate={userLocation} rotation={heading} flat={true} anchor={{ x: 0.5, y: 0.5 }}>
+            <Marker
+              coordinate={userLocation}
+              rotation={heading}
+              flat
+              anchor={{ x: 0.5, y: 0.5 }}
+            >
               <View>
-                <MousePointer2 size={24} color="#0D393C" fill={"#0D393C"} />
+                <MousePointer2 size={24} color="#0D393C" fill="#0D393C" />
               </View>
             </Marker>
           )}
@@ -139,7 +155,7 @@ export const MapScreen = () => {
               }}
             />
           )}
-        </MapView>
+        </ClusteredMapView>
 
         <LocationSearchBar
           ref={searchRef}
@@ -200,4 +216,4 @@ const styles = StyleSheet.create({
     marginTop: 5,
     elevation: 5,
   },
-})
+});
