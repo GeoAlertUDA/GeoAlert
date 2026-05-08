@@ -2,7 +2,6 @@ import React from "react";
 import { Marker } from "react-native-maps";
 import type { IBusStop } from "@/types/IBusStop";
 
-/** Ruta relativa: Metro no aplica el alias `@/` en `require()` sin resolver extra. */
 const BUS_STOP_ICON = require("../assets/images/bus-stop.png");
 
 interface Props {
