@@ -12,9 +12,9 @@ export default function ConfigAccordion({ isExpanded, onToggle, children }: Conf
   return (
     <View className="mt-4">
       <View className="h-[1px] bg-gray-200 mb-4" />
-    
-      <TouchableOpacity 
-        className="flex-row justify-between items-center mb-2" 
+
+      <TouchableOpacity
+        className="flex-row justify-between items-center mb-2"
         activeOpacity={0.7}
         onPress={onToggle}
       >
@@ -35,4 +35,5 @@ export default function ConfigAccordion({ isExpanded, onToggle, children }: Conf
       )}
     </View>
   );
+  
 }

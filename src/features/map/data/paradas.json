@@ -1,0 +1,4802 @@
+[
+  {
+    "id": "M10003",
+    "nombre": "Av. Las Heras y Patricias Mendocinas (Capital, Mendoza)",
+    "lat": -32.8866,
+    "lon": -68.84242
+  },
+  {
+    "id": "M10009",
+    "nombre": "Del Libertador (Capital, Mendoza)",
+    "lat": -32.88365,
+    "lon": -68.87819
+  },
+  {
+    "id": "M1001",
+    "nombre": "Belgrano y Av. Colón (Capital, Mendoza)",
+    "lat": -32.8930056,
+    "lon": -68.8506355
+  },
+  {
+    "id": "M10016",
+    "nombre": "Mariano Moreno y Olascoaga",
+    "lat": -32.90208,
+    "lon": -68.85583
+  },
+  {
+    "id": "M10023",
+    "nombre": "Miguel Soler y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.868391,
+    "lon": -68.8391176
+  },
+  {
+    "id": "M1003",
+    "nombre": "Perú y San Lorenzo (Capital, Mendoza)",
+    "lat": -32.8922548,
+    "lon": -68.8493506
+  },
+  {
+    "id": "M10033",
+    "nombre": "Damián Hudson y Perú (Capital, Mendoza)",
+    "lat": -32.8661438,
+    "lon": -68.8423205
+  },
+  {
+    "id": "M10034",
+    "nombre": "Perú y Ingeniero Mosconi (Capital, Mendoza)",
+    "lat": -32.8627137,
+    "lon": -68.8415262
+  },
+  {
+    "id": "M1004",
+    "nombre": "Av. Colón y 25 de Mayo (Capital, Mendoza)",
+    "lat": -32.8933692,
+    "lon": -68.848255
+  },
+  {
+    "id": "M1005",
+    "nombre": "Av. Colón y 25 de Mayo (Capital, Mendoza)",
+    "lat": -32.8935081,
+    "lon": -68.8480528
+  },
+  {
+    "id": "M1006",
+    "nombre": "Av. Colón y Chile (Capital, Mendoza)",
+    "lat": -32.8935171,
+    "lon": -68.8467707
+  },
+  {
+    "id": "M1007",
+    "nombre": "Av. Bartolomé Mitre y Av. Colón (Capital, Mendoza)",
+    "lat": -32.8940265,
+    "lon": -68.845322
+  },
+  {
+    "id": "M10073",
+    "nombre": "Italia Esq Bolivia Vereda Norte",
+    "lat": -32.8648134,
+    "lon": -68.8525769
+  },
+  {
+    "id": "M1008",
+    "nombre": "Patricias Mendocinas y Avenida Colón (Capital, Mendoza)",
+    "lat": -32.8939916,
+    "lon": -68.8443865
+  },
+  {
+    "id": "M1009",
+    "nombre": "Av. Colón y Patricias Mendocinas (Capital, Mendoza)",
+    "lat": -32.8942697,
+    "lon": -68.843997
+  },
+  {
+    "id": "M1010",
+    "nombre": "San Lorenzo y Av. España (Capital, Mendoza)",
+    "lat": -32.8937828,
+    "lon": -68.8428371
+  },
+  {
+    "id": "M1011",
+    "nombre": "Av. Colón y Pasaje Vargas",
+    "lat": -32.8945699,
+    "lon": -68.842398
+  },
+  {
+    "id": "M1012",
+    "nombre": "José Vicente Zapata y Primitivo de la Reta (Capital, Mendoza)",
+    "lat": -32.8950541,
+    "lon": -68.8399047
+  },
+  {
+    "id": "M1013",
+    "nombre": "San Juan y Pasaje Pardo (Capital, Mendoza)",
+    "lat": -32.89519,
+    "lon": -68.83761
+  },
+  {
+    "id": "M1014",
+    "nombre": "San Juan  esq Alem (Capital, Mendoza)",
+    "lat": -32.8932688,
+    "lon": -68.837187
+  },
+  {
+    "id": "M10141",
+    "nombre": "Av. San Martín y J. Morales (Mendoza, Argentina)",
+    "lat": -32.86314,
+    "lon": -68.83263
+  },
+  {
+    "id": "M1015",
+    "nombre": "Rioja y Pasaje Pardo",
+    "lat": -32.8948466,
+    "lon": -68.8364188
+  },
+  {
+    "id": "M1016",
+    "nombre": "Don Bosco y San Juan (Capital, Mendoza)",
+    "lat": -32.8938181,
+    "lon": -68.8372454
+  },
+  {
+    "id": "M1017",
+    "nombre": "Rioja y Leandro Alem (Capital, Mendoza)",
+    "lat": -32.8930255,
+    "lon": -68.8365007
+  },
+  {
+    "id": "M1018",
+    "nombre": "Alem y San Juan (Capital, Mendoza)",
+    "lat": -32.892897,
+    "lon": -68.8365939
+  },
+  {
+    "id": "M10185",
+    "nombre": "San Francisco de Asís (Capital, Mendoza)",
+    "lat": -32.8987406,
+    "lon": -68.8782886
+  },
+  {
+    "id": "M1019",
+    "nombre": "Alem y Av. San Martín",
+    "lat": -32.8928655,
+    "lon": -68.8391581
+  },
+  {
+    "id": "M10206",
+    "nombre": "Bernardo Houssay y Lemos (Capital, Mendoza)",
+    "lat": -32.8628263,
+    "lon": -68.8472179
+  },
+  {
+    "id": "M1021",
+    "nombre": "Av. 9 de julio y San Lorenzo (Capital, Mendoza)",
+    "lat": -32.8933245,
+    "lon": -68.841491
+  },
+  {
+    "id": "M1023",
+    "nombre": "Montevideo y Perú (Capital, Mendoza)",
+    "lat": -32.8915807,
+    "lon": -68.8489402
+  },
+  {
+    "id": "M1024",
+    "nombre": "San Lorenzo y Patricias Mendocinas (Capital, Mendoza)",
+    "lat": -32.8929078,
+    "lon": -68.844074
+  },
+  {
+    "id": "M1025",
+    "nombre": "Av. 9 de julio y Montevideo (Capital, Mendoza)",
+    "lat": -32.8922187,
+    "lon": -68.8412684
+  },
+  {
+    "id": "M1026",
+    "nombre": "Montevideo y Av. España",
+    "lat": -32.89239,
+    "lon": -68.84176
+  },
+  {
+    "id": "M10278",
+    "nombre": "Doctor Miyara y Coni E. (Capital, Mendoza)",
+    "lat": -32.8655039,
+    "lon": -68.8788666
+  },
+  {
+    "id": "M10279",
+    "nombre": "Hermano Teófano y Av. Champagnat Lateral (Capital, Mendoza)",
+    "lat": -32.8667481,
+    "lon": -68.8831635
+  },
+  {
+    "id": "M1028",
+    "nombre": "Montevideo y Av. Bartolomé Mitre",
+    "lat": -32.891876,
+    "lon": -68.8445431
+  },
+  {
+    "id": "M10281",
+    "nombre": "Orzali y Lencinas (Capital, Mendoza)",
+    "lat": -32.8823226,
+    "lon": -68.8734593
+  },
+  {
+    "id": "M10283",
+    "nombre": "Timoteo Gordillo y Gordillos (Capital, Mendoza)",
+    "lat": -32.8711631,
+    "lon": -68.8639643
+  },
+  {
+    "id": "M1029",
+    "nombre": "Montevideo y Perú (Capital, Mendoza)",
+    "lat": -32.8911283,
+    "lon": -68.8486844
+  },
+  {
+    "id": "M10290",
+    "nombre": "Padre Llorens y Potrerillos",
+    "lat": -32.86526,
+    "lon": -68.86603
+  },
+  {
+    "id": "M1030",
+    "nombre": "25 de Mayo y Montevideo (Capital, Mendoza)",
+    "lat": -32.89129,
+    "lon": -68.84768
+  },
+  {
+    "id": "M1031",
+    "nombre": "Chile y Rivadavia (Capital, Mendoza)",
+    "lat": -32.8908685,
+    "lon": -68.8460572
+  },
+  {
+    "id": "M1032",
+    "nombre": "Patricias Mendocinas y Rivadavia (Capital, Mendoza)",
+    "lat": -32.8911096,
+    "lon": -68.8438833
+  },
+  {
+    "id": "M1033",
+    "nombre": "Av. España y Rivadavia (Capital, Mendoza)",
+    "lat": -32.8914918,
+    "lon": -68.8421696
+  },
+  {
+    "id": "M1034",
+    "nombre": "San Juan  y G. Garibaldi",
+    "lat": -32.89109,
+    "lon": -68.83705
+  },
+  {
+    "id": "M1035",
+    "nombre": "Rioja y Leandro Alem",
+    "lat": -32.8922,
+    "lon": -68.83583
+  },
+  {
+    "id": "M1036",
+    "nombre": "Rioja y Catamarca (Capital, Mendoza)",
+    "lat": -32.8904306,
+    "lon": -68.8357736
+  },
+  {
+    "id": "M1037",
+    "nombre": "Av. 9 de julio y Sarmiento (Capital, Mendoza)",
+    "lat": -32.8902606,
+    "lon": -68.8407935
+  },
+  {
+    "id": "M1038",
+    "nombre": "Av. España y Espejo (Capital, Mendoza)",
+    "lat": -32.8893951,
+    "lon": -68.8416111
+  },
+  {
+    "id": "M1039",
+    "nombre": "Av. 9 de julio y Gutiérrez (Capital, Mendoza)",
+    "lat": -32.8882471,
+    "lon": -68.8405864
+  },
+  {
+    "id": "M1040",
+    "nombre": "Lavalle y San Juan (Capital, Mendoza)",
+    "lat": -32.8886273,
+    "lon": -68.8377594
+  },
+  {
+    "id": "M10400",
+    "nombre": "Salta y Buenos Aires (Capital, Mendoza)",
+    "lat": -32.8875786,
+    "lon": -68.833898
+  },
+  {
+    "id": "M10401",
+    "nombre": "Av. Las Heras y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.88538,
+    "lon": -68.8432
+  },
+  {
+    "id": "M10408",
+    "nombre": "Lateral Llorens y Av. Cooperativa (Capital, Mendoza)",
+    "lat": -32.8667,
+    "lon": -68.86626
+  },
+  {
+    "id": "M1041",
+    "nombre": "Lavalle y San Juan (Capital, Mendoza)",
+    "lat": -32.8888542,
+    "lon": -68.8369236
+  },
+  {
+    "id": "M10413",
+    "nombre": "El Nevado y Padre Llorens (Capital, Mendoza)",
+    "lat": -32.8701121,
+    "lon": -68.8663528
+  },
+  {
+    "id": "M10414",
+    "nombre": "Gordillos y Av. Gran Capitán Sur (Capital, Mendoza)",
+    "lat": -32.87077,
+    "lon": -68.8642177
+  },
+  {
+    "id": "M10415",
+    "nombre": "Av. Gran Capitán Sur y Av. Cooperativa (Capital, Mendoza)",
+    "lat": -32.8689857,
+    "lon": -68.8619754
+  },
+  {
+    "id": "M1043",
+    "nombre": "Buenos Aires y San Juan (Capital, Mendoza)",
+    "lat": -32.8874,
+    "lon": -68.83666
+  },
+  {
+    "id": "M1044",
+    "nombre": "Perú y Coronel Plaza (Capital, Mendoza)",
+    "lat": -32.8795649,
+    "lon": -68.8459489
+  },
+  {
+    "id": "M1045",
+    "nombre": "Las Petunias y Perú (Capital, Mendoza)",
+    "lat": -32.8783,
+    "lon": -68.8456
+  },
+  {
+    "id": "M10456",
+    "nombre": "Julián Barraquero y Rioja (Capital, Mendoza)",
+    "lat": -32.9019655,
+    "lon": -68.8379804
+  },
+  {
+    "id": "M10474",
+    "nombre": "Ituzaingó y Juan B. Alberdi (Capital, Mendoza)",
+    "lat": -32.8800689,
+    "lon": -68.829628
+  },
+  {
+    "id": "M10475",
+    "nombre": "Corrientes y Ituzaingó (Capital, Mendoza)",
+    "lat": -32.88359,
+    "lon": -68.82985
+  },
+  {
+    "id": "M10476",
+    "nombre": "Entre Ríos y Ituzaingó (Capital, Mendoza)",
+    "lat": -32.8861011,
+    "lon": -68.829982
+  },
+  {
+    "id": "M10486",
+    "nombre": "Jorge A. Calle y Coronel Rodríguez (Capital, Mendoza)",
+    "lat": -32.8685262,
+    "lon": -68.847529
+  },
+  {
+    "id": "M1049",
+    "nombre": "Perú y Vendimiadores (Capital, Mendoza)",
+    "lat": -32.8770301,
+    "lon": -68.8450315
+  },
+  {
+    "id": "M1050",
+    "nombre": "Perú y Vendimiadores (Capital, Mendoza)",
+    "lat": -32.8769579,
+    "lon": -68.8452227
+  },
+  {
+    "id": "M1051",
+    "nombre": "Perú y Salvador Reta (Capital, Mendoza)",
+    "lat": -32.8754266,
+    "lon": -68.8448902
+  },
+  {
+    "id": "M1053",
+    "nombre": "Pellegrini y Belgrano (Capital, Mendoza)",
+    "lat": -32.8741438,
+    "lon": -68.8445362
+  },
+  {
+    "id": "M1055",
+    "nombre": "Carlos Pellegrini y Chile (Capital, Mendoza)",
+    "lat": -32.87286,
+    "lon": -68.84257
+  },
+  {
+    "id": "M1056",
+    "nombre": "Av. Bartolomé Mitre y El Tonel (Capital, Mendoza)",
+    "lat": -32.8745741,
+    "lon": -68.8406606
+  },
+  {
+    "id": "M1057",
+    "nombre": "Carlos Pellegrini y Chile (Capital, Mendoza)",
+    "lat": -32.8729593,
+    "lon": -68.841225
+  },
+  {
+    "id": "M1059",
+    "nombre": "Perú y Gutemberg (Capital, Mendoza)",
+    "lat": -32.8725115,
+    "lon": -68.8441651
+  },
+  {
+    "id": "M1060",
+    "nombre": "Perú y Carlos Pellegrini (Capital, Mendoza)",
+    "lat": -32.8727086,
+    "lon": -68.8429791
+  },
+  {
+    "id": "M1061",
+    "nombre": "Carlos Pellegrini y Mitre (Capital, Mendoza)",
+    "lat": -32.8730835,
+    "lon": -68.8401879
+  },
+  {
+    "id": "M1062",
+    "nombre": "Av. Bartolomé Mitre y Fray Inalicán (Capital, Mendoza)",
+    "lat": -32.8723183,
+    "lon": -68.8396193
+  },
+  {
+    "id": "M1063",
+    "nombre": "Videla Correa y Perú (Capital, Mendoza)",
+    "lat": -32.8709261,
+    "lon": -68.8434602
+  },
+  {
+    "id": "M1064",
+    "nombre": "25 de Mayo y Videla Correa (Capital, Mendoza)",
+    "lat": -32.87068,
+    "lon": -68.84251
+  },
+  {
+    "id": "M1065",
+    "nombre": "Videla Correa y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8707682,
+    "lon": -68.8400936
+  },
+  {
+    "id": "M1066",
+    "nombre": "Félix Bogado y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8701556,
+    "lon": -68.8392223
+  },
+  {
+    "id": "M1067",
+    "nombre": "Perú y General Paz (Capital, Mendoza)",
+    "lat": -32.8830758,
+    "lon": -68.8469017
+  },
+  {
+    "id": "M1069",
+    "nombre": "Patricias Mendocinas y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8837398,
+    "lon": -68.8416493
+  },
+  {
+    "id": "M1071",
+    "nombre": "Av. 9 de julio y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8839025,
+    "lon": -68.8384169
+  },
+  {
+    "id": "M1072",
+    "nombre": "Av. 9 de julio y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8843265,
+    "lon": -68.8392568
+  },
+  {
+    "id": "M10729",
+    "nombre": "Doctor Notti y Doctor Cichiti",
+    "lat": -32.8642,
+    "lon": -68.87413
+  },
+  {
+    "id": "M1073",
+    "nombre": "Av. San Martín y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8841277,
+    "lon": -68.8383043
+  },
+  {
+    "id": "M1075",
+    "nombre": "Av. España y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8836682,
+    "lon": -68.8407719
+  },
+  {
+    "id": "M1076",
+    "nombre": "Patricias Mendocinas y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8835,
+    "lon": -68.84168
+  },
+  {
+    "id": "M1077",
+    "nombre": "Av Godoy Cruz esq Chile",
+    "lat": -32.883,
+    "lon": -68.84433
+  },
+  {
+    "id": "M1078",
+    "nombre": "Chile y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8832825,
+    "lon": -68.8440992
+  },
+  {
+    "id": "M1079",
+    "nombre": "25 de Mayo y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8826997,
+    "lon": -68.8452298
+  },
+  {
+    "id": "M1080",
+    "nombre": "25 de Mayo y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.882817,
+    "lon": -68.8455784
+  },
+  {
+    "id": "M1081",
+    "nombre": "Perú y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8827088,
+    "lon": -68.8465449
+  },
+  {
+    "id": "M1082",
+    "nombre": "Barcala y Perú (Capital, Mendoza)",
+    "lat": -32.8814406,
+    "lon": -68.8462009
+  },
+  {
+    "id": "M1084",
+    "nombre": "Patricias Mendocinas y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8834115,
+    "lon": -68.8411099
+  },
+  {
+    "id": "M1086",
+    "nombre": "Barcala y Perú (Capital, Mendoza)",
+    "lat": -32.8810352,
+    "lon": -68.8463672
+  },
+  {
+    "id": "M1089",
+    "nombre": "Chile y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8829024,
+    "lon": -68.8438887
+  },
+  {
+    "id": "M1090",
+    "nombre": "Barcala y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8819595,
+    "lon": -68.8423444
+  },
+  {
+    "id": "M1092",
+    "nombre": "Av. 9 de julio y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.88334,
+    "lon": -68.8389671
+  },
+  {
+    "id": "M1093",
+    "nombre": "Av. San Martín esquina Barcala (Capital, Mendoza)",
+    "lat": -32.8820759,
+    "lon": -68.8372225
+  },
+  {
+    "id": "M1094",
+    "nombre": "Barcala y Av. 9 de julio (Capital, Mendoza)",
+    "lat": -32.8816506,
+    "lon": -68.8385701
+  },
+  {
+    "id": "M1095",
+    "nombre": "Perú y Coronel Plaza (Capital, Mendoza)",
+    "lat": -32.8795371,
+    "lon": -68.8457179
+  },
+  {
+    "id": "M1096",
+    "nombre": "Eusebio Blanco y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8803332,
+    "lon": -68.8421888
+  },
+  {
+    "id": "M1097",
+    "nombre": "Coronel Plaza y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8799097,
+    "lon": -68.8417543
+  },
+  {
+    "id": "M1100",
+    "nombre": "Coronel Plaza y Av. San Martín (Capital, Mendoza)",
+    "lat": -32.8800611,
+    "lon": -68.8370799
+  },
+  {
+    "id": "M1101",
+    "nombre": "Av. 9 de julio y Coronel Plaza (Capital, Mendoza)",
+    "lat": -32.8796368,
+    "lon": -68.8379478
+  },
+  {
+    "id": "M1102",
+    "nombre": "Av. 9 de julio y Juan Agustín Maza (Capital, Mendoza)",
+    "lat": -32.87822,
+    "lon": -68.8376555
+  },
+  {
+    "id": "M1103",
+    "nombre": "Av. San Martín esquina Maza (Capital, Mendoza)",
+    "lat": -32.8784629,
+    "lon": -68.8362945
+  },
+  {
+    "id": "M1104",
+    "nombre": "Av. Bartolomé Mitre y El Tonel (Capital, Mendoza)",
+    "lat": -32.8746754,
+    "lon": -68.8402966
+  },
+  {
+    "id": "M1105",
+    "nombre": "Patricias Mendocinas y Carlos Pellegrini (Capital, Mendoza)",
+    "lat": -32.8742646,
+    "lon": -68.8393135
+  },
+  {
+    "id": "M1106",
+    "nombre": "Av. 9 de julio y Carlos Pellegrini (Capital, Mendoza)",
+    "lat": -32.8761281,
+    "lon": -68.8372553
+  },
+  {
+    "id": "M1107",
+    "nombre": "Av. San Martín y Pellegrini (Capital, Mendoza)",
+    "lat": -32.8760345,
+    "lon": -68.8356669
+  },
+  {
+    "id": "M11088",
+    "nombre": "Rotonda B° San Martín y Av. Cooperativa (Capital, Mendoza)",
+    "lat": -32.86794,
+    "lon": -68.86194
+  },
+  {
+    "id": "M11090",
+    "nombre": "Padre Llorens y Av. Cooperativa (Capital, Mendoza)",
+    "lat": -32.866782,
+    "lon": -68.866014
+  },
+  {
+    "id": "M11096",
+    "nombre": "El Juncal y Los Laureles",
+    "lat": -32.86994,
+    "lon": -68.86935
+  },
+  {
+    "id": "M11102",
+    "nombre": "Los Paraísos y De los Alamos plateados (Capital, Mendoza)",
+    "lat": -32.8686475,
+    "lon": -68.859425
+  },
+  {
+    "id": "M1111",
+    "nombre": "Av. San Martín esquina Gutemberg (Capital, Mendoza)",
+    "lat": -32.8735656,
+    "lon": -68.8350285
+  },
+  {
+    "id": "M11117",
+    "nombre": "Boulogne Sur Mer y Plantamura (Capital, Mendoza)",
+    "lat": -32.8787495,
+    "lon": -68.859718
+  },
+  {
+    "id": "M1112",
+    "nombre": "Av. San Martín esquina Echeverría (Capital, Mendoza)",
+    "lat": -32.8714796,
+    "lon": -68.8345028
+  },
+  {
+    "id": "M11129",
+    "nombre": "Boulogne Sur Mer",
+    "lat": -32.86556,
+    "lon": -68.85861
+  },
+  {
+    "id": "M1113",
+    "nombre": "Videla Correa y España (Capital, Mendoza)",
+    "lat": -32.8707444,
+    "lon": -68.8366949
+  },
+  {
+    "id": "M11130",
+    "nombre": "Ingeniero Cipoletti y Godoy (Capital, Mendoza)",
+    "lat": -32.864948,
+    "lon": -68.858727
+  },
+  {
+    "id": "M1114",
+    "nombre": "Videla Correa y Av. San Martín (Capital, Mendoza)",
+    "lat": -32.8705925,
+    "lon": -68.8344503
+  },
+  {
+    "id": "M11147",
+    "nombre": "Leandro N. Alem y La Rioja (Capital, Mendoza)",
+    "lat": -32.89264,
+    "lon": -68.83582
+  },
+  {
+    "id": "M1115",
+    "nombre": "Salta y Juan B. Alberdi",
+    "lat": -32.88012,
+    "lon": -68.83372
+  },
+  {
+    "id": "M1116",
+    "nombre": "Rioja y Juan B. Alberdi (Capital, Mendoza)",
+    "lat": -32.8798994,
+    "lon": -68.8354555
+  },
+  {
+    "id": "M1117",
+    "nombre": "Remedios de Escalada y Beltrán (Capital, Mendoza)",
+    "lat": -32.878544,
+    "lon": -68.8358882
+  },
+  {
+    "id": "M11174",
+    "nombre": "Colectora Sur y Timoteo Gordillo (Capital, Mendoza)",
+    "lat": -32.8711,
+    "lon": -68.86379
+  },
+  {
+    "id": "M1118",
+    "nombre": "Av. San Martín entre Beltrán y Chacabuco (Capital, Mendoza)",
+    "lat": -32.8778952,
+    "lon": -68.8359619
+  },
+  {
+    "id": "M1119",
+    "nombre": "Rioja y Beltrán (Capital, Mendoza)",
+    "lat": -32.8786792,
+    "lon": -68.8348261
+  },
+  {
+    "id": "M1120",
+    "nombre": "Beltrán y Salta (Capital, Mendoza)",
+    "lat": -32.8787152,
+    "lon": -68.8335225
+  },
+  {
+    "id": "M1122",
+    "nombre": "Chacabuco y Salta (Capital, Mendoza)",
+    "lat": -32.8778806,
+    "lon": -68.8336435
+  },
+  {
+    "id": "M1123",
+    "nombre": "Montecaseros y Fray Luis Beltrán (Capital, Mendoza)",
+    "lat": -32.87912,
+    "lon": -68.83082
+  },
+  {
+    "id": "M1124",
+    "nombre": "Montecaseros y Beltrán (Capital, Mendoza)",
+    "lat": -32.878936,
+    "lon": -68.8307169
+  },
+  {
+    "id": "M1125",
+    "nombre": "Chacabuco y Ituzaingó (Capital, Mendoza)",
+    "lat": -32.8779378,
+    "lon": -68.8297911
+  },
+  {
+    "id": "M1126",
+    "nombre": "Beltrán y Videla Castillo (Capital, Mendoza)",
+    "lat": -32.8790666,
+    "lon": -68.8278202
+  },
+  {
+    "id": "M1127",
+    "nombre": "Maipú y Videla Castillo (Capital, Mendoza)",
+    "lat": -32.8770635,
+    "lon": -68.8278104
+  },
+  {
+    "id": "M1128",
+    "nombre": "Ituzaingó y Maipú (Capital, Mendoza)",
+    "lat": -32.8764399,
+    "lon": -68.8294955
+  },
+  {
+    "id": "M1129",
+    "nombre": "Córdoba y Rioja (Capital, Mendoza)",
+    "lat": -32.8834214,
+    "lon": -68.8354399
+  },
+  {
+    "id": "M1130",
+    "nombre": "Montecaseros y Maipú (Capital, Mendoza)",
+    "lat": -32.8768323,
+    "lon": -68.8307058
+  },
+  {
+    "id": "M1131",
+    "nombre": "Maipú y José Federico Moreno (Capital, Mendoza)",
+    "lat": -32.8762238,
+    "lon": -68.8323342
+  },
+  {
+    "id": "M11316",
+    "nombre": "Córdoba y Rioja (Capital, Mendoza)",
+    "lat": -32.88352,
+    "lon": -68.83544
+  },
+  {
+    "id": "M1132",
+    "nombre": "Ayacucho y Salta (Capital, Mendoza)",
+    "lat": -32.8754928,
+    "lon": -68.8334987
+  },
+  {
+    "id": "M1133",
+    "nombre": "Av. San Martín entre Maipú y Ayacucho (Capital, Mendoza)",
+    "lat": -32.87562,
+    "lon": -68.835345
+  },
+  {
+    "id": "M1134",
+    "nombre": "Av. San Martín esquina Tucumán (Capital, Mendoza)",
+    "lat": -32.8741783,
+    "lon": -68.8350231
+  },
+  {
+    "id": "M1135",
+    "nombre": "Av. San Martín esquina Santa Fe (Capital, Mendoza)",
+    "lat": -32.8729258,
+    "lon": -68.8346852
+  },
+  {
+    "id": "M1136",
+    "nombre": "Salta y Santa Fé (Capital, Mendoza)",
+    "lat": -32.8730689,
+    "lon": -68.8333806
+  },
+  {
+    "id": "M1137",
+    "nombre": "Tucumán y José Federico Moreno (Capital, Mendoza)",
+    "lat": -32.8737954,
+    "lon": -68.8321947
+  },
+  {
+    "id": "M1138",
+    "nombre": "Echeverria y Jujuy (Capital, Mendoza)",
+    "lat": -32.8715875,
+    "lon": -68.8341863
+  },
+  {
+    "id": "M1139",
+    "nombre": "Av. San Martín esquina Santiago del Estero (Capital, Mendoza)",
+    "lat": -32.8707136,
+    "lon": -68.8340951
+  },
+  {
+    "id": "M1140",
+    "nombre": "Salta y Santiago del Estero",
+    "lat": -32.87068,
+    "lon": -68.83325
+  },
+  {
+    "id": "M1141",
+    "nombre": "José Federico Moreno y Santiago del Estero (Capital, Mendoza)",
+    "lat": -32.8708041,
+    "lon": -68.8322178
+  },
+  {
+    "id": "M1142",
+    "nombre": "Av. San Martín esquina Gdor Gonzalez (Capital, Mendoza)",
+    "lat": -32.8684248,
+    "lon": -68.8334299
+  },
+  {
+    "id": "M1143",
+    "nombre": "Gobernador Gonzalez y Salta (Capital, Mendoza)",
+    "lat": -32.8686219,
+    "lon": -68.8327262
+  },
+  {
+    "id": "M1146",
+    "nombre": "Córdoba y San Juan (Capital, Mendoza)",
+    "lat": -32.8838313,
+    "lon": -68.8365856
+  },
+  {
+    "id": "M1147",
+    "nombre": "San Luis y Rioja (Capital, Mendoza)",
+    "lat": -32.88397,
+    "lon": -68.83544
+  },
+  {
+    "id": "M1148",
+    "nombre": "Córdoba y Montecaseros (Capital, Mendoza)",
+    "lat": -32.8839,
+    "lon": -68.8311
+  },
+  {
+    "id": "M1149",
+    "nombre": "Corrientes y Montecaseros (Capital, Mendoza)",
+    "lat": -32.88272,
+    "lon": -68.83103
+  },
+  {
+    "id": "M1150",
+    "nombre": "Salta y Córdoba (Capital, Mendoza)",
+    "lat": -32.883639,
+    "lon": -68.8337341
+  },
+  {
+    "id": "M1152",
+    "nombre": "Córdoba y San Juan",
+    "lat": -32.88357,
+    "lon": -68.83615
+  },
+  {
+    "id": "M1153",
+    "nombre": "Av San Martín entre Córdoba y Corrientes (Capital, Mendoza)",
+    "lat": -32.8829814,
+    "lon": -68.8373245
+  },
+  {
+    "id": "M1154",
+    "nombre": "Corrientes y Rioja",
+    "lat": -32.88224,
+    "lon": -68.8353
+  },
+  {
+    "id": "M1155",
+    "nombre": "Corrientes y Salta (Capital, Mendoza)",
+    "lat": -32.88278,
+    "lon": -68.83385
+  },
+  {
+    "id": "M1156",
+    "nombre": "Corrientes y José Federico Moreno (Capital, Mendoza)",
+    "lat": -32.882647,
+    "lon": -68.8329014
+  },
+  {
+    "id": "M1157",
+    "nombre": "Av. San Martín entre Urquiza y Alberdi (Capital, Mendoza)",
+    "lat": -32.8804158,
+    "lon": -68.8366566
+  },
+  {
+    "id": "M1158",
+    "nombre": "Remedios de Escalada y Urquiza (Capital, Mendoza)",
+    "lat": -32.8808892,
+    "lon": -68.8364204
+  },
+  {
+    "id": "M1159",
+    "nombre": "Rioja y Urquiza (Capital, Mendoza)",
+    "lat": -32.8807814,
+    "lon": -68.8352452
+  },
+  {
+    "id": "M1160",
+    "nombre": "Salta y Urquiza (Capital, Mendoza)",
+    "lat": -32.8810762,
+    "lon": -68.8335692
+  },
+  {
+    "id": "M1162",
+    "nombre": "Ituzaingó y Urquiza (Capital, Mendoza)",
+    "lat": -32.8811928,
+    "lon": -68.8297316
+  },
+  {
+    "id": "M1163",
+    "nombre": "Videla Castillo y Alberdi (Capital, Mendoza)",
+    "lat": -32.8803905,
+    "lon": -68.828353
+  },
+  {
+    "id": "M1164",
+    "nombre": "Ituzaingó y Juan B. Alberdi (Capital, Mendoza)",
+    "lat": -32.8802959,
+    "lon": -68.8298765
+  },
+  {
+    "id": "M1165",
+    "nombre": "Montecaseros y Juan B. Alberdi (Capital, Mendoza)",
+    "lat": -32.8803644,
+    "lon": -68.8308775
+  },
+  {
+    "id": "M1166",
+    "nombre": "Videla Correa y Perú (Capital, Mendoza)",
+    "lat": -32.8704182,
+    "lon": -68.8438191
+  },
+  {
+    "id": "M1167",
+    "nombre": "Doctor Mariano Moreno y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8704298,
+    "lon": -68.83978
+  },
+  {
+    "id": "M1169",
+    "nombre": "Perú y Soler (Capital, Mendoza)",
+    "lat": -32.8682039,
+    "lon": -68.8432612
+  },
+  {
+    "id": "M1170",
+    "nombre": "Av. San Martín y F. M. Esquiú",
+    "lat": -32.86954,
+    "lon": -68.83394
+  },
+  {
+    "id": "M1172",
+    "nombre": "Av. Bartolomé Mitre y La Plata (Capital, Mendoza)",
+    "lat": -32.867628,
+    "lon": -68.8385893
+  },
+  {
+    "id": "M1174",
+    "nombre": "Av. San Martín esquina La Plata (Capital, Mendoza)",
+    "lat": -32.8680598,
+    "lon": -68.8336069
+  },
+  {
+    "id": "M1175",
+    "nombre": "Belgrano y Damián Hudson (Capital, Mendoza)",
+    "lat": -32.8658759,
+    "lon": -68.8434577
+  },
+  {
+    "id": "M1177",
+    "nombre": "Perú y Jorge A. Calle (Capital, Mendoza)",
+    "lat": -32.8685508,
+    "lon": -68.8428911
+  },
+  {
+    "id": "M1178",
+    "nombre": "Damián Hudson y Perú (Capital, Mendoza)",
+    "lat": -32.8656976,
+    "lon": -68.842616
+  },
+  {
+    "id": "M1182",
+    "nombre": "Damián Hudson y Doctor Mariano Moreno (Capital, Mendoza)",
+    "lat": -32.8662473,
+    "lon": -68.8392043
+  },
+  {
+    "id": "M1183",
+    "nombre": "Damián Hudson y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8660329,
+    "lon": -68.8385357
+  },
+  {
+    "id": "M1184",
+    "nombre": "Doctor Lagomaggiore y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8657356,
+    "lon": -68.8381816
+  },
+  {
+    "id": "M1185",
+    "nombre": "Av. San Martín esquina Cadetes Chilenos (Mendoza, Argentina)",
+    "lat": -32.8663206,
+    "lon": -68.8330919
+  },
+  {
+    "id": "M1186",
+    "nombre": "Perú y Estrada (Capital, Mendoza)",
+    "lat": -32.8645137,
+    "lon": -68.8424351
+  },
+  {
+    "id": "M1187",
+    "nombre": "F. de Lucía y Juan Manuel Estrada (Capital, Mendoza)",
+    "lat": -32.8643334,
+    "lon": -68.8419094
+  },
+  {
+    "id": "M1190",
+    "nombre": "Juan Manuel Estrada y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8641495,
+    "lon": -68.8382782
+  },
+  {
+    "id": "M1191",
+    "nombre": "Ameghino y Av. Bartolomé Mitre (Capital, Mendoza)",
+    "lat": -32.8635727,
+    "lon": -68.8379456
+  },
+  {
+    "id": "M1192",
+    "nombre": "Av. San Martín esquina Juan Manuel Estrada (Capital, Mendoza)",
+    "lat": -32.8643921,
+    "lon": -68.8327379
+  },
+  {
+    "id": "M1195",
+    "nombre": "Montecaseros y Tucumán (Capital, Mendoza)",
+    "lat": -32.8742778,
+    "lon": -68.830561
+  },
+  {
+    "id": "M1196",
+    "nombre": "Ituzaingó y Tucumán (Capital, Mendoza)",
+    "lat": -32.8739259,
+    "lon": -68.8294043
+  },
+  {
+    "id": "M1197",
+    "nombre": "Tucumán y Videla Castillo (Capital, Mendoza)",
+    "lat": -32.8744955,
+    "lon": -68.8276119
+  },
+  {
+    "id": "M1198",
+    "nombre": "Ramirez y Tucumán",
+    "lat": -32.8743,
+    "lon": -68.82371
+  },
+  {
+    "id": "M1199",
+    "nombre": "Montecaseros y Jujuy (Capital, Mendoza)",
+    "lat": -32.8722594,
+    "lon": -68.8304215
+  },
+  {
+    "id": "M1200",
+    "nombre": "Ituzaingó y Jujuy (Capital, Mendoza)",
+    "lat": -32.8719586,
+    "lon": -68.8289332
+  },
+  {
+    "id": "M1201",
+    "nombre": "Videla Castillo y Jujuy (Capital, Mendoza)",
+    "lat": -32.872459,
+    "lon": -68.827526
+  },
+  {
+    "id": "M1202",
+    "nombre": "Paraguay y Jujuy (Capital, Mendoza)",
+    "lat": -32.8721056,
+    "lon": -68.8256682
+  },
+  {
+    "id": "M1203",
+    "nombre": "Jujuy y Ramirez (Capital, Mendoza)",
+    "lat": -32.8719399,
+    "lon": -68.8234219
+  },
+  {
+    "id": "M1204",
+    "nombre": "Jujuy y Ramirez (Capital, Mendoza)",
+    "lat": -32.8721,
+    "lon": -68.8231
+  },
+  {
+    "id": "M1205",
+    "nombre": "Bajada de Arrollabes y Jujuy (Mendoza, Argentina)",
+    "lat": -32.8720927,
+    "lon": -68.8202275
+  },
+  {
+    "id": "M1206",
+    "nombre": "Santiago del Estero y Ituzaingó (Capital, Mendoza)",
+    "lat": -32.8710969,
+    "lon": -68.8295249
+  },
+  {
+    "id": "M1207",
+    "nombre": "Santiago del Estero y Ituzaingó (Capital, Mendoza)",
+    "lat": -32.870691,
+    "lon": -68.8292434
+  },
+  {
+    "id": "M1208",
+    "nombre": "Paraguay y Santiago del Estero (Capital, Mendoza)",
+    "lat": -32.8712907,
+    "lon": -68.8260555
+  },
+  {
+    "id": "M1209",
+    "nombre": "Ramirez y Santiago del Estero (Capital, Mendoza)",
+    "lat": -32.8713312,
+    "lon": -68.8233987
+  },
+  {
+    "id": "M1210",
+    "nombre": "Santiago del Estero y Chenaut (Capital, Mendoza)",
+    "lat": -32.8714168,
+    "lon": -68.8207809
+  },
+  {
+    "id": "M1211",
+    "nombre": "Santiago del Estero y Ituzaingó (Capital, Mendoza)",
+    "lat": -32.870745,
+    "lon": -68.8293024
+  },
+  {
+    "id": "M1212",
+    "nombre": "Videla Castillo y Castelar",
+    "lat": -32.87023,
+    "lon": -68.82733
+  },
+  {
+    "id": "M1213",
+    "nombre": "Callejón Ponce y Videla Castillo (Capital, Mendoza)",
+    "lat": -32.8692699,
+    "lon": -68.827265
+  },
+  {
+    "id": "M1214",
+    "nombre": "Ramirez y Fray Mamerto Esquiú (Capital, Mendoza)",
+    "lat": -32.8696466,
+    "lon": -68.8228694
+  },
+  {
+    "id": "M1215",
+    "nombre": "Ramirez y Fray Mamerto Esquiú (Capital, Mendoza)",
+    "lat": -32.8693447,
+    "lon": -68.8230947
+  },
+  {
+    "id": "M1216",
+    "nombre": "Vélez Sarsfield y Bajada de Arrollabes (Las Heras, Mendoza)",
+    "lat": -32.8704797,
+    "lon": -68.8190527
+  },
+  {
+    "id": "M1217",
+    "nombre": "Resistencia y Bajada de Arrollabes (Mendoza, Argentina)",
+    "lat": -32.8691134,
+    "lon": -68.8180033
+  },
+  {
+    "id": "M1218",
+    "nombre": "Av. San Martín esquina Cnel Díaz (Mendoza, Argentina)",
+    "lat": -32.8667667,
+    "lon": -68.8330437
+  },
+  {
+    "id": "M1219",
+    "nombre": "Confraternidad Ferroviaria y Salta (Capital, Mendoza)",
+    "lat": -32.86694,
+    "lon": -68.83227
+  },
+  {
+    "id": "M1220",
+    "nombre": "Montecaseros y Coronel Díaz (Mendoza, Argentina)",
+    "lat": -32.8668709,
+    "lon": -68.8306964
+  },
+  {
+    "id": "M1221",
+    "nombre": "Gobernador Gonzalez y Ituzaingó (Capital, Mendoza)",
+    "lat": -32.8685147,
+    "lon": -68.8292863
+  },
+  {
+    "id": "M1222",
+    "nombre": "Coronel Díaz y Olascoaga (Las Heras, Mendoza)",
+    "lat": -32.8665341,
+    "lon": -68.8282288
+  },
+  {
+    "id": "M1223",
+    "nombre": "Videla Castillo y Confraternidad Ferroviaria (Capital, Mendoza)",
+    "lat": -32.8673046,
+    "lon": -68.8271935
+  },
+  {
+    "id": "M1224",
+    "nombre": "Paraguay y Coronel Díaz (Las Heras, Mendoza)",
+    "lat": -32.8665747,
+    "lon": -68.8256163
+  },
+  {
+    "id": "M1225",
+    "nombre": "Coronel Díaz y Ramirez (Las Heras, Mendoza)",
+    "lat": -32.8666124,
+    "lon": -68.8230287
+  },
+  {
+    "id": "M1226",
+    "nombre": "Confraternidad Ferroviaria y Ramirez (Capital, Mendoza)",
+    "lat": -32.8679975,
+    "lon": -68.8226763
+  },
+  {
+    "id": "M1227",
+    "nombre": "Ramirez y Confraternidad Ferroviaria (Capital, Mendoza)",
+    "lat": -32.8677768,
+    "lon": -68.8228479
+  },
+  {
+    "id": "M1228",
+    "nombre": "Coronel Díaz y Ramirez (Las Heras, Mendoza)",
+    "lat": -32.8667425,
+    "lon": -68.8224983
+  },
+  {
+    "id": "M1229",
+    "nombre": "Juan Bautista Justo y Granaderos (Capital, Mendoza)",
+    "lat": -32.88364,
+    "lon": -68.85545
+  },
+  {
+    "id": "M1230",
+    "nombre": "Juan Bautista Justo y Olascoaga",
+    "lat": -32.88377,
+    "lon": -68.85253
+  },
+  {
+    "id": "M1231",
+    "nombre": "Ciclovía y Juan Bautista Justo (Capital, Mendoza)",
+    "lat": -32.88416,
+    "lon": -68.849317
+  },
+  {
+    "id": "M1232",
+    "nombre": "Roque Sáenz Peña y Olascoaga (Capital, Mendoza)",
+    "lat": -32.8817551,
+    "lon": -68.8520886
+  },
+  {
+    "id": "M12320",
+    "nombre": "Boulogne Sur Mer y Paraná (Capital, Mendoza)",
+    "lat": -32.8751763,
+    "lon": -68.8591323
+  },
+  {
+    "id": "M12321",
+    "nombre": "Paso de los Andes y Paraná (Capital, Mendoza)",
+    "lat": -32.8761134,
+    "lon": -68.8562945
+  },
+  {
+    "id": "M12322",
+    "nombre": "Granaderos y Paraná (Capital, Mendoza)",
+    "lat": -32.8765189,
+    "lon": -68.8543472
+  },
+  {
+    "id": "M12323",
+    "nombre": "Martínez de Rozas y Suipacha (Capital, Mendoza)",
+    "lat": -32.8776452,
+    "lon": -68.8529417
+  },
+  {
+    "id": "M12324",
+    "nombre": "Juan de Dios Videla y Martínez de Rozas (Capital, Mendoza)",
+    "lat": -32.8797175,
+    "lon": -68.8534889
+  },
+  {
+    "id": "M12325",
+    "nombre": "Joaquín V. González y Martínez de Rozas (Capital, Mendoza)",
+    "lat": -32.8821683,
+    "lon": -68.8541702
+  },
+  {
+    "id": "M1233",
+    "nombre": "Juan de Dios Videla y Olascoaga (Capital, Mendoza)",
+    "lat": -32.880327,
+    "lon": -68.8517024
+  },
+  {
+    "id": "M1234",
+    "nombre": "Martínez de Rozas y Suipacha (Capital, Mendoza)",
+    "lat": -32.8777301,
+    "lon": -68.8527228
+  },
+  {
+    "id": "M1235",
+    "nombre": "Suipacha y Olascoaga (Capital, Mendoza)",
+    "lat": -32.8782817,
+    "lon": -68.8511445
+  },
+  {
+    "id": "M1236",
+    "nombre": "Suipacha (Capital, Mendoza)",
+    "lat": -32.8782708,
+    "lon": -68.8497562
+  },
+  {
+    "id": "M1237",
+    "nombre": "Tiburcio Benegas 2025 -vereda oeste",
+    "lat": -32.87761,
+    "lon": -68.84992
+  },
+  {
+    "id": "M1238",
+    "nombre": "Coronel Moldes y Olascoaga (Capital, Mendoza)",
+    "lat": -32.8761732,
+    "lon": -68.8506187
+  },
+  {
+    "id": "M1239",
+    "nombre": "Francisco Narciso Laprida y Coronel Rodríguez (Capital, Mendoza)",
+    "lat": -32.8749898,
+    "lon": -68.8491462
+  },
+  {
+    "id": "M1240",
+    "nombre": "Olascoaga y Jorge Newbery (Capital, Mendoza)",
+    "lat": -32.8740737,
+    "lon": -68.8500555
+  },
+  {
+    "id": "M1241",
+    "nombre": "José Ingenieros y Unc (Capital, Mendoza)",
+    "lat": -32.8814834,
+    "lon": -68.8731791
+  },
+  {
+    "id": "M1242",
+    "nombre": "Lencinas (Capital, Mendoza)",
+    "lat": -32.8820168,
+    "lon": -68.8701731
+  },
+  {
+    "id": "M1245",
+    "nombre": "Boulogne Sur Mer y Lencinas (Capital, Mendoza)",
+    "lat": -32.8829839,
+    "lon": -68.8605769
+  },
+  {
+    "id": "M1246",
+    "nombre": "Boulogne Sur Mer y Uruguay (Capital, Mendoza)",
+    "lat": -32.8827406,
+    "lon": -68.8603141
+  },
+  {
+    "id": "M1247",
+    "nombre": "Juan Bautista Justo y Paso de los Andes (Capital, Mendoza)",
+    "lat": -32.8834031,
+    "lon": -68.8585008
+  },
+  {
+    "id": "M1248",
+    "nombre": "Juan Bautista Justo y Granaderos (Capital, Mendoza)",
+    "lat": -32.883543,
+    "lon": -68.8561521
+  },
+  {
+    "id": "M1249",
+    "nombre": "José Ingenieros y Democracia (Capital, Mendoza)",
+    "lat": -32.8796197,
+    "lon": -68.8738681
+  },
+  {
+    "id": "M1250",
+    "nombre": "José Ingenieros y Democracia (Capital, Mendoza)",
+    "lat": -32.8791881,
+    "lon": -68.8739019
+  },
+  {
+    "id": "M12507",
+    "nombre": "Doctor Notti y Doctor Gainza (Las Heras, Mendoza)",
+    "lat": -32.86421,
+    "lon": -68.87815
+  },
+  {
+    "id": "M1251",
+    "nombre": "Posta del retamo y Democracia (Capital, Mendoza)",
+    "lat": -32.8796879,
+    "lon": -68.8722919
+  },
+  {
+    "id": "M1252",
+    "nombre": "Cuyo y Cabildo (Capital, Mendoza)",
+    "lat": -32.878363,
+    "lon": -68.8711984
+  },
+  {
+    "id": "M12522",
+    "nombre": "Paso de los Andes y Av. Emilio Civit (Capital, Mendoza)",
+    "lat": -32.8872132,
+    "lon": -68.8589178
+  },
+  {
+    "id": "M12523",
+    "nombre": "Juan Bautista Justo y Paso de los Andes (Capital, Mendoza)",
+    "lat": -32.883812,
+    "lon": -68.858655
+  },
+  {
+    "id": "M12524",
+    "nombre": "Avelino Maure y Huarpes (Capital, Mendoza)",
+    "lat": -32.87184,
+    "lon": -68.85651
+  },
+  {
+    "id": "M12525",
+    "nombre": "Paso de los Andes y Aguado (Capital, Mendoza)",
+    "lat": -32.8705882,
+    "lon": -68.8547068
+  },
+  {
+    "id": "M1254",
+    "nombre": "Boulogne Sur Mer frente Joaquín González (Capital, Mendoza)",
+    "lat": -32.88102,
+    "lon": -68.86025
+  },
+  {
+    "id": "M1255",
+    "nombre": "Roque Sáenz Peña y Paso de los Andes (Capital, Mendoza)",
+    "lat": -32.8807008,
+    "lon": -68.8575739
+  },
+  {
+    "id": "M1257",
+    "nombre": "José Ingenieros y Nicolás Plantamura (Capital, Mendoza)",
+    "lat": -32.8769772,
+    "lon": -68.8730735
+  },
+  {
+    "id": "M1259",
+    "nombre": "Lebhenson y Acasubi (Capital, Mendoza)",
+    "lat": -32.8757041,
+    "lon": -68.8717302
+  },
+  {
+    "id": "M12593",
+    "nombre": "Nicolás Plantamura y San Felipe",
+    "lat": -32.87797,
+    "lon": -68.86407
+  },
+  {
+    "id": "M12594",
+    "nombre": "Boero y José Ingenieros (Capital, Mendoza)",
+    "lat": -32.8771631,
+    "lon": -68.8730207
+  },
+  {
+    "id": "M12595",
+    "nombre": "Del Castillo y Nicolás Plantamura",
+    "lat": -32.87781,
+    "lon": -68.86972
+  },
+  {
+    "id": "M12596",
+    "nombre": "Nicolás Plantamura y San Felipe",
+    "lat": -32.87799,
+    "lon": -68.86469
+  },
+  {
+    "id": "M12597",
+    "nombre": "Av. Cooperativa y Cordón del Plata (S) (Capital, Mendoza)",
+    "lat": -32.8670032,
+    "lon": -68.8646093
+  },
+  {
+    "id": "M1261",
+    "nombre": "Del Castillo y San Leonardo Murialdo",
+    "lat": -32.87464,
+    "lon": -68.86852
+  },
+  {
+    "id": "M1263",
+    "nombre": "Paso de los Andes y Juan de Dios Videla (Capital, Mendoza)",
+    "lat": -32.8794889,
+    "lon": -68.8570589
+  },
+  {
+    "id": "M1264",
+    "nombre": "Roque Sáenz Peña y Granaderos (Capital, Mendoza)",
+    "lat": -32.88075,
+    "lon": -68.855401
+  },
+  {
+    "id": "M1265",
+    "nombre": "Aristóbulo del Valle y Boulogne Sur Mer (Capital, Mendoza)",
+    "lat": -32.8780046,
+    "lon": -68.8593561
+  },
+  {
+    "id": "M1266",
+    "nombre": "Atahualpa Yupanqui y Boulogne Sur Mer (Capital, Mendoza)",
+    "lat": -32.87625,
+    "lon": -68.85936
+  },
+  {
+    "id": "M1267",
+    "nombre": "Paso de los Andes y Suipacha (Capital, Mendoza)",
+    "lat": -32.8773895,
+    "lon": -68.8563454
+  },
+  {
+    "id": "M1268",
+    "nombre": "Granaderos y Aristóbulo del Valle (Capital, Mendoza)",
+    "lat": -32.87834,
+    "lon": -68.85479
+  },
+  {
+    "id": "M1269",
+    "nombre": "Paso de los Andes y Suipacha (Capital, Mendoza)",
+    "lat": -32.8770814,
+    "lon": -68.8561935
+  },
+  {
+    "id": "M1271",
+    "nombre": "Boulogne Sur Mer y Paraná (Capital, Mendoza)",
+    "lat": -32.87575,
+    "lon": -68.85901
+  },
+  {
+    "id": "M1272",
+    "nombre": "Paso de los Andes y Coronel Moldes (Capital, Mendoza)",
+    "lat": -32.8752135,
+    "lon": -68.8557553
+  },
+  {
+    "id": "M1273",
+    "nombre": "Boulogne Sur Mer y Francisco Narciso Laprida (Capital, Mendoza)",
+    "lat": -32.8735648,
+    "lon": -68.8586329
+  },
+  {
+    "id": "M1274",
+    "nombre": "Jorge Newbery y Neuquén",
+    "lat": -32.8725939,
+    "lon": -68.8575737
+  },
+  {
+    "id": "M12745",
+    "nombre": "Juncal y Potrerillos (Capital, Mendoza)",
+    "lat": -32.8653316,
+    "lon": -68.8685146
+  },
+  {
+    "id": "M12746",
+    "nombre": "Juncal y Maipú (Capital, Mendoza)",
+    "lat": -32.8685577,
+    "lon": -68.8690886
+  },
+  {
+    "id": "M12747",
+    "nombre": "Tambillos y Juncal (Capital, Mendoza)",
+    "lat": -32.8670618,
+    "lon": -68.8687828
+  },
+  {
+    "id": "M12748",
+    "nombre": "Juncal y El Nevado (Capital, Mendoza)",
+    "lat": -32.8709547,
+    "lon": -68.8691423
+  },
+  {
+    "id": "M1275",
+    "nombre": "Jorge Newbery y Tabanera (Capital, Mendoza)",
+    "lat": -32.8728386,
+    "lon": -68.8562456
+  },
+  {
+    "id": "M1276",
+    "nombre": "Paso de los Andes y Jorge Newbery (Capital, Mendoza)",
+    "lat": -32.873123,
+    "lon": -68.8551867
+  },
+  {
+    "id": "M1277",
+    "nombre": "Granaderos y Coronel Moldes (Capital, Mendoza)",
+    "lat": -32.8752626,
+    "lon": -68.8539366
+  },
+  {
+    "id": "M1278",
+    "nombre": "Granaderos y Jorge Newbery (Capital, Mendoza)",
+    "lat": -32.8732936,
+    "lon": -68.8537834
+  },
+  {
+    "id": "M12781",
+    "nombre": "Martínez de Rozas y Lamadrid",
+    "lat": -32.89801,
+    "lon": -68.85703
+  },
+  {
+    "id": "M12782",
+    "nombre": "Sobremonte y Martínez de Rozas (Capital, Mendoza)",
+    "lat": -32.8955707,
+    "lon": -68.8575551
+  },
+  {
+    "id": "M12783",
+    "nombre": "Martínez de Rozas y Sargento Cabral (Capital, Mendoza)",
+    "lat": -32.8928681,
+    "lon": -68.857024
+  },
+  {
+    "id": "M1279",
+    "nombre": "Granaderos y Jorge Newbery (Capital, Mendoza)",
+    "lat": -32.8731857,
+    "lon": -68.8533733
+  },
+  {
+    "id": "M1280",
+    "nombre": "Parador Belgrano Andén Oeste",
+    "lat": -32.8907207,
+    "lon": -68.8503398
+  },
+  {
+    "id": "M1281",
+    "nombre": "Boulogne Sur Mer y Del Libertador (Capital, Mendoza)",
+    "lat": -32.8868638,
+    "lon": -68.8611059
+  },
+  {
+    "id": "M1282",
+    "nombre": "Boulogne Sur Mer y Del Libertador (Capital, Mendoza)",
+    "lat": -32.8866398,
+    "lon": -68.8607267
+  },
+  {
+    "id": "M1283",
+    "nombre": "Paso de los Andes y Av. Emilio Civit (Capital, Mendoza)",
+    "lat": -32.8870474,
+    "lon": -68.8594779
+  },
+  {
+    "id": "M1284",
+    "nombre": "Av. Emilio Civit y Granaderos (Capital, Mendoza)",
+    "lat": -32.8871285,
+    "lon": -68.857874
+  },
+  {
+    "id": "M1286",
+    "nombre": "Av. Emilio Civit y Martínez de Rozas",
+    "lat": -32.8876,
+    "lon": -68.85516
+  },
+  {
+    "id": "M1287",
+    "nombre": "Martínez de Rozas y Av. Emilio Civit (Capital, Mendoza)",
+    "lat": -32.8876646,
+    "lon": -68.8559052
+  },
+  {
+    "id": "M1289",
+    "nombre": "Av. Emilio Civit y Estado de Israel (Capital, Mendoza)",
+    "lat": -32.8886151,
+    "lon": -68.8508251
+  },
+  {
+    "id": "M1290",
+    "nombre": "Av. Emilio Civit y Belgrano (Capital, Mendoza)",
+    "lat": -32.8884999,
+    "lon": -68.8499643
+  },
+  {
+    "id": "M1291",
+    "nombre": "Boulogne Sur Mer y Lencinas (Capital, Mendoza)",
+    "lat": -32.8837757,
+    "lon": -68.860497
+  },
+  {
+    "id": "M1292",
+    "nombre": "Nicolás Avellaneda y Paso de los Andes (Capital, Mendoza)",
+    "lat": -32.8847758,
+    "lon": -68.8593687
+  },
+  {
+    "id": "M1293",
+    "nombre": "Juan Bautista Justo y Paso de los Andes (Capital, Mendoza)",
+    "lat": -32.883723,
+    "lon": -68.8590641
+  },
+  {
+    "id": "M1294",
+    "nombre": "Juan Bautista Justo y Granaderos (Capital, Mendoza)",
+    "lat": -32.88382,
+    "lon": -68.8564
+  },
+  {
+    "id": "M1295",
+    "nombre": "Nicolás Avellaneda y Granaderos (Capital, Mendoza)",
+    "lat": -32.885217,
+    "lon": -68.8570122
+  },
+  {
+    "id": "M1296",
+    "nombre": "Nicolás Avellaneda y Olascoaga (Capital, Mendoza)",
+    "lat": -32.8858522,
+    "lon": -68.8536434
+  },
+  {
+    "id": "M1297",
+    "nombre": "Juan Bautista Justo y Olascoaga (Capital, Mendoza)",
+    "lat": -32.8839798,
+    "lon": -68.8532974
+  },
+  {
+    "id": "M12975",
+    "nombre": "Maipú y Lateral Llorens (Capital, Mendoza)",
+    "lat": -32.86865,
+    "lon": -68.8666
+  },
+  {
+    "id": "M12976",
+    "nombre": "Videla Correa y España (Capital, Mendoza)",
+    "lat": -32.8706123,
+    "lon": -68.836945
+  },
+  {
+    "id": "M1298",
+    "nombre": "Nicolás Avellaneda y Belgrano (Capital, Mendoza)",
+    "lat": -32.8866451,
+    "lon": -68.8495342
+  },
+  {
+    "id": "M12989",
+    "nombre": "Av. Bartolomé Mitre y Videla Correa (Capital, Mendoza)",
+    "lat": -32.8705988,
+    "lon": -68.8392785
+  },
+  {
+    "id": "M1299",
+    "nombre": "Espejo y Belgrano (Capital, Mendoza)",
+    "lat": -32.8872881,
+    "lon": -68.8496853
+  },
+  {
+    "id": "M12990",
+    "nombre": "25 de Mayo y Videla Correa (Capital, Mendoza)",
+    "lat": -32.8705988,
+    "lon": -68.8420037
+  },
+  {
+    "id": "M1300",
+    "nombre": "Ciclovía y Juan Bautista Justo (Capital, Mendoza)",
+    "lat": -32.8844729,
+    "lon": -68.8492367
+  },
+  {
+    "id": "M1301",
+    "nombre": "Ciclovía y Julio Leónidas Aguirre (Capital, Mendoza)",
+    "lat": -32.8850087,
+    "lon": -68.8491543
+  },
+  {
+    "id": "M1302",
+    "nombre": "Sobremonte y Huarpes",
+    "lat": -32.89574,
+    "lon": -68.86091
+  },
+  {
+    "id": "M1303",
+    "nombre": "Bravo y Sobremonte (Capital, Mendoza)",
+    "lat": -32.8957111,
+    "lon": -68.8625724
+  },
+  {
+    "id": "M1305",
+    "nombre": "Paso de los Andes y Sobremonte (Capital, Mendoza)",
+    "lat": -32.8958327,
+    "lon": -68.8593752
+  },
+  {
+    "id": "M1306",
+    "nombre": "Paso de los Andes y Sobremonte (Capital, Mendoza)",
+    "lat": -32.8959761,
+    "lon": -68.8590759
+  },
+  {
+    "id": "M1307",
+    "nombre": "Olascoaga y Sobremonte (Capital, Mendoza)",
+    "lat": -32.8959948,
+    "lon": -68.8558186
+  },
+  {
+    "id": "M1310",
+    "nombre": "Pueyrredón y Coronel Rodriguez (Capital, Mendoza)",
+    "lat": -32.8993634,
+    "lon": -68.8538097
+  },
+  {
+    "id": "M1312",
+    "nombre": "Manuel Antonio Sáez y Paso de los Andes (Capital, Mendoza)",
+    "lat": -32.8941158,
+    "lon": -68.8588184
+  },
+  {
+    "id": "M1313",
+    "nombre": "Avenida General Belgrano y Sobremonte (Capital, Mendoza)",
+    "lat": -32.8955899,
+    "lon": -68.8518526
+  },
+  {
+    "id": "M1315",
+    "nombre": "Boulogne Sur Mer y Arístides Villanueva (Capital, Mendoza)",
+    "lat": -32.8909234,
+    "lon": -68.8617858
+  },
+  {
+    "id": "M1316",
+    "nombre": "Paso de los Andes y Arístides Villanueva (Capital, Mendoza)",
+    "lat": -32.8918096,
+    "lon": -68.858797
+  },
+  {
+    "id": "M13166",
+    "nombre": "Nicolás Plantamura y Del castillo",
+    "lat": -32.8775655,
+    "lon": -68.869093
+  },
+  {
+    "id": "M13167",
+    "nombre": "Nicolás Plantamura y Posta del Retamo",
+    "lat": -32.87733,
+    "lon": -68.87157
+  },
+  {
+    "id": "M13168",
+    "nombre": "José Ingenieros y Nicolás Plantamura (Capital, Mendoza)",
+    "lat": -32.8769155,
+    "lon": -68.8728
+  },
+  {
+    "id": "M1317",
+    "nombre": "Paso de los Andes y Arístides Villanueva (Capital, Mendoza)",
+    "lat": -32.8915405,
+    "lon": -68.858669
+  },
+  {
+    "id": "M1318",
+    "nombre": "Olascoaga y Arístides Villanueva (Capital, Mendoza)",
+    "lat": -32.8922928,
+    "lon": -68.8544365
+  },
+  {
+    "id": "M1319",
+    "nombre": "Arístides Villanueva y Tiburcio Benegas (Capital, Mendoza)",
+    "lat": -32.8924684,
+    "lon": -68.8510533
+  },
+  {
+    "id": "M1321",
+    "nombre": "Coronel Rodriguez y Rufino Ortega (Capital, Mendoza)",
+    "lat": -32.8916006,
+    "lon": -68.8529762
+  },
+  {
+    "id": "M13217",
+    "nombre": "Av. 9 de julio y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.88408,
+    "lon": -68.83852
+  },
+  {
+    "id": "M13219",
+    "nombre": "Huarpes y Avelino Maure (Capital, Mendoza)",
+    "lat": -32.8717815,
+    "lon": -68.856477
+  },
+  {
+    "id": "M1322",
+    "nombre": "Martínez de Rozas y Rufino Ortega (Capital, Mendoza)",
+    "lat": -32.8909604,
+    "lon": -68.856683
+  },
+  {
+    "id": "M13221",
+    "nombre": "Quinquela Martín y José Ingenieros (Capital, Mendoza)",
+    "lat": -32.87764,
+    "lon": -68.87639
+  },
+  {
+    "id": "M13222",
+    "nombre": "Av. Gran Capitán Sur y Padre Llorens",
+    "lat": -32.87205,
+    "lon": -68.86661
+  },
+  {
+    "id": "M1323",
+    "nombre": "Rufino Ortega y Paso de los Andes",
+    "lat": -32.89041,
+    "lon": -68.85917
+  },
+  {
+    "id": "M1324",
+    "nombre": "Paso de los Andes y Martín Zapata (Capital, Mendoza)",
+    "lat": -32.8895393,
+    "lon": -68.8588184
+  },
+  {
+    "id": "M1326",
+    "nombre": "Mariano Moreno y Bravo (Capital, Mendoza)",
+    "lat": -32.9021614,
+    "lon": -68.8636302
+  },
+  {
+    "id": "M1328",
+    "nombre": "Mariano Moreno y Huarpes (Capital, Mendoza)",
+    "lat": -32.9019382,
+    "lon": -68.8611001
+  },
+  {
+    "id": "M1329",
+    "nombre": "Olegario Víctor Andrade y Paso de los Andes",
+    "lat": -32.90236,
+    "lon": -68.85916
+  },
+  {
+    "id": "M1330",
+    "nombre": "Boulogne Sur Mer y Luzuriaga (Capital, Mendoza)",
+    "lat": -32.90057,
+    "lon": -68.86405
+  },
+  {
+    "id": "M1334",
+    "nombre": "Luzuriaga y Martínez de Rozas (Capital, Mendoza)",
+    "lat": -32.9003295,
+    "lon": -68.8571144
+  },
+  {
+    "id": "M1336",
+    "nombre": "Olegario Víctor Andrade y Martín Palero (Capital, Mendoza)",
+    "lat": -32.90156,
+    "lon": -68.85328
+  },
+  {
+    "id": "M1337",
+    "nombre": "Martín Palero y Av. Peltier (Capital, Mendoza)",
+    "lat": -32.89995,
+    "lon": -68.85292
+  },
+  {
+    "id": "M1339",
+    "nombre": "Pueyrredón y Martínez de Rozas (Capital, Mendoza)",
+    "lat": -32.8993499,
+    "lon": -68.8566636
+  },
+  {
+    "id": "M1340",
+    "nombre": "Pueyrredón y Paso de los Andes (Capital, Mendoza)",
+    "lat": -32.8993049,
+    "lon": -68.8593458
+  },
+  {
+    "id": "M1341",
+    "nombre": "Paso de los Andes y Lamadrid (Capital, Mendoza)",
+    "lat": -32.8984399,
+    "lon": -68.8594407
+  },
+  {
+    "id": "M1342",
+    "nombre": "Pueyrredón y Emilio Jofré (Capital, Mendoza)",
+    "lat": -32.8992914,
+    "lon": -68.8621084
+  },
+  {
+    "id": "M1343",
+    "nombre": "Boulogne Sur Mer y Lamadrid (Capital, Mendoza)",
+    "lat": -32.8983141,
+    "lon": -68.8634501
+  },
+  {
+    "id": "M1345",
+    "nombre": "Sobremonte y Coronel Rodriguez (Capital, Mendoza)",
+    "lat": -32.8960309,
+    "lon": -68.853882
+  },
+  {
+    "id": "M14092",
+    "nombre": "Belgrano y Sarmiento (Capital, Mendoza)",
+    "lat": -32.8890663,
+    "lon": -68.8496178
+  },
+  {
+    "id": "M14093",
+    "nombre": "Amigorena y Primitivo de la Reta (Capital, Mendoza)",
+    "lat": -32.8915582,
+    "lon": -68.8381487
+  },
+  {
+    "id": "M14126",
+    "nombre": "Cipoletti y Fernando Fader (Capital, Mendoza)",
+    "lat": -32.8671252,
+    "lon": -68.8582224
+  },
+  {
+    "id": "M14169",
+    "nombre": "Olascoaga y Pueyrredón (Capital, Mendoza)",
+    "lat": -32.8995831,
+    "lon": -68.8556099
+  },
+  {
+    "id": "M14176",
+    "nombre": "Av. Gran Capitán Sur y El Nevado (Capital, Mendoza)",
+    "lat": -32.8702108,
+    "lon": -68.8630822
+  },
+  {
+    "id": "M14212",
+    "nombre": "Los Pescadores y San Rafael",
+    "lat": -32.86745,
+    "lon": -68.81746
+  },
+  {
+    "id": "M14229",
+    "nombre": "Av. Gran Capitán Sur y Av. Cooperativa",
+    "lat": -32.86804,
+    "lon": -68.8622
+  },
+  {
+    "id": "M14232",
+    "nombre": "Rioja y Catamarca (Capital, Mendoza)",
+    "lat": -32.8893856,
+    "lon": -68.8358138
+  },
+  {
+    "id": "M14264",
+    "nombre": "Av. Progreso (Capital, Mendoza)",
+    "lat": -32.8953559,
+    "lon": -68.9079599
+  },
+  {
+    "id": "M14322",
+    "nombre": "Av Libertador Frente Velodromo Vereda Norte",
+    "lat": -32.8832232,
+    "lon": -68.8790468
+  },
+  {
+    "id": "M14334",
+    "nombre": "J. A. Calle esq. Av. Perú",
+    "lat": -32.8684796,
+    "lon": -68.843585
+  },
+  {
+    "id": "M14347",
+    "nombre": "Parador Suipacha Andén Este",
+    "lat": -32.87932,
+    "lon": -68.84714
+  },
+  {
+    "id": "M14348",
+    "nombre": "Parador Suipacha Andén Oeste",
+    "lat": -32.87928,
+    "lon": -68.84733
+  },
+  {
+    "id": "M14349",
+    "nombre": "Parador Moldes Andén Este",
+    "lat": -32.876812,
+    "lon": -68.8465521
+  },
+  {
+    "id": "M14350",
+    "nombre": "Parador Moldes Andén Oeste",
+    "lat": -32.8767759,
+    "lon": -68.8467184
+  },
+  {
+    "id": "M14351",
+    "nombre": "Parador Lugones Andén Este",
+    "lat": -32.8702341,
+    "lon": -68.844755
+  },
+  {
+    "id": "M14352",
+    "nombre": "Parador Lugones Andén Oeste",
+    "lat": -32.8701935,
+    "lon": -68.8449588
+  },
+  {
+    "id": "M14353",
+    "nombre": "Parador Rubilar Andén Este",
+    "lat": -32.8662871,
+    "lon": -68.8438162
+  },
+  {
+    "id": "M14354",
+    "nombre": "Parador Rubilar Andén Oeste",
+    "lat": -32.8662601,
+    "lon": -68.8439772
+  },
+  {
+    "id": "M14364",
+    "nombre": "Estación Mendoza Andén Este",
+    "lat": -32.8826678,
+    "lon": -68.8480303
+  },
+  {
+    "id": "M14365",
+    "nombre": "Estación Mendoza Andén Oeste",
+    "lat": -32.8826333,
+    "lon": -68.8482323
+  },
+  {
+    "id": "M1472",
+    "nombre": "Del Libertador (Capital, Mendoza)",
+    "lat": -32.8857844,
+    "lon": -68.8953484
+  },
+  {
+    "id": "M1473",
+    "nombre": "Del Libertador (Capital, Mendoza)",
+    "lat": -32.8860056,
+    "lon": -68.8955315
+  },
+  {
+    "id": "M1474",
+    "nombre": "Pablo Neruda (Ex Acceso 1) (Capital, Mendoza)",
+    "lat": -32.886801,
+    "lon": -68.906726
+  },
+  {
+    "id": "M1475",
+    "nombre": "Nestor kirchner (Capital, Mendoza)",
+    "lat": -32.887258,
+    "lon": -68.9083363
+  },
+  {
+    "id": "M1477",
+    "nombre": "Aliar y Pablo Neruda (Ex Acceso 1) (Capital, Mendoza)",
+    "lat": -32.8878301,
+    "lon": -68.9108737
+  },
+  {
+    "id": "M1479",
+    "nombre": "Av. Progreso y Aliar (Capital, Mendoza)",
+    "lat": -32.891117,
+    "lon": -68.910651
+  },
+  {
+    "id": "M1480",
+    "nombre": "Av. Progreso (Capital, Mendoza)",
+    "lat": -32.8902355,
+    "lon": -68.9086287
+  },
+  {
+    "id": "M1481",
+    "nombre": "Juana Azurduy (Ex Los Paraisos) (Capital, Mendoza)",
+    "lat": -32.8895013,
+    "lon": -68.9062281
+  },
+  {
+    "id": "M1482",
+    "nombre": "Del Libertador (Capital, Mendoza)",
+    "lat": -32.8869111,
+    "lon": -68.8990237
+  },
+  {
+    "id": "M1483",
+    "nombre": "Del Libertador (Capital, Mendoza)",
+    "lat": -32.8871746,
+    "lon": -68.8991954
+  },
+  {
+    "id": "M1485",
+    "nombre": "Av. Progreso (Capital, Mendoza)",
+    "lat": -32.887776,
+    "lon": -68.903708
+  },
+  {
+    "id": "M14965",
+    "nombre": "El Nevado Esq El Plumerillo Vereda Sur",
+    "lat": -32.8708738,
+    "lon": -68.8679693
+  },
+  {
+    "id": "M14966",
+    "nombre": "El Nevado Esq Padre Llorens Vereda Sur",
+    "lat": -32.8703732,
+    "lon": -68.8662824
+  },
+  {
+    "id": "M14968",
+    "nombre": "Av Cooperativa Esq Cacheuta Vereda Sur",
+    "lat": -32.8671526,
+    "lon": -68.8644447
+  },
+  {
+    "id": "M14974",
+    "nombre": "Plantamura Esq Boulogne Sur Mer Vereda Sur",
+    "lat": -32.8789284,
+    "lon": -68.8599226
+  },
+  {
+    "id": "M14996",
+    "nombre": "9 De Julio Esq Gutierrez Plaza San Martin",
+    "lat": -32.8881619,
+    "lon": -68.8401915
+  },
+  {
+    "id": "M15009",
+    "nombre": "Francisco Rubilar y Italia (Capital, Mendoza)",
+    "lat": -32.86415,
+    "lon": -68.84392
+  },
+  {
+    "id": "M15018",
+    "nombre": "Bajada de Arrollabes y Jujuy",
+    "lat": -32.8724,
+    "lon": -68.82002
+  },
+  {
+    "id": "M15077",
+    "nombre": "Paso de los Andes y Lamadrid (Capital, Mendoza)",
+    "lat": -32.8982,
+    "lon": -68.85983
+  },
+  {
+    "id": "M15078",
+    "nombre": "Lamadrid y Emilio Jofré (Capital, Mendoza)",
+    "lat": -32.89817,
+    "lon": -68.86249
+  },
+  {
+    "id": "M15098",
+    "nombre": "Av. Champagnat Lateral y San Jose (Capital, Mendoza)",
+    "lat": -32.86781,
+    "lon": -68.88244
+  },
+  {
+    "id": "M15132",
+    "nombre": "Carlos Pellegrini y Chile (Capital, Mendoza)",
+    "lat": -32.87323,
+    "lon": -68.84087
+  },
+  {
+    "id": "M15181",
+    "nombre": "El Nevado y Los Horcones (Capital, Mendoza)",
+    "lat": -32.86996,
+    "lon": -68.86294
+  },
+  {
+    "id": "M15196",
+    "nombre": "Juana Azurduy (Ex Los Paraisos) y Aliar (Capital, Mendoza)",
+    "lat": -32.88987,
+    "lon": -68.912743
+  },
+  {
+    "id": "M15197",
+    "nombre": "Aliar y Pablo Neruda (Ex Acceso 1) (Capital, Mendoza)",
+    "lat": -32.888554,
+    "lon": -68.91263
+  },
+  {
+    "id": "M15198",
+    "nombre": "Av. Progreso y Aliar (Capital, Mendoza)",
+    "lat": -32.89066,
+    "lon": -68.910324
+  },
+  {
+    "id": "M15210",
+    "nombre": "Circuito Papagayos (Capital, Mendoza)",
+    "lat": -32.89541,
+    "lon": -68.91358
+  },
+  {
+    "id": "M15211",
+    "nombre": "Circuito Papagayos (Capital, Mendoza)",
+    "lat": -32.89536,
+    "lon": -68.913374
+  },
+  {
+    "id": "M15233",
+    "nombre": "Av. Carlos Thays (Capital, Mendoza)",
+    "lat": -32.898705,
+    "lon": -68.870805
+  },
+  {
+    "id": "M15234",
+    "nombre": "San Francisco de Asís y Av. Las Tipas (Capital, Mendoza)",
+    "lat": -32.900429,
+    "lon": -68.867198
+  },
+  {
+    "id": "M15235",
+    "nombre": "San Francisco de Asís y Av. Las Tipas (Capital, Mendoza)",
+    "lat": -32.900672,
+    "lon": -68.867372
+  },
+  {
+    "id": "M15236",
+    "nombre": "Pueyrredón y Boulogne Sur Mer (Capital, Mendoza)",
+    "lat": -32.899209,
+    "lon": -68.864389
+  },
+  {
+    "id": "M15237",
+    "nombre": "Del Prado Español (Capital, Mendoza)",
+    "lat": -32.89612,
+    "lon": -68.867357
+  },
+  {
+    "id": "M15238",
+    "nombre": "Circunvalación del Lago (Capital, Mendoza)",
+    "lat": -32.89324,
+    "lon": -68.867568
+  },
+  {
+    "id": "M15240",
+    "nombre": "Paseo Camino Del Medio y Ruiz Leal (Capital, Mendoza)",
+    "lat": -32.889102,
+    "lon": -68.865617
+  },
+  {
+    "id": "M15241",
+    "nombre": "Pasaje Giacchino y Las Tipas (Capital, Mendoza)",
+    "lat": -32.888234,
+    "lon": -68.863665
+  },
+  {
+    "id": "M15242",
+    "nombre": "Av. El Libertador y Av. Del Libertador (Capital, Mendoza)",
+    "lat": -32.886896,
+    "lon": -68.862902
+  },
+  {
+    "id": "M15246",
+    "nombre": "Del Castillo y Nicolás Plantamura (Capital, Mendoza)",
+    "lat": -32.877902,
+    "lon": -68.869296
+  },
+  {
+    "id": "M15247",
+    "nombre": "José Federico Moreno y Maipú (Capital, Mendoza)",
+    "lat": -32.87647,
+    "lon": -68.83191
+  },
+  {
+    "id": "M15248",
+    "nombre": "La Rioja y Maipú (Capital, Mendoza)",
+    "lat": -32.87633,
+    "lon": -68.8346
+  },
+  {
+    "id": "M15249",
+    "nombre": "Posta del Retamo y Atahualpa Yupanqui (Capital, Mendoza)",
+    "lat": -32.874897,
+    "lon": -68.87015
+  },
+  {
+    "id": "M15250",
+    "nombre": "Padre Llorens y Colectora Sur (Capital, Mendoza)",
+    "lat": -32.871693,
+    "lon": -68.866185
+  },
+  {
+    "id": "M15296",
+    "nombre": "Av. Progreso (Capital, Mendoza)",
+    "lat": -32.89121,
+    "lon": -68.91219
+  },
+  {
+    "id": "M15343",
+    "nombre": "Eusebio Blanco y Av. España (Capital, Mendoza)",
+    "lat": -32.88095,
+    "lon": -68.83942
+  },
+  {
+    "id": "M15496",
+    "nombre": "La Rioja y Fray Luis Beltrán (Capital, Mendoza)",
+    "lat": -32.8786,
+    "lon": -68.83501
+  },
+  {
+    "id": "M15505",
+    "nombre": "Coronel J. Rodríguez y Av. Emilio Civit (Capital, Mendoza)",
+    "lat": -32.88824,
+    "lon": -68.85276
+  },
+  {
+    "id": "M15572",
+    "nombre": "Lamadrid y M. Olascoaga (Capital, Mendoza)",
+    "lat": -32.8983,
+    "lon": -68.85704
+  },
+  {
+    "id": "M15649",
+    "nombre": "Pedro Molina cruzando 9 de Julio -vereda sur",
+    "lat": -32.89669,
+    "lon": -68.84207
+  },
+  {
+    "id": "M15650",
+    "nombre": "Pedro Molina entre 9 de Julio y Av San Martín -vereda sur",
+    "lat": -32.8967,
+    "lon": -68.84169
+  },
+  {
+    "id": "M15668",
+    "nombre": "Patricias Mendocinas y General Espejo",
+    "lat": -32.88916,
+    "lon": -68.8431
+  },
+  {
+    "id": "M15669",
+    "nombre": "Patricias Mendocinas y Sarmiento",
+    "lat": -32.89009,
+    "lon": -68.84334
+  },
+  {
+    "id": "M15670",
+    "nombre": "Patricias Mendocinas entre Sarmiento y Rivadavia",
+    "lat": -32.89043,
+    "lon": -68.84345
+  },
+  {
+    "id": "M15671",
+    "nombre": "Patricias Mendocinas y Gutiérrez",
+    "lat": -32.88753,
+    "lon": -68.84267
+  },
+  {
+    "id": "M15672",
+    "nombre": "Patricias Mendocinas y Las Heras",
+    "lat": -32.88517,
+    "lon": -68.84203
+  },
+  {
+    "id": "M15674",
+    "nombre": "Patricias Mendocinas y Colón",
+    "lat": -32.89382,
+    "lon": -68.84434
+  },
+  {
+    "id": "M15676",
+    "nombre": "Patricias Mendocinas y Virgen del Carmen de Cuyo",
+    "lat": -32.89789,
+    "lon": -68.84523
+  },
+  {
+    "id": "M15678",
+    "nombre": "Chile entre Montevideo y Rivadavia",
+    "lat": -32.89093,
+    "lon": -68.84609
+  },
+  {
+    "id": "M15679",
+    "nombre": "Chile esq Rivadavia",
+    "lat": -32.89099,
+    "lon": -68.84611
+  },
+  {
+    "id": "M15680",
+    "nombre": "Chile esq Gutierrez",
+    "lat": -32.888,
+    "lon": -68.84533
+  },
+  {
+    "id": "M15682",
+    "nombre": "Chile esq Av Godoy Cruz",
+    "lat": -32.88315,
+    "lon": -68.84405
+  },
+  {
+    "id": "M15689",
+    "nombre": "Godoy Cruz y 9 de julio - vereda Norte",
+    "lat": -32.88386,
+    "lon": -68.83876
+  },
+  {
+    "id": "M15690",
+    "nombre": "Godoy Cruz entre España y 9 de julio - Vereda Norte",
+    "lat": -32.88372,
+    "lon": -68.8395
+  },
+  {
+    "id": "M15691",
+    "nombre": "Godoy Cruz y Patricias Mendocinas Vereda Sur",
+    "lat": -32.88347,
+    "lon": -68.8418
+  },
+  {
+    "id": "M15694",
+    "nombre": "Arq Carlos Thays Int. Los Plátanos",
+    "lat": -32.88562,
+    "lon": -68.87346
+  },
+  {
+    "id": "M15711",
+    "nombre": "Juan de Dios Videla y Huarpes",
+    "lat": -32.87896,
+    "lon": -68.8582
+  },
+  {
+    "id": "M15712",
+    "nombre": "Rondeau y Rioja",
+    "lat": -32.89685,
+    "lon": -68.83706
+  },
+  {
+    "id": "M15713",
+    "nombre": "Circunvalación Universidad Nacional de Cuyo",
+    "lat": -32.883,
+    "lon": -68.87926
+  },
+  {
+    "id": "M15714",
+    "nombre": "José Ingenieros y Unc",
+    "lat": -32.88145,
+    "lon": -68.87327
+  },
+  {
+    "id": "M15715",
+    "nombre": "Alem y Av. San Martín",
+    "lat": -32.89289,
+    "lon": -68.83909
+  },
+  {
+    "id": "M15716",
+    "nombre": "Circunvalación Universidad Nacional de Cuyo",
+    "lat": -32.88379,
+    "lon": -68.87496
+  },
+  {
+    "id": "M15717",
+    "nombre": "Circunvalación Universidad Nacional de Cuyo",
+    "lat": -32.88211,
+    "lon": -68.87398
+  },
+  {
+    "id": "M15718",
+    "nombre": "Circunvalación Universidad Nacional de Cuyo",
+    "lat": -32.8807,
+    "lon": -68.88166
+  },
+  {
+    "id": "M15719",
+    "nombre": "Circunvalación Universidad Nacional de Cuyo",
+    "lat": -32.87796,
+    "lon": -68.8805
+  },
+  {
+    "id": "M15720",
+    "nombre": "Circunvalación Universidad Nacional de Cuyo",
+    "lat": -32.87715,
+    "lon": -68.87754
+  },
+  {
+    "id": "M15721",
+    "nombre": "Alem y San Juan",
+    "lat": -32.8929,
+    "lon": -68.83668
+  },
+  {
+    "id": "M15722",
+    "nombre": "Montevideo y España",
+    "lat": -32.89233,
+    "lon": -68.84201
+  },
+  {
+    "id": "M15725",
+    "nombre": "Rioja y Pasaje Pardo",
+    "lat": -32.89491,
+    "lon": -68.83642
+  },
+  {
+    "id": "M15726",
+    "nombre": "Rioja y Don Bosco",
+    "lat": -32.8948,
+    "lon": -68.83639
+  },
+  {
+    "id": "M15727",
+    "nombre": "Rioja y Don Bosco",
+    "lat": -32.89464,
+    "lon": -68.83635
+  },
+  {
+    "id": "M15728",
+    "nombre": "Avenida Alem - Hospital Central - Vereda Norte",
+    "lat": -32.89272,
+    "lon": -68.83352
+  },
+  {
+    "id": "M15729",
+    "nombre": "Avenida Alem Y Salta - Vereda Norte",
+    "lat": -32.8927,
+    "lon": -68.83413
+  },
+  {
+    "id": "M15730",
+    "nombre": "Av. San Martín entre Córdoba y Corrientes (Capital, Mendoza)",
+    "lat": -32.88287,
+    "lon": -68.8373
+  },
+  {
+    "id": "M15732",
+    "nombre": "Avenida Pedro Molina - Vereda Sur",
+    "lat": -32.89663,
+    "lon": -68.84409
+  },
+  {
+    "id": "M15733",
+    "nombre": "Avenida Pedro Molina Y Patricias Mendocinas - Vereda Sur",
+    "lat": -32.89663,
+    "lon": -68.84419
+  },
+  {
+    "id": "M15735",
+    "nombre": "Rioja esq Catamarca - vereda Oeste",
+    "lat": -32.890144,
+    "lon": -68.835768
+  },
+  {
+    "id": "M15737",
+    "nombre": "Salta Y Avenida Alem - Vereda Este",
+    "lat": -32.89197,
+    "lon": -68.83442
+  },
+  {
+    "id": "M15738",
+    "nombre": "Salta Y Garibaldi - Vereda Este",
+    "lat": -32.89163,
+    "lon": -68.83441
+  },
+  {
+    "id": "M15742",
+    "nombre": "Rioja y Teniente Ibañez",
+    "lat": -32.89838,
+    "lon": -68.83731
+  },
+  {
+    "id": "M15744",
+    "nombre": "Salta Y San Luis - Vereda Este",
+    "lat": -32.88522,
+    "lon": -68.83397
+  },
+  {
+    "id": "M15746",
+    "nombre": "Rioja Y Barraquero - Vereda Oeste",
+    "lat": -32.90186,
+    "lon": -68.83815
+  },
+  {
+    "id": "M15748",
+    "nombre": "Rioja Y Brasil - Vereda Oeste",
+    "lat": -32.90416,
+    "lon": -68.83872
+  },
+  {
+    "id": "M15750",
+    "nombre": "Salta Y Buenos Aires - Vereda Este",
+    "lat": -32.88805,
+    "lon": -68.83419
+  },
+  {
+    "id": "M15751",
+    "nombre": "Salta Y Lavalle - Vereda Este",
+    "lat": -32.8883,
+    "lon": -68.83421
+  },
+  {
+    "id": "M15754",
+    "nombre": "Montecaseros esq Garibaldi vereda este (Capital, Mendoza)",
+    "lat": -32.89176,
+    "lon": -68.83155
+  },
+  {
+    "id": "M15757",
+    "nombre": "Rioja Y Rondeau - Vereda Oeste",
+    "lat": -32.89658,
+    "lon": -68.83683
+  },
+  {
+    "id": "M15759",
+    "nombre": "25 De Mayo Y San Lorenzo - Vereda Oeste",
+    "lat": -32.89313,
+    "lon": -68.84819
+  },
+  {
+    "id": "M15760",
+    "nombre": "Av. Godoy Cruz esq 9 de Julio - vereda Sur",
+    "lat": -32.88403,
+    "lon": -68.83875
+  },
+  {
+    "id": "M15763",
+    "nombre": "25 de Mayo y Infanta San Martín - Vereda Oeste",
+    "lat": -32.895,
+    "lon": -68.84867
+  },
+  {
+    "id": "M15764",
+    "nombre": "Beltrán esq Salta - vereda Norte",
+    "lat": -32.87872,
+    "lon": -68.83344
+  },
+  {
+    "id": "M15766",
+    "nombre": "Beltrán Y Montecaseros - Vereda Norte",
+    "lat": -32.87893,
+    "lon": -68.83056
+  },
+  {
+    "id": "M15768",
+    "nombre": "Beltrán Y Videla Castillo - Vereda Norte",
+    "lat": -32.87909,
+    "lon": -68.82774
+  },
+  {
+    "id": "M15772",
+    "nombre": "Chile Y Colón - Vereda Este",
+    "lat": -32.89346,
+    "lon": -68.84678
+  },
+  {
+    "id": "M15775",
+    "nombre": "Avenida Godoy Cruz Y Patricias Mendocinas - Vereda Sur",
+    "lat": -32.88363,
+    "lon": -68.8409
+  },
+  {
+    "id": "M15776",
+    "nombre": "José Federico Moreno y Catamarca vereda norte (Capital, Mendoza)",
+    "lat": -32.89003,
+    "lon": -68.83235
+  },
+  {
+    "id": "M15782",
+    "nombre": "Avenida Godoy Cruz Y Mitre - Vereda Sur",
+    "lat": -32.88325,
+    "lon": -68.84309
+  },
+  {
+    "id": "M15786",
+    "nombre": "Córdoba y Rioja",
+    "lat": -32.88356,
+    "lon": -68.83627
+  },
+  {
+    "id": "M15792",
+    "nombre": "Avenida Alem Y F Moreno - Vereda Sur",
+    "lat": -32.89285,
+    "lon": -68.83313
+  },
+  {
+    "id": "M15794",
+    "nombre": "Alberdi Y Ituzaingó",
+    "lat": -32.88029,
+    "lon": -68.8298
+  },
+  {
+    "id": "M15801",
+    "nombre": "9 De Julio Y Coronel Plaza - Vereda Oeste",
+    "lat": -32.87956,
+    "lon": -68.83793
+  },
+  {
+    "id": "M15810",
+    "nombre": "Pedro Molina - Cruzando Puente Peatonal - Vereda Sur",
+    "lat": -32.89658,
+    "lon": -68.84598
+  },
+  {
+    "id": "M15812",
+    "nombre": "Montecaseros Y Alberdi - Vereda Este",
+    "lat": -32.88044,
+    "lon": -68.8309
+  },
+  {
+    "id": "M15813",
+    "nombre": "Hospital Lagomaggiore - T Gordillo - Vereda Oeste",
+    "lat": -32.87212,
+    "lon": -68.86368
+  },
+  {
+    "id": "M15816",
+    "nombre": "Peltier Y 9 De Julio - Vereda Norte",
+    "lat": -32.89919,
+    "lon": -68.8427
+  },
+  {
+    "id": "M15819",
+    "nombre": "Montecaseros Y Buenos Aires - Vereda Este",
+    "lat": -32.88795,
+    "lon": -68.83135
+  },
+  {
+    "id": "M15824",
+    "nombre": "Av. Carlos Thays frente a Esc.Eva Perón vereda este (Capital, Mendoza)",
+    "lat": -32.88861,
+    "lon": -68.87416
+  },
+  {
+    "id": "M15826",
+    "nombre": "Av. Carlos Thays sobre Esc.Eva Perón vereda oeste (Capital, Mendoza)",
+    "lat": -32.88872,
+    "lon": -68.87434
+  },
+  {
+    "id": "M15827",
+    "nombre": "Av. Carlos Thays y Del Grifo vereda este (Capital, Mendoza)",
+    "lat": -32.89073,
+    "lon": -68.87367
+  },
+  {
+    "id": "M15830",
+    "nombre": "Salta Y Don Bosco - Vereda Este",
+    "lat": -32.89512,
+    "lon": -68.83464
+  },
+  {
+    "id": "M15836",
+    "nombre": "Montecaseros Y San Luis - Vereda Este",
+    "lat": -32.88527,
+    "lon": -68.83116
+  },
+  {
+    "id": "M15837",
+    "nombre": "Orzali Y Avenida Libertador- Vereda Oeste",
+    "lat": -32.8838,
+    "lon": -68.87368
+  },
+  {
+    "id": "M15911",
+    "nombre": "Entre Rìos y Salta -vereda Este",
+    "lat": -32.88619,
+    "lon": -68.834324
+  },
+  {
+    "id": "M15971",
+    "nombre": "Rioja esq Garibaldi vereda oeste",
+    "lat": -32.89073,
+    "lon": -68.83574
+  },
+  {
+    "id": "M15974",
+    "nombre": "Rondeau esquina Salta",
+    "lat": -32.89717,
+    "lon": -68.83542
+  },
+  {
+    "id": "M15978",
+    "nombre": "Av. Del Libertador - vereda Norte",
+    "lat": -32.88514,
+    "lon": -68.89323
+  },
+  {
+    "id": "M15979",
+    "nombre": "Av. Libertador - vereda Sur",
+    "lat": -32.88521,
+    "lon": -68.89316
+  },
+  {
+    "id": "M16001",
+    "nombre": "Plantamura",
+    "lat": -32.87767,
+    "lon": -68.86649
+  },
+  {
+    "id": "M16002",
+    "nombre": "Plantamura",
+    "lat": -32.87781,
+    "lon": -68.86649
+  },
+  {
+    "id": "M16027",
+    "nombre": "Chile y Coronel Plaza (Capital, Mendoza)",
+    "lat": -32.87971,
+    "lon": -68.8421
+  },
+  {
+    "id": "M16028",
+    "nombre": "Av. España y Coronel Plaza (Capital, Mendoza)",
+    "lat": -32.8799926,
+    "lon": -68.83964
+  },
+  {
+    "id": "M16079",
+    "nombre": "Godoy Cruz entre España y 9 de julio - Vereda Norte",
+    "lat": -32.88373,
+    "lon": -68.83944
+  },
+  {
+    "id": "M16117",
+    "nombre": "Juan Bautista Justo y Olascoaga",
+    "lat": -32.88378,
+    "lon": -68.85247
+  },
+  {
+    "id": "M16118",
+    "nombre": "Ciclovía y Juan Bautista Justo",
+    "lat": -32.88415,
+    "lon": -68.84941
+  },
+  {
+    "id": "M16119",
+    "nombre": "Lencinas",
+    "lat": -32.88217,
+    "lon": -68.87017
+  },
+  {
+    "id": "M16120",
+    "nombre": "Lencinas y Paseo Padre Contreras",
+    "lat": -32.8828,
+    "lon": -68.86687
+  },
+  {
+    "id": "M16164",
+    "nombre": "Las Heras y 25 de Mayo",
+    "lat": -32.88494,
+    "lon": -68.8463
+  },
+  {
+    "id": "M1618",
+    "nombre": "Av. El Libertador y Av. Del Libertador (Capital, Mendoza)",
+    "lat": -32.88421,
+    "lon": -68.87295
+  },
+  {
+    "id": "M1619",
+    "nombre": "Av. Carlos Thays y Los Abetos (Capital, Mendoza)",
+    "lat": -32.88569,
+    "lon": -68.87347
+  },
+  {
+    "id": "M16191",
+    "nombre": "Cooperativa y Gran Capitán Este",
+    "lat": -32.86761,
+    "lon": -68.86136
+  },
+  {
+    "id": "M16192",
+    "nombre": "Potrerillos y Santa María",
+    "lat": -32.865313,
+    "lon": -68.86217
+  },
+  {
+    "id": "M16193",
+    "nombre": "Potrerillos y Padre Llorens",
+    "lat": -32.865231,
+    "lon": -68.865661
+  },
+  {
+    "id": "M1620",
+    "nombre": "Orzali (Capital, Mendoza)",
+    "lat": -32.88389,
+    "lon": -68.87366
+  },
+  {
+    "id": "M1621",
+    "nombre": "Orzali (Capital, Mendoza)",
+    "lat": -32.884446,
+    "lon": -68.873875
+  },
+  {
+    "id": "M1623",
+    "nombre": "Circunvalación Universidad Nacional de Cuyo",
+    "lat": -32.8837972,
+    "lon": -68.8750233
+  },
+  {
+    "id": "M16238",
+    "nombre": "San Martín y Julián Barraquero",
+    "lat": -32.90151,
+    "lon": -68.84213
+  },
+  {
+    "id": "M16239",
+    "nombre": "Av. Carlos Thays y Del Grifo",
+    "lat": -32.89139,
+    "lon": -68.8736
+  },
+  {
+    "id": "M16241",
+    "nombre": "Córdoba y San Juan",
+    "lat": -32.88356,
+    "lon": -68.8364
+  },
+  {
+    "id": "M16242",
+    "nombre": "Alem y San Juan",
+    "lat": -32.8929,
+    "lon": -68.83675
+  },
+  {
+    "id": "M16244",
+    "nombre": "Rioja y Catamarca",
+    "lat": -32.88955,
+    "lon": -68.83582
+  },
+  {
+    "id": "M1626",
+    "nombre": "Orzali y Lencinas (Capital, Mendoza)",
+    "lat": -32.8820768,
+    "lon": -68.8740007
+  },
+  {
+    "id": "M1628",
+    "nombre": "Orzali y Lencinas (Capital, Mendoza)",
+    "lat": -32.8822846,
+    "lon": -68.873656
+  },
+  {
+    "id": "M1633",
+    "nombre": "Del Libertador y Av. Champagnat (Capital, Mendoza)",
+    "lat": -32.8806634,
+    "lon": -68.881653
+  },
+  {
+    "id": "M1635",
+    "nombre": "Del Libertador y Av. Champagnat (Capital, Mendoza)",
+    "lat": -32.88192,
+    "lon": -68.88343
+  },
+  {
+    "id": "M1638",
+    "nombre": "Unc (Capital, Mendoza)",
+    "lat": -32.8779817,
+    "lon": -68.8805272
+  },
+  {
+    "id": "M1643",
+    "nombre": "Gran Capitán Sur (Capital, Mendoza)",
+    "lat": -32.8771606,
+    "lon": -68.877497
+  },
+  {
+    "id": "M1644",
+    "nombre": "Democracia y José Ingenieros (Capital, Mendoza)",
+    "lat": -32.877729,
+    "lon": -68.876346
+  },
+  {
+    "id": "M1647",
+    "nombre": "Paseo Padre Contreras y Del Libertador (Capital, Mendoza)",
+    "lat": -32.8856126,
+    "lon": -68.8672992
+  },
+  {
+    "id": "M1648",
+    "nombre": "Paseo Padre Contreras y Del Libertador (Capital, Mendoza)",
+    "lat": -32.8855084,
+    "lon": -68.8667353
+  },
+  {
+    "id": "M1649",
+    "nombre": "Lencinas y Paseo Padre Contreras (Capital, Mendoza)",
+    "lat": -32.8839706,
+    "lon": -68.8664295
+  },
+  {
+    "id": "M1650",
+    "nombre": "Lencinas y Paseo Padre Contreras (Capital, Mendoza)",
+    "lat": -32.8840404,
+    "lon": -68.8665998
+  },
+  {
+    "id": "M1652",
+    "nombre": "Lencinas (Capital, Mendoza)",
+    "lat": -32.8821562,
+    "lon": -68.8702845
+  },
+  {
+    "id": "M1653",
+    "nombre": "Lencinas y Paseo Padre Contreras (Capital, Mendoza)",
+    "lat": -32.8827695,
+    "lon": -68.8670591
+  },
+  {
+    "id": "M1654",
+    "nombre": "Lencinas y Paseo Padre Contreras (Capital, Mendoza)",
+    "lat": -32.88288,
+    "lon": -68.86529
+  },
+  {
+    "id": "M1656",
+    "nombre": "Del Libertador (Capital, Mendoza)",
+    "lat": -32.8863176,
+    "lon": -68.8636273
+  },
+  {
+    "id": "M1657",
+    "nombre": "Lencinas (Capital, Mendoza)",
+    "lat": -32.8834328,
+    "lon": -68.8634268
+  },
+  {
+    "id": "M1658",
+    "nombre": "Lencinas (Capital, Mendoza)",
+    "lat": -32.8833382,
+    "lon": -68.8627508
+  },
+  {
+    "id": "M1659",
+    "nombre": "Av. Del Libertador y Av. El Libertador (Capital, Mendoza)",
+    "lat": -32.88614,
+    "lon": -68.86324
+  },
+  {
+    "id": "M1661",
+    "nombre": "Bv. Giacchino y Las Tipas (Capital, Mendoza)",
+    "lat": -32.8879579,
+    "lon": -68.8636883
+  },
+  {
+    "id": "M1663",
+    "nombre": "Avenida De Las Palmeras esq. Las Pichardas (frente regatas)",
+    "lat": -32.8935976,
+    "lon": -68.86766
+  },
+  {
+    "id": "M1664",
+    "nombre": "Boulogne Sur Mer y Arístides Villanueva (Capital, Mendoza)",
+    "lat": -32.88968,
+    "lon": -68.86193
+  },
+  {
+    "id": "M1665",
+    "nombre": "Boulogne Sur Mer y Sargento Cabral (Capital, Mendoza)",
+    "lat": -32.8925711,
+    "lon": -68.862545
+  },
+  {
+    "id": "M1666",
+    "nombre": "Boulogne Sur Mer y Vicente Gil (Capital, Mendoza)",
+    "lat": -32.8968108,
+    "lon": -68.8633584
+  },
+  {
+    "id": "M1667",
+    "nombre": "Boulogne Sur Mer y Lamadrid (Capital, Mendoza)",
+    "lat": -32.8979763,
+    "lon": -68.8635817
+  },
+  {
+    "id": "M1668",
+    "nombre": "Boulogne Sur Mer y Luzuriaga (Capital, Mendoza)",
+    "lat": -32.90014,
+    "lon": -68.864
+  },
+  {
+    "id": "M1669",
+    "nombre": "Circunvalación del Lago y Del Prado Español (Capital, Mendoza)",
+    "lat": -32.898986,
+    "lon": -68.864767
+  },
+  {
+    "id": "M1672",
+    "nombre": "Av. Carlos Thays (Capital, Mendoza)",
+    "lat": -32.898746,
+    "lon": -68.87037
+  },
+  {
+    "id": "M1673",
+    "nombre": "Av. Carlos Thays frente a Esc.Eva Perón vereda este (Capital, Mendoza)",
+    "lat": -32.8885564,
+    "lon": -68.8741636
+  },
+  {
+    "id": "M1674",
+    "nombre": "Av. Carlos Thays sobre Esc.Eva Perón vereda oeste (Capital, Mendoza)",
+    "lat": -32.8886713,
+    "lon": -68.8743554
+  },
+  {
+    "id": "M1675",
+    "nombre": "Av. Carlos Thays y Del Grifo (Capital, Mendoza)",
+    "lat": -32.8913144,
+    "lon": -68.8736587
+  },
+  {
+    "id": "M1676",
+    "nombre": "Av. Carlos Thays y Del Grifo vereda este (Capital, Mendoza)",
+    "lat": -32.8906888,
+    "lon": -68.8736923
+  },
+  {
+    "id": "M1678",
+    "nombre": "Thays al lado de club Hipico Mendoza",
+    "lat": -32.8967725,
+    "lon": -68.871105
+  },
+  {
+    "id": "M1679",
+    "nombre": "Posta del retamo y Acasubi (Capital, Mendoza)",
+    "lat": -32.8747244,
+    "lon": -68.8706614
+  },
+  {
+    "id": "M1681",
+    "nombre": "José Ingenieros y Atahualpa Yupanqui (Capital, Mendoza)",
+    "lat": -32.875938,
+    "lon": -68.8727334
+  },
+  {
+    "id": "M1682",
+    "nombre": "Del Castillo y Colectora Sur (Capital, Mendoza)",
+    "lat": -32.87258,
+    "lon": -68.86829
+  },
+  {
+    "id": "M1684",
+    "nombre": "Hospital Lagomaggiore - T Gordillo - Vereda Oeste",
+    "lat": -32.8720611,
+    "lon": -68.8637272
+  },
+  {
+    "id": "M1685",
+    "nombre": "Boulogne Sur Mer y Francisco Narciso Laprida (Capital, Mendoza)",
+    "lat": -32.8733593,
+    "lon": -68.8588442
+  },
+  {
+    "id": "M1689",
+    "nombre": "Av. Adrián Ruiz Leal (Capital, Mendoza)",
+    "lat": -32.8914428,
+    "lon": -68.8833831
+  },
+  {
+    "id": "M1690",
+    "nombre": "Acceso Puesto Leiva (Capital, Mendoza)",
+    "lat": -32.8937305,
+    "lon": -68.8843299
+  },
+  {
+    "id": "M1691",
+    "nombre": "San Francisco de Asís y Acceso Puesto Leiva (Capital, Mendoza)",
+    "lat": -32.8922051,
+    "lon": -68.8846216
+  },
+  {
+    "id": "M1692",
+    "nombre": "Av. Adrián Ruiz Leal (Capital, Mendoza)",
+    "lat": -32.8915999,
+    "lon": -68.8835393
+  },
+  {
+    "id": "M1693",
+    "nombre": "Av. Adrián Ruiz Leal (Capital, Mendoza)",
+    "lat": -32.8927885,
+    "lon": -68.8792974
+  },
+  {
+    "id": "M1694",
+    "nombre": "Av. Adrián Ruiz Leal (Capital, Mendoza)",
+    "lat": -32.8926618,
+    "lon": -68.8788749
+  },
+  {
+    "id": "M1695",
+    "nombre": "Av. Adrián Ruiz Leal (Capital, Mendoza)",
+    "lat": -32.8928954,
+    "lon": -68.8754156
+  },
+  {
+    "id": "M1697",
+    "nombre": "Av. Adrián Ruiz Leal y Av. Carlos Thays (Capital, Mendoza)",
+    "lat": -32.8928741,
+    "lon": -68.8727843
+  },
+  {
+    "id": "M1698",
+    "nombre": "Av. Adrián Ruiz Leal y Av. Carlos Thays (Capital, Mendoza)",
+    "lat": -32.8927406,
+    "lon": -68.8728219
+  },
+  {
+    "id": "M1700",
+    "nombre": "San Francisco de Asís (Capital, Mendoza)",
+    "lat": -32.8987065,
+    "lon": -68.8789172
+  },
+  {
+    "id": "M1701",
+    "nombre": "San Francisco de Asís (Capital, Mendoza)",
+    "lat": -32.89473,
+    "lon": -68.8825
+  },
+  {
+    "id": "M1702",
+    "nombre": "San Francisco de Asís (Capital, Mendoza)",
+    "lat": -32.8948841,
+    "lon": -68.882909
+  },
+  {
+    "id": "M2001",
+    "nombre": "Perú y Sarmiento (Capital, Mendoza)",
+    "lat": -32.8888,
+    "lon": -68.8488
+  },
+  {
+    "id": "M2002",
+    "nombre": "Sarmiento y 25 de Mayo (Capital, Mendoza)",
+    "lat": -32.8891893,
+    "lon": -68.8468365
+  },
+  {
+    "id": "M2003",
+    "nombre": "Patricias Mendocinas y Rivadavia (Capital, Mendoza)",
+    "lat": -32.8907276,
+    "lon": -68.8435644
+  },
+  {
+    "id": "M2004",
+    "nombre": "Patricias Mendocinas y Sarmiento (Capital, Mendoza)",
+    "lat": -32.8897411,
+    "lon": -68.843264
+  },
+  {
+    "id": "M2005",
+    "nombre": "Patricias Mendocinas y Espejo (Capital, Mendoza)",
+    "lat": -32.888727,
+    "lon": -68.842985
+  },
+  {
+    "id": "M2006",
+    "nombre": "Perú y Espejo (Capital, Mendoza)",
+    "lat": -32.8883104,
+    "lon": -68.8480926
+  },
+  {
+    "id": "M2007",
+    "nombre": "Gutiérrez y 25 de Mayo (Capital, Mendoza)",
+    "lat": -32.8871619,
+    "lon": -68.8467032
+  },
+  {
+    "id": "M2008",
+    "nombre": "Chile y Espejo (Capital, Mendoza)",
+    "lat": -32.88764,
+    "lon": -68.84524
+  },
+  {
+    "id": "M2009",
+    "nombre": "Av. 9 de julio y Gutiérrez (Capital, Mendoza)",
+    "lat": -32.8876,
+    "lon": -68.84005
+  },
+  {
+    "id": "M2010",
+    "nombre": "Patricias Mendocinas y Gutiérrez (Capital, Mendoza)",
+    "lat": -32.887705,
+    "lon": -68.8427061
+  },
+  {
+    "id": "M2012",
+    "nombre": "Gutiérrez y 25 de Mayo (Capital, Mendoza)",
+    "lat": -32.8867636,
+    "lon": -68.8465689
+  },
+  {
+    "id": "M2013",
+    "nombre": "Perú y Ciclovía (Capital, Mendoza)",
+    "lat": -32.886004,
+    "lon": -68.8474328
+  },
+  {
+    "id": "M2014",
+    "nombre": "Av. España y Ciclovía (Capital, Mendoza)",
+    "lat": -32.8872103,
+    "lon": -68.8411149
+  },
+  {
+    "id": "M2015",
+    "nombre": "Necochea y Av. España (Capital, Mendoza)",
+    "lat": -32.8869429,
+    "lon": -68.8407915
+  },
+  {
+    "id": "M2016",
+    "nombre": "Patricias Mendocinas y Necochea (Capital, Mendoza)",
+    "lat": -32.8864344,
+    "lon": -68.8423601
+  },
+  {
+    "id": "M2017",
+    "nombre": "Av. Las Heras y Perú",
+    "lat": -32.88484,
+    "lon": -68.84687
+  },
+  {
+    "id": "M2018",
+    "nombre": "Chile y Av. Las Heras (Capital, Mendoza)",
+    "lat": -32.8854341,
+    "lon": -68.8446506
+  },
+  {
+    "id": "M2019",
+    "nombre": "Av. Las Heras y Av. Bartolomé Mitre",
+    "lat": -32.88535,
+    "lon": -68.84404
+  },
+  {
+    "id": "M2020",
+    "nombre": "Av. España y Av. Las Heras (Capital, Mendoza)",
+    "lat": -32.88589,
+    "lon": -68.84106
+  },
+  {
+    "id": "M2021",
+    "nombre": "25 de Mayo y Av. Las Heras (Capital, Mendoza)",
+    "lat": -32.884896,
+    "lon": -68.845823
+  },
+  {
+    "id": "M2022",
+    "nombre": "25 de Mayo y Av. Las Heras (Capital, Mendoza)",
+    "lat": -32.8847049,
+    "lon": -68.8459949
+  },
+  {
+    "id": "M2024",
+    "nombre": "Av. Las Heras y Patricias Mendocinas (Capital, Mendoza)",
+    "lat": -32.8854079,
+    "lon": -68.8420919
+  },
+  {
+    "id": "M2025",
+    "nombre": "General Paz y Av. España (Capital, Mendoza)",
+    "lat": -32.8849602,
+    "lon": -68.8404765
+  },
+  {
+    "id": "M2026",
+    "nombre": "General Paz y Patricias Mendocinas (Capital, Mendoza)",
+    "lat": -32.8841878,
+    "lon": -68.8417597
+  },
+  {
+    "id": "M2028",
+    "nombre": "Salta y San Luis (Capital, Mendoza)",
+    "lat": -32.8849015,
+    "lon": -68.8342583
+  },
+  {
+    "id": "M2029",
+    "nombre": "San Luis y Ituzaingó (Capital, Mendoza)",
+    "lat": -32.8850457,
+    "lon": -68.829999
+  },
+  {
+    "id": "M2030",
+    "nombre": "Montecaseros y San Luis (Capital, Mendoza)",
+    "lat": -32.8851982,
+    "lon": -68.8311511
+  },
+  {
+    "id": "M2031",
+    "nombre": "Salta y San Luis (Capital, Mendoza)",
+    "lat": -32.8850557,
+    "lon": -68.8339841
+  },
+  {
+    "id": "M2032",
+    "nombre": "Entre Ríos y Rioja (Capital, Mendoza)",
+    "lat": -32.8856872,
+    "lon": -68.8354973
+  },
+  {
+    "id": "M2033",
+    "nombre": "Entre Ríos y San Juan (Capital, Mendoza)",
+    "lat": -32.8861558,
+    "lon": -68.8367305
+  },
+  {
+    "id": "M2034",
+    "nombre": "Rioja y Buenos Aires (Capital, Mendoza)",
+    "lat": -32.8872729,
+    "lon": -68.8356315
+  },
+  {
+    "id": "M2036",
+    "nombre": "Montecaseros y Buenos Aires (Capital, Mendoza)",
+    "lat": -32.8876671,
+    "lon": -68.831035
+  },
+  {
+    "id": "M2037",
+    "nombre": "Montecaseros y Buenos Aires (Capital, Mendoza)",
+    "lat": -32.8879146,
+    "lon": -68.8313442
+  },
+  {
+    "id": "M2038",
+    "nombre": "Salta y Buenos Aires (Capital, Mendoza)",
+    "lat": -32.8878264,
+    "lon": -68.8341853
+  },
+  {
+    "id": "M2039",
+    "nombre": "Rioja y Buenos Aires",
+    "lat": -32.88796,
+    "lon": -68.83561
+  },
+  {
+    "id": "M2040",
+    "nombre": "Salta y Lavalle (Capital, Mendoza)",
+    "lat": -32.8887895,
+    "lon": -68.8344778
+  },
+  {
+    "id": "M2041",
+    "nombre": "Lavalle y José Federico Moreno (Capital, Mendoza)",
+    "lat": -32.8887534,
+    "lon": -68.8328845
+  },
+  {
+    "id": "M2042",
+    "nombre": "Montecaseros y Lavalle (Capital, Mendoza)",
+    "lat": -32.8888897,
+    "lon": -68.8316708
+  },
+  {
+    "id": "M2043",
+    "nombre": "José Federico Moreno y Catamarca vereda norte (Capital, Mendoza)",
+    "lat": -32.8900302,
+    "lon": -68.8324404
+  },
+  {
+    "id": "M2044",
+    "nombre": "Rioja y Catamarca (Capital, Mendoza)",
+    "lat": -32.8898151,
+    "lon": -68.8352058
+  },
+  {
+    "id": "M2045",
+    "nombre": "G. Garibaldi y Salta (Capital, Mendoza)",
+    "lat": -32.8912616,
+    "lon": -68.8345895
+  },
+  {
+    "id": "M2046",
+    "nombre": "Montecaseros y G. Garibaldi (Capital, Mendoza)",
+    "lat": -32.8913945,
+    "lon": -68.8322184
+  },
+  {
+    "id": "M2047",
+    "nombre": "Montecaseros esq Garibaldi vereda este (Capital, Mendoza)",
+    "lat": -32.8919259,
+    "lon": -68.8315896
+  },
+  {
+    "id": "M2048",
+    "nombre": "G. Garibaldi y Salta (Capital, Mendoza)",
+    "lat": -32.8918208,
+    "lon": -68.8343824
+  },
+  {
+    "id": "M2049",
+    "nombre": "Salta y Leandro Alem (Capital, Mendoza)",
+    "lat": -32.8927056,
+    "lon": -68.8338313
+  },
+  {
+    "id": "M2050",
+    "nombre": "Leandro N. Alem y Salta (Capital, Mendoza)",
+    "lat": -32.89285,
+    "lon": -68.83339
+  },
+  {
+    "id": "M2053",
+    "nombre": "Sarmiento y 25 de Mayo (Capital, Mendoza)",
+    "lat": -32.8892261,
+    "lon": -68.8474028
+  },
+  {
+    "id": "M2054",
+    "nombre": "Salta y Pasaje Pardo (Capital, Mendoza)",
+    "lat": -32.8951788,
+    "lon": -68.8346252
+  },
+  {
+    "id": "M2055",
+    "nombre": "José Vicente Zapata y Rioja (Capital, Mendoza)",
+    "lat": -32.8956805,
+    "lon": -68.836105
+  },
+  {
+    "id": "M2057",
+    "nombre": "Boulogne Sur Mer y Avelino Maure (Capital, Mendoza)",
+    "lat": -32.8715369,
+    "lon": -68.8581603
+  },
+  {
+    "id": "M2058",
+    "nombre": "Boulogne Sur Mer y Avelino Maure (Capital, Mendoza)",
+    "lat": -32.8716635,
+    "lon": -68.8583432
+  },
+  {
+    "id": "M2059",
+    "nombre": "Granaderos y Ferroviarios Argentinos (Capital, Mendoza)",
+    "lat": -32.8716605,
+    "lon": -68.8528369
+  },
+  {
+    "id": "M2061",
+    "nombre": "De los Fresnos y Los Cedros (Capital, Mendoza)",
+    "lat": -32.8722351,
+    "lon": -68.8592677
+  },
+  {
+    "id": "M2062",
+    "nombre": "Gordillo y Timoteo Gordillo (Capital, Mendoza)",
+    "lat": -32.8719715,
+    "lon": -68.8624997
+  },
+  {
+    "id": "M2063",
+    "nombre": "Boulogne Sur Mer y Aguado (Capital, Mendoza)",
+    "lat": -32.8707613,
+    "lon": -68.858425
+  },
+  {
+    "id": "M2064",
+    "nombre": "Granaderos y Aguado (Capital, Mendoza)",
+    "lat": -32.8702944,
+    "lon": -68.8522573
+  },
+  {
+    "id": "M2065",
+    "nombre": "Paso de los Andes y Aguado (Capital, Mendoza)",
+    "lat": -32.870344,
+    "lon": -68.8545412
+  },
+  {
+    "id": "M2066",
+    "nombre": "Granaderos y Aguado (Capital, Mendoza)",
+    "lat": -32.8702041,
+    "lon": -68.8525016
+  },
+  {
+    "id": "M2067",
+    "nombre": "Bolivia y Jorge A. Calle (Capital, Mendoza)",
+    "lat": -32.8690353,
+    "lon": -68.85235
+  },
+  {
+    "id": "M2068",
+    "nombre": "Paso de los Andes y Jorge A. Calle (Capital, Mendoza)",
+    "lat": -32.8691942,
+    "lon": -68.8544357
+  },
+  {
+    "id": "M2069",
+    "nombre": "Paso de los Andes y Jorge A. Calle (Capital, Mendoza)",
+    "lat": -32.8691436,
+    "lon": -68.8547473
+  },
+  {
+    "id": "M2070",
+    "nombre": "Huarpes y Jorge A. Calle (Capital, Mendoza)",
+    "lat": -32.8692506,
+    "lon": -68.8563808
+  },
+  {
+    "id": "M2071",
+    "nombre": "Boulogne Sur Mer y Jorge A. Calle (Capital, Mendoza)",
+    "lat": -32.8694377,
+    "lon": -68.857973
+  },
+  {
+    "id": "M2072",
+    "nombre": "Los Paraísos y Boulogne Sur Mer",
+    "lat": -32.86877,
+    "lon": -68.85837
+  },
+  {
+    "id": "M2073",
+    "nombre": "Los Paraísos y De los Álamos Plateados",
+    "lat": -32.86857,
+    "lon": -68.85924
+  },
+  {
+    "id": "M2074",
+    "nombre": "Los Paraísos y Boulogne Sur Mer (Capital, Mendoza)",
+    "lat": -32.8681221,
+    "lon": -68.8582252
+  },
+  {
+    "id": "M2075",
+    "nombre": "Rotonda B° San Martín y Las Vegas (Capital, Mendoza)",
+    "lat": -32.8682353,
+    "lon": -68.862469
+  },
+  {
+    "id": "M2076",
+    "nombre": "Cipoletti y Doctor Luis Agote (Capital, Mendoza)",
+    "lat": -32.86596,
+    "lon": -68.85874
+  },
+  {
+    "id": "M2077",
+    "nombre": "Justo Santa María de Oro y Alpatacal (Capital, Mendoza)",
+    "lat": -32.8679686,
+    "lon": -68.8547656
+  },
+  {
+    "id": "M2078",
+    "nombre": "Justo Santa María de Oro y Alpatacal (Capital, Mendoza)",
+    "lat": -32.8678109,
+    "lon": -68.8545698
+  },
+  {
+    "id": "M2079",
+    "nombre": "Sargento Cipoletti y Fernando Fader (Capital, Mendoza)",
+    "lat": -32.86679,
+    "lon": -68.85797
+  },
+  {
+    "id": "M2080",
+    "nombre": "Boulogne Sur Mer y Ciclovía Houssay (Capital, Mendoza)",
+    "lat": -32.8636948,
+    "lon": -68.8585978
+  },
+  {
+    "id": "M2081",
+    "nombre": "Paso de los Andes y Fernando Fader (Capital, Mendoza)",
+    "lat": -32.866563,
+    "lon": -68.8546452
+  },
+  {
+    "id": "M2082",
+    "nombre": "Bolivia y Fernando Fader (Capital, Mendoza)",
+    "lat": -32.8664941,
+    "lon": -68.8525884
+  },
+  {
+    "id": "M2083",
+    "nombre": "Paso de los Andes y Canto (Capital, Mendoza)",
+    "lat": -32.8657518,
+    "lon": -68.8547844
+  },
+  {
+    "id": "M2084",
+    "nombre": "A. Lemos y Italia (Capital, Mendoza)",
+    "lat": -32.86504,
+    "lon": -68.853
+  },
+  {
+    "id": "M2085",
+    "nombre": "Martínez de Rozas y Italia (Capital, Mendoza)",
+    "lat": -32.8648953,
+    "lon": -68.8515407
+  },
+  {
+    "id": "M2088",
+    "nombre": "Bernardo Houssay y Artigas (Capital, Mendoza)",
+    "lat": -32.8629845,
+    "lon": -68.849396
+  },
+  {
+    "id": "M2089",
+    "nombre": "Juan Vucetich y Bernardo Houssay (Capital, Mendoza)",
+    "lat": -32.8633053,
+    "lon": -68.8495657
+  },
+  {
+    "id": "M2091",
+    "nombre": "Bernardo Houssay y Bahía Blanca (Capital, Mendoza)",
+    "lat": -32.8626412,
+    "lon": -68.8448467
+  },
+  {
+    "id": "M2092",
+    "nombre": "Francisco Rubilar y Ortiz (Capital, Mendoza)",
+    "lat": -32.8630508,
+    "lon": -68.8439972
+  },
+  {
+    "id": "M2093",
+    "nombre": "C. Ortiz y Francisco Rubilar (Capital, Mendoza)",
+    "lat": -32.86292,
+    "lon": -68.84379
+  },
+  {
+    "id": "M2094",
+    "nombre": "Italia y 12 de Febrero (Capital, Mendoza)",
+    "lat": -32.86429,
+    "lon": -68.84547
+  },
+  {
+    "id": "M2095",
+    "nombre": "Coronel Rodríguez y Italia (Capital, Mendoza)",
+    "lat": -32.8644176,
+    "lon": -68.8474316
+  },
+  {
+    "id": "M2096",
+    "nombre": "Italia y Juan Vucetich (Capital, Mendoza)",
+    "lat": -32.8645348,
+    "lon": -68.849572
+  },
+  {
+    "id": "M2097",
+    "nombre": "Italia y Juan Vucetich (Capital, Mendoza)",
+    "lat": -32.8643388,
+    "lon": -68.8497233
+  },
+  {
+    "id": "M2098",
+    "nombre": "Italia y Alpatacal (Capital, Mendoza)",
+    "lat": -32.8652,
+    "lon": -68.85472
+  },
+  {
+    "id": "M2099",
+    "nombre": "Italia y Juan Vucetich (Capital, Mendoza)",
+    "lat": -32.8647297,
+    "lon": -68.8498154
+  },
+  {
+    "id": "M2101",
+    "nombre": "Coronel Rodríguez y Italia (Capital, Mendoza)",
+    "lat": -32.8645641,
+    "lon": -68.8477186
+  },
+  {
+    "id": "M2102",
+    "nombre": "12 de Febrero y Italia (Capital, Mendoza)",
+    "lat": -32.8643906,
+    "lon": -68.8457847
+  },
+  {
+    "id": "M2103",
+    "nombre": "Italia y Francisco Rubilar (Capital, Mendoza)",
+    "lat": -32.8643185,
+    "lon": -68.8440923
+  },
+  {
+    "id": "M2104",
+    "nombre": "Italia y Francisco Rubilar (Capital, Mendoza)",
+    "lat": -32.8644995,
+    "lon": -68.8437102
+  },
+  {
+    "id": "M2105",
+    "nombre": "Fernando Fader y F. Rubilar (Capital, Mendoza)",
+    "lat": -32.8657701,
+    "lon": -68.8438443
+  },
+  {
+    "id": "M2106",
+    "nombre": "Fernando Fader y 12 de Febrero (Capital, Mendoza)",
+    "lat": -32.8660041,
+    "lon": -68.8452056
+  },
+  {
+    "id": "M2107",
+    "nombre": "Fernando Fader y Coronel Rodríguez (Capital, Mendoza)",
+    "lat": -32.8661032,
+    "lon": -68.8474908
+  },
+  {
+    "id": "M2108",
+    "nombre": "Juan Vucetich y Fernando Fader (Capital, Mendoza)",
+    "lat": -32.8662699,
+    "lon": -68.8494113
+  },
+  {
+    "id": "M2109",
+    "nombre": "Fernando Fader y Martínez de Rozas (Capital, Mendoza)",
+    "lat": -32.8663715,
+    "lon": -68.850984
+  },
+  {
+    "id": "M2110",
+    "nombre": "Justo Santa María de Oro y Provincia del Chaco (Capital, Mendoza)",
+    "lat": -32.8677367,
+    "lon": -68.8482323
+  },
+  {
+    "id": "M2111",
+    "nombre": "Jorge A. Calle y C. Silva (Capital, Mendoza)",
+    "lat": -32.8689024,
+    "lon": -68.8503598
+  },
+  {
+    "id": "M2112",
+    "nombre": "J. Rodríguez y Jorge A. Calle (Capital, Mendoza)",
+    "lat": -32.86872,
+    "lon": -68.84756
+  },
+  {
+    "id": "M2113",
+    "nombre": "Jorge A. Calle y 12 de Febrero (Capital, Mendoza)",
+    "lat": -32.8686163,
+    "lon": -68.844923
+  },
+  {
+    "id": "M2114",
+    "nombre": "Jorge A. Calle y Olascoaga (Capital, Mendoza)",
+    "lat": -32.8690546,
+    "lon": -68.848768
+  },
+  {
+    "id": "M2115",
+    "nombre": "Aguado y C. Silva (Capital, Mendoza)",
+    "lat": -32.8703936,
+    "lon": -68.85019
+  },
+  {
+    "id": "M2116",
+    "nombre": "Aguado y Coronel Rodríguez (Capital, Mendoza)",
+    "lat": -32.870615,
+    "lon": -68.8481538
+  },
+  {
+    "id": "M2117",
+    "nombre": "M. Olascoaga y José Hernández (Capital, Mendoza)",
+    "lat": -32.87138,
+    "lon": -68.84932
+  },
+  {
+    "id": "M2118",
+    "nombre": "Olascoaga y Ferroviarios Argentinos (Capital, Mendoza)",
+    "lat": -32.8725013,
+    "lon": -68.8496277
+  },
+  {
+    "id": "M2119",
+    "nombre": "Avelino Maure y Coronel Rodríguez (Capital, Mendoza)",
+    "lat": -32.8730907,
+    "lon": -68.8487922
+  },
+  {
+    "id": "M2322",
+    "nombre": "Manuel Belgrano y Av. Peltier (Capital, Mendoza)",
+    "lat": -32.8996,
+    "lon": -68.85148
+  },
+  {
+    "id": "M2323",
+    "nombre": "Santa Cruz y Av. España (Capital, Mendoza)",
+    "lat": -32.8997755,
+    "lon": -68.8443437
+  },
+  {
+    "id": "M2324",
+    "nombre": "Av. 9 de Julio y Peltier (Capital, Mendoza)",
+    "lat": -32.8998315,
+    "lon": -68.8432372
+  },
+  {
+    "id": "M2325",
+    "nombre": "Peltier y Av. 9 de Julio",
+    "lat": -32.8994126,
+    "lon": -68.84245
+  },
+  {
+    "id": "M2326",
+    "nombre": "Av. San Martín esquina Cap de Fragata Moyano (Capital, Mendoza)",
+    "lat": -32.9011175,
+    "lon": -68.8422819
+  },
+  {
+    "id": "M2327",
+    "nombre": "Capitán de Fragata Moyano y Av. San Martín",
+    "lat": -32.90126,
+    "lon": -68.84243
+  },
+  {
+    "id": "M2328",
+    "nombre": "República del Libano y Capitán de Fragata Moyano (Capital, Mendoza)",
+    "lat": -32.9007006,
+    "lon": -68.8472308
+  },
+  {
+    "id": "M2329",
+    "nombre": "Suarez y Francisco Álvarez (Capital, Mendoza)",
+    "lat": -32.9013,
+    "lon": -68.85158
+  },
+  {
+    "id": "M2330",
+    "nombre": "Seru y República del Libano (Capital, Mendoza)",
+    "lat": -32.902342,
+    "lon": -68.8473021
+  },
+  {
+    "id": "M2331",
+    "nombre": "Junin y Av. España (Capital, Mendoza)",
+    "lat": -32.9019701,
+    "lon": -68.8450752
+  },
+  {
+    "id": "M2332",
+    "nombre": "República del Libano y Echeverría (Mendoza, Argentina)",
+    "lat": -32.9034465,
+    "lon": -68.8474067
+  },
+  {
+    "id": "M2333",
+    "nombre": "Av. San Martín esquina Serú   (Capital, Mendoza)",
+    "lat": -32.90276,
+    "lon": -68.84266
+  },
+  {
+    "id": "M3002",
+    "nombre": "Rondeau y Rioja (Capital, Mendoza)",
+    "lat": -32.8964778,
+    "lon": -68.8368143
+  },
+  {
+    "id": "M3004",
+    "nombre": "República de Siria y San Juan (Capital, Mendoza)",
+    "lat": -32.89688,
+    "lon": -68.83828
+  },
+  {
+    "id": "M3005",
+    "nombre": "Rondeau y Rioja (Capital, Mendoza)",
+    "lat": -32.89686,
+    "lon": -68.83699
+  },
+  {
+    "id": "M3006",
+    "nombre": "Salta y Rondeau (Capital, Mendoza)",
+    "lat": -32.8972587,
+    "lon": -68.8350463
+  },
+  {
+    "id": "M3007",
+    "nombre": "Rioja y Teniente Ibañez",
+    "lat": -32.89831,
+    "lon": -68.83731
+  },
+  {
+    "id": "M3008",
+    "nombre": "Lisandro de la Torre y Morón (Capital, Mendoza)",
+    "lat": -32.8995691,
+    "lon": -68.8385448
+  },
+  {
+    "id": "M3009",
+    "nombre": "Salta y Pedro B. Palacios (Capital, Mendoza)",
+    "lat": -32.8997008,
+    "lon": -68.8366291
+  },
+  {
+    "id": "M3011",
+    "nombre": "Julián Barraquero y Rioja (Capital, Mendoza)",
+    "lat": -32.9018,
+    "lon": -68.83815
+  },
+  {
+    "id": "M3012",
+    "nombre": "San Juan y Julián Barraquero (Capital, Mendoza)",
+    "lat": -32.9015002,
+    "lon": -68.8406427
+  },
+  {
+    "id": "M3013",
+    "nombre": "Brasil y Rioja (Capital, Mendoza)",
+    "lat": -32.9042146,
+    "lon": -68.8387321
+  },
+  {
+    "id": "M3014",
+    "nombre": "Belgrano y Sargento Cabral (Capital, Mendoza)",
+    "lat": -32.89343,
+    "lon": -68.8508602
+  },
+  {
+    "id": "M3015",
+    "nombre": "Perú y Av. Colón (Capital, Mendoza)",
+    "lat": -32.8935458,
+    "lon": -68.8493814
+  },
+  {
+    "id": "M3016",
+    "nombre": "25 de Mayo y Ingeniero Giménez (Capital, Mendoza)",
+    "lat": -32.8953886,
+    "lon": -68.8487804
+  },
+  {
+    "id": "M3017",
+    "nombre": "Pedro Molina y Perú (Capital, Mendoza)",
+    "lat": -32.8960004,
+    "lon": -68.8500431
+  },
+  {
+    "id": "M3018",
+    "nombre": "Pedro Molina y Perú (Capital, Mendoza)",
+    "lat": -32.8967067,
+    "lon": -68.8501231
+  },
+  {
+    "id": "M3020",
+    "nombre": "25 de Mayo y Pedro Molina (Capital, Mendoza)",
+    "lat": -32.8963945,
+    "lon": -68.8491204
+  },
+  {
+    "id": "M3022",
+    "nombre": "Virgen del Carmen de Cuyo y Patricias Mendocinas (Capital, Mendoza)",
+    "lat": -32.8974104,
+    "lon": -68.8451999
+  },
+  {
+    "id": "M3023",
+    "nombre": "Patricias Mendocinas y Pedro Molina (Capital, Mendoza)",
+    "lat": -32.895495,
+    "lon": -68.8447365
+  },
+  {
+    "id": "M3024",
+    "nombre": "Patricias Mendocinas y Pedro Molina (Capital, Mendoza)",
+    "lat": -32.89592,
+    "lon": -68.84486
+  },
+  {
+    "id": "M3025",
+    "nombre": "Av. Bartolomé Mitre y Pedro Molina (Capital, Mendoza)",
+    "lat": -32.8961811,
+    "lon": -68.845879
+  },
+  {
+    "id": "M3026",
+    "nombre": "Av. Bartolomé Mitre y Pedro Molina (Capital, Mendoza)",
+    "lat": -32.8966315,
+    "lon": -68.8461083
+  },
+  {
+    "id": "M3027",
+    "nombre": "Av. España y Pedro Molina (Capital, Mendoza)",
+    "lat": -32.8966467,
+    "lon": -68.8440068
+  },
+  {
+    "id": "M3028",
+    "nombre": "Av. 9 de Julio y Pedro Molina (Capital, Mendoza)",
+    "lat": -32.8962843,
+    "lon": -68.8423279
+  },
+  {
+    "id": "M3030",
+    "nombre": "Av. San Martín esq Pedro Molina",
+    "lat": -32.8967,
+    "lon": -68.84128
+  },
+  {
+    "id": "M3032",
+    "nombre": "Av. 9 de Julio y Virgen del Carmen de Cuyo (Capital, Mendoza)",
+    "lat": -32.8980158,
+    "lon": -68.8427624
+  },
+  {
+    "id": "M3033",
+    "nombre": "Av. España y Virgen del Carmen de Cuyo (Capital, Mendoza)",
+    "lat": -32.8978251,
+    "lon": -68.8436885
+  },
+  {
+    "id": "M3034",
+    "nombre": "Av. España y Virgen del Carmen de Cuyo",
+    "lat": -32.89817,
+    "lon": -68.84374
+  },
+  {
+    "id": "M3036",
+    "nombre": "Peltier y España",
+    "lat": -32.8991019,
+    "lon": -68.8459543
+  },
+  {
+    "id": "M3037",
+    "nombre": "Peltier y Av. San Martín (Capital, Mendoza)",
+    "lat": -32.899139,
+    "lon": -68.8422528
+  },
+  {
+    "id": "M3038",
+    "nombre": "Manuel Belgrano y Av. Peltier (Capital, Mendoza)",
+    "lat": -32.8992933,
+    "lon": -68.8511175
+  },
+  {
+    "id": "M3039",
+    "nombre": "Av. Peltier y España",
+    "lat": -32.89941,
+    "lon": -68.84514
+  },
+  {
+    "id": "M3041",
+    "nombre": "Peltier y España (Capital, Mendoza)",
+    "lat": -32.89916,
+    "lon": -68.84495
+  },
+  {
+    "id": "M3139",
+    "nombre": "Chile y Av. Las Heras (Capital, Mendoza)",
+    "lat": -32.8853615,
+    "lon": -68.844631
+  },
+  {
+    "id": "M3164",
+    "nombre": "Boulogne Sur Mer y Del Libertador (Capital, Mendoza)",
+    "lat": -32.8862219,
+    "lon": -68.8612125
+  },
+  {
+    "id": "M4043",
+    "nombre": "Gordillos y Av. Gran Capitán Sur (Capital, Mendoza)",
+    "lat": -32.8705942,
+    "lon": -68.8639714
+  },
+  {
+    "id": "M4058",
+    "nombre": "Montecaseros esq Garibaldi vereda este (Capital, Mendoza)",
+    "lat": -32.8916199,
+    "lon": -68.831511
+  },
+  {
+    "id": "M4068",
+    "nombre": "Paso de los Andes y Santiago del Estero (Godoy Cruz, Mendoza)",
+    "lat": -32.90264,
+    "lon": -68.8607
+  },
+  {
+    "id": "M4734",
+    "nombre": "Parador Pedro Molina Andén Este",
+    "lat": -32.8965798,
+    "lon": -68.8517767
+  },
+  {
+    "id": "M4765",
+    "nombre": "Maipú y Padre Llorens (Capital, Mendoza)",
+    "lat": -32.86886,
+    "lon": -68.86644
+  },
+  {
+    "id": "M4767",
+    "nombre": "Padre Llorens y Av. Cooperativa (Capital, Mendoza)",
+    "lat": -32.8670705,
+    "lon": -68.8661067
+  },
+  {
+    "id": "M4769",
+    "nombre": "Padre Llorens y Potrerillos (Capital, Mendoza)",
+    "lat": -32.8656382,
+    "lon": -68.8658559
+  },
+  {
+    "id": "M4771",
+    "nombre": "Lateral Uspallata y Tupungato (Mendoza, Argentina)",
+    "lat": -32.86382,
+    "lon": -68.86585
+  },
+  {
+    "id": "M4843",
+    "nombre": "Padre Llorens y Los Algarobos",
+    "lat": -32.87078,
+    "lon": -68.86583
+  },
+  {
+    "id": "M5045",
+    "nombre": "San Juan y Morón (Capital, Mendoza)",
+    "lat": -32.899822,
+    "lon": -68.8401568
+  },
+  {
+    "id": "M5704",
+    "nombre": "Lateral Uspallata y Tupungato (Mendoza, Argentina)",
+    "lat": -32.86359,
+    "lon": -68.86611
+  },
+  {
+    "id": "M5757",
+    "nombre": "Perú y Salvador Reta (Capital, Mendoza)",
+    "lat": -32.8754286,
+    "lon": -68.8445571
+  },
+  {
+    "id": "M5775",
+    "nombre": "Perú y El Parral (Capital, Mendoza)",
+    "lat": -32.8735138,
+    "lon": -68.8439992
+  },
+  {
+    "id": "M6166",
+    "nombre": "Doctor Miyara y Coni E. (Capital, Mendoza)",
+    "lat": -32.8653837,
+    "lon": -68.8790365
+  },
+  {
+    "id": "M6168",
+    "nombre": "Coni E. y Doctor Carrillo (Capital, Mendoza)",
+    "lat": -32.8658284,
+    "lon": -68.8772275
+  },
+  {
+    "id": "M6169",
+    "nombre": "Coni E. y Doctor Carrillo (Capital, Mendoza)",
+    "lat": -32.8659339,
+    "lon": -68.8775159
+  },
+  {
+    "id": "M6170",
+    "nombre": "Coni E. y Doctor Metraux (Capital, Mendoza)",
+    "lat": -32.8662447,
+    "lon": -68.8757375
+  },
+  {
+    "id": "M6171",
+    "nombre": "Coni E. y Doctor Metraux (Capital, Mendoza)",
+    "lat": -32.8663655,
+    "lon": -68.8755585
+  },
+  {
+    "id": "M6172",
+    "nombre": "Doctor Mazza y Doctor Metraux (Capital, Mendoza)",
+    "lat": -32.8675049,
+    "lon": -68.8760855
+  },
+  {
+    "id": "M6173",
+    "nombre": "Doctor Mazza y Doctor Metraux (Capital, Mendoza)",
+    "lat": -32.8677696,
+    "lon": -68.8759105
+  },
+  {
+    "id": "M6175",
+    "nombre": "Av. Champagnat Lateral y San Jose (Capital, Mendoza)",
+    "lat": -32.86794,
+    "lon": -68.88238
+  },
+  {
+    "id": "M6176",
+    "nombre": "Doctor Miyara y San Jose (Capital, Mendoza)",
+    "lat": -32.8683463,
+    "lon": -68.8799971
+  },
+  {
+    "id": "M6177",
+    "nombre": "Doctor Miyara y San Jose (Capital, Mendoza)",
+    "lat": -32.8683041,
+    "lon": -68.8796189
+  },
+  {
+    "id": "M6178",
+    "nombre": "Doctor R. Carrillo y San Jose (Capital, Mendoza)",
+    "lat": -32.86862,
+    "lon": -68.87792
+  },
+  {
+    "id": "M6179",
+    "nombre": "Doctor Metraux y San Jose (Capital, Mendoza)",
+    "lat": -32.868932,
+    "lon": -68.8764539
+  },
+  {
+    "id": "M6180",
+    "nombre": "Doctor Metraux y San Jose (Capital, Mendoza)",
+    "lat": -32.8690338,
+    "lon": -68.8765226
+  },
+  {
+    "id": "M6181",
+    "nombre": "Av. Champagnat Lateral y Cerro Juan Pobre",
+    "lat": -32.8698,
+    "lon": -68.88264
+  },
+  {
+    "id": "M6182",
+    "nombre": "Acceso Dalvian y Av. Champagnat (Capital, Mendoza)",
+    "lat": -32.8733521,
+    "lon": -68.8822704
+  },
+  {
+    "id": "M6183",
+    "nombre": "Acceso Dalvian y Av. Champagnat (Capital, Mendoza)",
+    "lat": -32.87314,
+    "lon": -68.88166
+  },
+  {
+    "id": "M6184",
+    "nombre": "Doctor Leloir y Av. Champagnat Lateral (Capital, Mendoza)",
+    "lat": -32.87069,
+    "lon": -68.88195
+  },
+  {
+    "id": "M6720",
+    "nombre": "Jujuy y José Federico Moreno (Capital, Mendoza)",
+    "lat": -32.8718062,
+    "lon": -68.8317952
+  },
+  {
+    "id": "M7005",
+    "nombre": "Parador Belgrano Andén Este",
+    "lat": -32.8906264,
+    "lon": -68.8501449
+  },
+  {
+    "id": "M7203",
+    "nombre": "Coronel Díaz y 12 de Octubre (Las Heras, Mendoza)",
+    "lat": -32.8664168,
+    "lon": -68.8259984
+  },
+  {
+    "id": "M7204",
+    "nombre": "Coronel Díaz y Ramirez (Las Heras, Mendoza)",
+    "lat": -32.8664286,
+    "lon": -68.8226892
+  },
+  {
+    "id": "M7702",
+    "nombre": "Parador Pedro Molina Andén Oeste",
+    "lat": -32.8965479,
+    "lon": -68.851946
+  },
+  {
+    "id": "M7970",
+    "nombre": "Belgrano y Reconquista (Capital, Mendoza)",
+    "lat": -32.8904494,
+    "lon": -68.8504954
+  },
+  {
+    "id": "M8927",
+    "nombre": "Damián Hudson y Perú (Capital, Mendoza)",
+    "lat": -32.8658575,
+    "lon": -68.8421958
+  },
+  {
+    "id": "M8938",
+    "nombre": "Av. Adrián Ruiz Leal (Capital, Mendoza)",
+    "lat": -32.8930227,
+    "lon": -68.875439
+  },
+  {
+    "id": "M8939",
+    "nombre": "Paso de los Andes y Luzuriaga (Capital, Mendoza)",
+    "lat": -32.9006379,
+    "lon": -68.8596338
+  },
+  {
+    "id": "M9208",
+    "nombre": "Boulogne Sur Mer y Roque Sáenz Peña (Capital, Mendoza)",
+    "lat": -32.8802603,
+    "lon": -68.859789
+  },
+  {
+    "id": "M9284",
+    "nombre": "Av. Bartolomé Mitre y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8832746,
+    "lon": -68.8430378
+  },
+  {
+    "id": "M9346",
+    "nombre": "Av. 9 de julio y Av. Godoy Cruz (Capital, Mendoza)",
+    "lat": -32.8836271,
+    "lon": -68.8398782
+  },
+  {
+    "id": "M9347",
+    "nombre": "Perú y Coronel Plaza (Capital, Mendoza)",
+    "lat": -32.878885,
+    "lon": -68.8461545
+  },
+  {
+    "id": "M9387",
+    "nombre": "Av. Emilio Civit y Coronel Rodriguez (Capital, Mendoza)",
+    "lat": -32.8881364,
+    "lon": -68.8523022
+  },
+  {
+    "id": "M9388",
+    "nombre": "Del Libertador (Capital, Mendoza)",
+    "lat": -32.8867534,
+    "lon": -68.8631356
+  },
+  {
+    "id": "M9389",
+    "nombre": "Ruiz Leal y Camino del medio (Capital, Mendoza)",
+    "lat": -32.8889833,
+    "lon": -68.865901
+  },
+  {
+    "id": "M9390",
+    "nombre": "Del Prado Español (Capital, Mendoza)",
+    "lat": -32.895971,
+    "lon": -68.867606
+  },
+  {
+    "id": "M9391",
+    "nombre": "Thays esq de la Virgen",
+    "lat": -32.8928481,
+    "lon": -68.8724938
+  },
+  {
+    "id": "M9392",
+    "nombre": "Pablo Neruda (Ex Acceso 1) (Capital, Mendoza)",
+    "lat": -32.8875553,
+    "lon": -68.9047125
+  },
+  {
+    "id": "M9394",
+    "nombre": "Juana Azurduy (Ex Los Paraisos) (Capital, Mendoza)",
+    "lat": -32.88974,
+    "lon": -68.9065257
+  },
+  {
+    "id": "M9395",
+    "nombre": "Av. El Libertador",
+    "lat": -32.89027,
+    "lon": -68.90818
+  },
+  {
+    "id": "M9396",
+    "nombre": "Av. El Libertador y Pje. Santa Rita",
+    "lat": -32.888699,
+    "lon": -68.903042
+  },
+  {
+    "id": "M9397",
+    "nombre": "Av. Progreso y Aliar (Capital, Mendoza)",
+    "lat": -32.890731,
+    "lon": -68.9106026
+  },
+  {
+    "id": "M9398",
+    "nombre": "Juana Azurduy (Ex Los Paraisos) y Aliar (Capital, Mendoza)",
+    "lat": -32.8895508,
+    "lon": -68.9108387
+  },
+  {
+    "id": "M9399",
+    "nombre": "Aliar y Pablo Neruda (Ex Acceso 1) (Capital, Mendoza)",
+    "lat": -32.88807,
+    "lon": -68.91112
+  },
+  {
+    "id": "M9402",
+    "nombre": "Nestor kirchner (Capital, Mendoza)",
+    "lat": -32.8875147,
+    "lon": -68.9087197
+  },
+  {
+    "id": "M9404",
+    "nombre": "Pablo Neruda (Ex Acceso 1) (Capital, Mendoza)",
+    "lat": -32.8870102,
+    "lon": -68.9066759
+  },
+  {
+    "id": "M9405",
+    "nombre": "Av. Progreso (Capital, Mendoza)",
+    "lat": -32.8886319,
+    "lon": -68.9035484
+  },
+  {
+    "id": "M9406",
+    "nombre": "Pablo Neruda (Ex Acceso 1) (Capital, Mendoza)",
+    "lat": -32.8876228,
+    "lon": -68.9049325
+  },
+  {
+    "id": "M9407",
+    "nombre": "Aliar y Pablo Neruda (Ex Acceso 1) (Capital, Mendoza)",
+    "lat": -32.888267,
+    "lon": -68.9126733
+  },
+  {
+    "id": "M9409",
+    "nombre": "Juana Azurduy (Ex Los Paraisos) y Aliar (Capital, Mendoza)",
+    "lat": -32.8900779,
+    "lon": -68.9124426
+  },
+  {
+    "id": "M9411",
+    "nombre": "Av. Progreso (Capital, Mendoza)",
+    "lat": -32.8912671,
+    "lon": -68.9123514
+  },
+  {
+    "id": "M9413",
+    "nombre": "Av. Progreso",
+    "lat": -32.88806,
+    "lon": -68.903437
+  },
+  {
+    "id": "M9414",
+    "nombre": "Del Libertador y Bajada del cerro (Capital, Mendoza)",
+    "lat": -32.8842938,
+    "lon": -68.8895446
+  },
+  {
+    "id": "M9415",
+    "nombre": "Del Libertador y Bajada del cerro (Capital, Mendoza)",
+    "lat": -32.8842488,
+    "lon": -68.8890645
+  },
+  {
+    "id": "M9416",
+    "nombre": "Las Moras y Av. Gran Capitán Sur (Capital, Mendoza)",
+    "lat": -32.8723506,
+    "lon": -68.8680574
+  },
+  {
+    "id": "M9417",
+    "nombre": "Los Cerezos y Av. Gran Capitán Sur (Capital, Mendoza)",
+    "lat": -32.8732246,
+    "lon": -68.8691142
+  },
+  {
+    "id": "M9418",
+    "nombre": "Cristo Redentor y Av. Gran Capitán Sur (Capital, Mendoza)",
+    "lat": -32.8736301,
+    "lon": -68.8703481
+  },
+  {
+    "id": "M9419",
+    "nombre": "José Ingenieros y Unc (Capital, Mendoza)",
+    "lat": -32.881307,
+    "lon": -68.8738162
+  },
+  {
+    "id": "M9420",
+    "nombre": "Circunvalación Universidad Nacional de Cuyo",
+    "lat": -32.88299,
+    "lon": -68.87934
+  },
+  {
+    "id": "M9421",
+    "nombre": "Chile y Espejo (Capital, Mendoza)",
+    "lat": -32.88811,
+    "lon": -68.84535
+  },
+  {
+    "id": "M9502",
+    "nombre": "Doctor R. Carrillo y San Jose (Capital, Mendoza)",
+    "lat": -32.86867,
+    "lon": -68.87823
+  },
+  {
+    "id": "M9702",
+    "nombre": "Av. San Martín esquina Julián Barraquero  (Capital, Mendoza)",
+    "lat": -32.9014,
+    "lon": -68.84209
+  },
+  {
+    "id": "M9703",
+    "nombre": "San Juan y Julián Barraquero (Capital, Mendoza)",
+    "lat": -32.9016764,
+    "lon": -68.8408223
+  },
+  {
+    "id": "M9707",
+    "nombre": "San Juan y José Vicente Zapata",
+    "lat": -32.8956949,
+    "lon": -68.8378021
+  },
+  {
+    "id": "M9836",
+    "nombre": "Juan B. Alberdi y José Federico Moreno",
+    "lat": -32.88008,
+    "lon": -68.83255
+  },
+  {
+    "id": "M9886",
+    "nombre": "Peltier y España (Capital, Mendoza)",
+    "lat": -32.89913,
+    "lon": -68.84538
+  }
+]
