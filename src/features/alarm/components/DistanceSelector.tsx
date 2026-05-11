@@ -2,8 +2,23 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { Slider } from '@miblanchard/react-native-slider';
 
-export default function DistanceSelector() {
-  const [distance, setDistance] = useState(500);
+interface DistanceSelectorProps {
+  value?: number;
+  onChange?: (value: number) => void;
+}
+
+export default function DistanceSelector({ value, onChange }: DistanceSelectorProps = {}) {
+  const [internalDistance, setInternalDistance] = useState(500);
+
+  const distance = value ?? internalDistance;
+
+  const handleChange = (v: number) => {
+    if (onChange) {
+      onChange(v);
+    } else {
+      setInternalDistance(v);
+    }
+  };
 
   return (
     <View className="bg-[#E4EBE4] rounded-2xl p-6 w-full max-w-sm">
@@ -22,23 +37,20 @@ export default function DistanceSelector() {
       <View className="w-full">
         <Slider
           value={distance}
-          onValueChange={(value) => setDistance(value[0])}
+          onValueChange={(v) => handleChange(v[0])}
           minimumValue={250}
           maximumValue={1000}
-          step={250} 
-          minimumTrackTintColor="#0B2C2B" 
-          maximumTrackTintColor="#96B89D" 
-          trackStyle={{ 
-            height: 12,
-            borderRadius: 8 
-          }} 
-          thumbStyle={{ 
-            height: 24, 
-            width: 24, 
-            backgroundColor: '#F5F5F5', 
-            borderColor: '#0B2C2B', 
-            borderWidth: 4, 
-            borderRadius: 12 
+          step={250}
+          minimumTrackTintColor="#0B2C2B"
+          maximumTrackTintColor="#96B89D"
+          trackStyle={{ height: 12, borderRadius: 8 }}
+          thumbStyle={{
+            height: 24,
+            width: 24,
+            backgroundColor: '#F5F5F5',
+            borderColor: '#0B2C2B',
+            borderWidth: 4,
+            borderRadius: 12,
           }}
         />
         <View className="w-full flex-row justify-between mt-2 px-1">
