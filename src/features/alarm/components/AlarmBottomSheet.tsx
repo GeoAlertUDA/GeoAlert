@@ -4,6 +4,7 @@ import { BottomSheetModal, BottomSheetBackdrop, BottomSheetView } from '@gorhom/
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlaceDetails } from '@/features/map/types';
 import YellowButton from '@/shared/components/YellowButton';
+import { useLocationPermissionFlow } from '@/features/location';
 import { useAlarmStore } from '../store/useAlarmStore';
 import ConfigAccordion from './ConfigAccordion';
 import AlarmConfig from './AlarmConfig';
@@ -18,6 +19,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
     const [isConfigExpanded, setIsConfigExpanded] = useState(false);
     const insets = useSafeAreaInsets();
     const addAlarm = useAlarmStore((s) => s.addAlarm);
+    const { explainAndRequestBackgroundAccess } = useLocationPermissionFlow();
 
     const dismiss = useCallback(() => {
       if (ref && typeof ref !== 'function') ref.current?.dismiss();
@@ -25,6 +27,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
 
     const handleQuickActivate = useCallback(async () => {
       if (!locationData) return;
+      await explainAndRequestBackgroundAccess();
       await addAlarm({
         name: locationData.name,
         latitude: locationData.latitude,
@@ -35,7 +38,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
         address: locationData.address,
       });
       dismiss();
-    }, [locationData, addAlarm, dismiss]);
+    }, [locationData, addAlarm, dismiss, explainAndRequestBackgroundAccess]);
 
     const renderBackdrop = useCallback(
       (props: any) => (

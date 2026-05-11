@@ -5,12 +5,14 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import TabLayout from '../src/navigation/AppNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { createTables } from '../src/localDB/db';
+import { syncBackgroundLocationTracking } from '../src/features/location';
 
 export default function App() {
   const [dbReady, setDbReady] = useState(false);
 
   useEffect(() => {
     createTables()
+      .then(() => syncBackgroundLocationTracking())
       .then(() => setDbReady(true))
       .catch((e) => {
         console.error('[DB] createTables failed:', e);

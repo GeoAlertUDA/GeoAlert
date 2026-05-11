@@ -1,12 +1,14 @@
 import { View, Text, FlatList, Pressable } from 'react-native'
 import React, { useEffect } from 'react'
 import { useAlarmStore } from '@/features/alarm/store/useAlarmStore'
+import { useLocationDebugStore } from '@/features/location'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function AlarmsScreen() {
   const alarms = useAlarmStore((s) => s.alarms)
   const loadAlarms = useAlarmStore((s) => s.loadAlarms)
   const removeAlarm = useAlarmStore((s) => s.removeAlarm)
+  const locationDebug = useLocationDebugStore()
   const insets = useSafeAreaInsets()
 
   useEffect(() => {
@@ -18,6 +20,36 @@ export default function AlarmsScreen() {
       <Text className="text-2xl font-bold text-[#0D393C] px-6 py-4">
         Mis alarmas
       </Text>
+      <View className="mx-6 mb-4 rounded-2xl bg-[#E4EBE4] p-4">
+        <Text className="text-[#0D393C] font-bold text-base mb-2">Debug ubicación</Text>
+        <Text className="text-[#0D393C] text-sm">Foreground: {locationDebug.foregroundPermission}</Text>
+        <Text className="text-[#0D393C] text-sm">Background: {locationDebug.backgroundPermission}</Text>
+        <Text className="text-[#0D393C] text-sm">
+          Task registrada: {locationDebug.isTaskRegistered ? 'sí' : 'no'}
+        </Text>
+        <Text className="text-[#0D393C] text-sm">
+          Tracking activo: {locationDebug.hasStartedLocationUpdates ? 'sí' : 'no'}
+        </Text>
+        <Text className="text-[#0D393C] text-sm">
+          Alarmas activas evaluadas: {locationDebug.activeAlarmsCount}
+        </Text>
+        <Text className="text-[#0D393C] text-sm">
+          Último evento: {locationDebug.lastEvent ?? 'sin eventos'}
+        </Text>
+        {locationDebug.lastLocationAt && (
+          <Text className="text-[#0D393C] text-sm">
+            Última ubicación: {new Date(locationDebug.lastLocationAt).toLocaleTimeString()}
+          </Text>
+        )}
+        {locationDebug.lastTriggeredAlarmId && (
+          <Text className="text-[#0D393C] text-sm">
+            Última alarma detectada: #{locationDebug.lastTriggeredAlarmId}
+          </Text>
+        )}
+        {locationDebug.lastError && (
+          <Text className="text-red-500 text-sm">Error: {locationDebug.lastError}</Text>
+        )}
+      </View>
 
       {alarms.length === 0 ? (
         <View className="flex-1 items-center justify-center">

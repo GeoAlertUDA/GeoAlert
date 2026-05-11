@@ -39,6 +39,13 @@ export const getAllAlarms = async (db: SQLiteDatabase): Promise<IAlarm[]> => {
   return rows.map(rowToAlarm);
 };
 
+export const getActiveAlarms = async (db: SQLiteDatabase): Promise<IAlarm[]> => {
+  const rows = await db.getAllAsync<Record<string, unknown>>(
+    `SELECT * FROM alarm WHERE isActive = 1 ORDER BY name ASC;`,
+  );
+  return rows.map(rowToAlarm);
+};
+
 export const getAlarmById = async (
   db: SQLiteDatabase,
   id: number,

@@ -9,6 +9,13 @@ import {
   toggleAlarmActive,
   toggleAlarmFavorite,
 } from '@/localDB/alarm/alarm';
+import { syncBackgroundLocationTracking } from '@/features/location';
+
+const syncBackgroundTracking = () => {
+  syncBackgroundLocationTracking().catch((e) => {
+    console.error('[AlarmStore] syncBackgroundLocationTracking:', e);
+  });
+};
 
 interface AlarmState {
   alarms: IAlarm[];
@@ -48,6 +55,7 @@ export const useAlarmStore = create<AlarmState>((set) => ({
       const id = await insertAlarm(db, alarm);
       const newAlarm: IAlarm = { ...alarm, id };
       set((state) => ({ alarms: [...state.alarms, newAlarm], isLoading: false }));
+      syncBackgroundTracking();
     } catch (e) {
       set({ error: 'Failed to add alarm.', isLoading: false });
       console.error('[AlarmStore] addAlarm:', e);
@@ -63,6 +71,7 @@ export const useAlarmStore = create<AlarmState>((set) => ({
         alarms: state.alarms.map((a) => (a.id === alarm.id ? alarm : a)),
         isLoading: false,
       }));
+      syncBackgroundTracking();
     } catch (e) {
       set({ error: 'Failed to update alarm.', isLoading: false });
       console.error('[AlarmStore] editAlarm:', e);
@@ -78,6 +87,7 @@ export const useAlarmStore = create<AlarmState>((set) => ({
         alarms: state.alarms.filter((a) => a.id !== id),
         isLoading: false,
       }));
+      syncBackgroundTracking();
     } catch (e) {
       set({ error: 'Failed to delete alarm.', isLoading: false });
       console.error('[AlarmStore] removeAlarm:', e);
@@ -93,6 +103,7 @@ export const useAlarmStore = create<AlarmState>((set) => ({
           a.id === id ? { ...a, isActive: !currentValue } : a,
         ),
       }));
+      syncBackgroundTracking();
     } catch (e) {
       set({ error: 'Failed to toggle alarm.' });
       console.error('[AlarmStore] toggleActive:', e);

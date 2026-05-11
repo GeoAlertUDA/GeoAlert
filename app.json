@@ -11,6 +11,11 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.geoalertuda.geoalert",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "GeoAlert usa tu ubicación para mostrarte en el mapa y calcular distancias.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "GeoAlert necesita acceder a tu ubicación en segundo plano para evaluar alarmas activas.",
+        "NSLocationAlwaysUsageDescription": "GeoAlert necesita acceder a tu ubicación en segundo plano para evaluar alarmas activas."
+      },
       "config": {
         "googleMapsApiKey": "${EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS}"
       }
@@ -37,6 +42,16 @@
     },
     "plugins": [
       "expo-router",
+      [
+        "expo-location",
+        {
+          "isIosBackgroundLocationEnabled": true,
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true,
+          "locationWhenInUsePermission": "GeoAlert usa tu ubicación para mostrarte en el mapa y calcular distancias.",
+          "locationAlwaysAndWhenInUsePermission": "GeoAlert necesita acceder a tu ubicación en segundo plano para evaluar alarmas activas."
+        }
+      ],
       [
         "expo-splash-screen",
         {
