@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { 
   BellRing, 
   Music2, 
@@ -9,6 +9,7 @@ import {
   Wifi, 
   ChevronDown 
 } from 'lucide-react-native';
+import CustomSwitch from '../../../shared/components/CustomSwitch';
 
 export default function SettingsScreen() {
   const [vibration, setVibration] = useState(true);
@@ -44,12 +45,13 @@ export default function SettingsScreen() {
             <Vibrate size={22} color="#A8D5BA" />
             <Text className="text-white text-[17px] font-medium ml-4">Vibración</Text>
           </View>
-          <Switch
-            value={vibration}
-            onValueChange={setVibration}
-            trackColor={{ false: '#0a2222', true: '#FFFFFF' }}
-            thumbColor={vibration ? '#052626' : '#f4f3f4'}
-          />
+          <View className="w-32">
+            <CustomSwitch
+              title=""
+              initialValue={vibration}
+              onValueChange={setVibration}
+            />
+          </View>
         </View>
 
         {/* Volumen Progresivo */}
@@ -63,12 +65,14 @@ export default function SettingsScreen() {
               </Text>
             </View>
           </View>
-          <Switch
-            value={progVolume}
-            onValueChange={setProgVolume}
-            trackColor={{ false: '#0a2222', true: '#FFFFFF' }}
-            thumbColor={progVolume ? '#052626' : '#f4f3f4'}
-          />
+
+           <View className="w-32">
+            <CustomSwitch
+              title=""
+              initialValue={progVolume}
+              onValueChange={setProgVolume}
+            />
+          </View>
         </View>
       </View>
 
@@ -90,12 +94,13 @@ export default function SettingsScreen() {
               </Text>
             </View>
           </View>
-          <Switch
-            value={energySaving}
-            onValueChange={setEnergySaving}
-            trackColor={{ false: '#0a2222', true: '#FFFFFF' }}
-            thumbColor={energySaving ? '#052626' : '#f4f3f4'}
-          />
+          <View className="w-32">
+            <CustomSwitch
+              title=""
+              initialValue={energySaving}
+              onValueChange={setEnergySaving}
+            />
+          </View>
         </View>
 
         {/* Ahorro Datos */}
@@ -104,12 +109,13 @@ export default function SettingsScreen() {
             <Wifi size={22} color="#A8D5BA" />
             <Text className="text-white text-[17px] font-medium ml-4">Ahorro datos móviles</Text>
           </View>
-          <Switch
-            value={dataSaving}
-            onValueChange={setDataSaving}
-            trackColor={{ false: '#0a2222', true: '#FFFFFF' }}
-            thumbColor={dataSaving ? '#052626' : '#f4f3f4'}
-          />
+          <View className="w-32">
+            <CustomSwitch
+              title=""
+              initialValue={dataSaving}
+              onValueChange={setDataSaving}
+            />
+          </View>
         </View>
       </View>
 
