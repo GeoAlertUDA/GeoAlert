@@ -36,8 +36,8 @@ export const MapScreen = () => {
   const [selectedLocation, setSelectedLocation] = useState<LocationCoordinates | null>(null);
   const { userLocation, heading } = useUserLocation({
     latitude: FALLBACK_REGION.latitude,
-    longitude: FALLBACK_REGION.longitude,
-  });
+    longitude: FALLBACK_REGION.longitude
+  },selectedLocation);
   const { placeDetails, isLoading } = usePlaceDetails(selectedLocation, userLocation);
   const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
 
