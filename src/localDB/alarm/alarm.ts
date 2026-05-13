@@ -1,5 +1,5 @@
 import { SQLiteDatabase } from "expo-sqlite";
-import { IAlarm } from "../../types/IAlarm";
+import { IAlarm } from "../../features/alarm/types/IAlarm";
 
 export const createAlarmTable = async (db: SQLiteDatabase): Promise<void> => {
   await db.execAsync(`

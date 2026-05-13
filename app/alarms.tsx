@@ -1,10 +1,18 @@
-import React from 'react'
-import { AlarmScreen } from '@/features/alerts/components/AlarmScreen'
+import { AlarmScreen } from "@/features/alerts/components/AlarmScreen";
+import { View, Text, FlatList, Pressable } from "react-native";
+import { useEffect } from "react";
+import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const alarms = () => {
-  return (
-    <AlarmScreen />
-  )
-}
+  const alarms = useAlarmStore((s) => s.alarms);
+  const loadAlarms = useAlarmStore((s) => s.loadAlarms);
+  const removeAlarm = useAlarmStore((s) => s.removeAlarm);
+  const insets = useSafeAreaInsets();
 
-export default alarms
+  useEffect(() => {
+    loadAlarms();
+  }, []);
+
+  return <AlarmScreen />;
+};

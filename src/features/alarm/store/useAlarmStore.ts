@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { IAlarm } from "../types/IAlarm";
-import { getDBConnection } from "../localDB/db";
+import { getDBConnection } from "@/localDB/db";
 import {
   getAllAlarms,
   insertAlarm,
@@ -8,9 +8,12 @@ import {
   deleteAlarm,
   toggleAlarmActive,
   toggleAlarmFavorite,
-} from "../localDB/alarm/alarm";
+} from "@/localDB/alarm/alarm";
 
 interface AlarmState {
+  alarms: IAlarm[];
+  isLoading: boolean;
+  error: string | null;
   alarms: IAlarm[];
   isLoading: boolean;
   error: string | null;
@@ -25,6 +28,9 @@ interface AlarmState {
 }
 
 export const useAlarmStore = create<AlarmState>((set) => ({
+  alarms: [],
+  isLoading: false,
+  error: null,
   alarms: [],
   isLoading: false,
   error: null,
@@ -64,6 +70,7 @@ export const useAlarmStore = create<AlarmState>((set) => ({
       await updateAlarm(db, alarm);
       set((state) => ({
         alarms: state.alarms.map((a) => (a.id === alarm.id ? alarm : a)),
+        alarms: state.alarms.map((a) => (a.id === alarm.id ? alarm : a)),
         isLoading: false,
       }));
     } catch (e) {
@@ -78,6 +85,7 @@ export const useAlarmStore = create<AlarmState>((set) => ({
       const db = await getDBConnection();
       await deleteAlarm(db, id);
       set((state) => ({
+        alarms: state.alarms.filter((a) => a.id !== id),
         alarms: state.alarms.filter((a) => a.id !== id),
         isLoading: false,
       }));
