@@ -25,6 +25,9 @@ export default function AlarmConfig({ locationData, onConfirm }: AlarmConfigProp
       radius,
       isActive: true,
       isFavorite: false,
+      soundEnabled: sound,
+      vibrationEnabled: vibration,
+      isRinging: false,
       address: locationData.address,
     });
     onConfirm();

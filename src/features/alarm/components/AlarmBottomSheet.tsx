@@ -32,6 +32,9 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
         radius: 500,
         isActive: true,
         isFavorite: false,
+        soundEnabled: true,
+        vibrationEnabled: true,
+        isRinging: false,
         address: locationData.address,
       });
       dismiss();
@@ -125,5 +128,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
     );
   }
 );
+
+AlarmBottomSheet.displayName = 'AlarmBottomSheet';
 
 export default AlarmBottomSheet;
