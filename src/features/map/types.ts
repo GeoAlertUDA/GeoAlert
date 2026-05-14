@@ -14,4 +14,5 @@ export interface PlaceDetails extends LocationCoordinates {
   distanceText: string; 
   durationText: string; 
   photoUrl: string | null;
+  radius: number
 }
