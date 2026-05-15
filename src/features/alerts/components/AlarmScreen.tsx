@@ -1,114 +1,104 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, SectionList, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { IAlarm } from "@/types";
 import { Alarm } from "./Alarm";
-import { useAlarmStore } from "@/store/useAlarmStore";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { LucideAlarmClock, LucideStar } from "lucide-react-native";
-
-//despues reemplazar este hardcodeo por alarmas reales de la bd o store
-const activeAlarm: IAlarm = {
-  id: 1,
-  name: null,
-  latitude: -32.8895,
-  longitude: -68.8458,
-  radius: 500,
-  isActive: true,
-  isFavorite: false,
-  address: "Av. San Martín 153, Ciudad",
-};
-
-const favoriteAlarms: IAlarm[] = [
-  {
-    id: 2,
-    name: "Universidad",
-    latitude: -32.8833,
-    longitude: -68.8167,
-    radius: 500,
-    isActive: false,
-    isFavorite: true,
-    address: "Av. Colón 234, Ciudad",
-  },
-  {
-    id: 3,
-    name: null,
-    latitude: -32.8833,
-    longitude: -68.8167,
-    radius: 1000,
-    isActive: false,
-    isFavorite: true,
-    address: "Av. Colón 123, Ciudad",
-  },
-];
-
-const otherAlarms = [
-  {
-    id: 4,
-    name: "Casa",
-    latitude: -32.8908,
-    longitude: -68.8272,
-    radius: 1500,
-    isActive: false,
-    isFavorite: false,
-    address: "San Juan 3152, Godoy Cruz",
-  },
-];
+import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
+import { useFocusEffect } from "expo-router";
 
 export const AlarmScreen = () => {
+  const alarms = useAlarmStore((s) => s.alarms);
+  const loadAlarms = useAlarmStore((s) => s.loadAlarms);
   const insets = useSafeAreaInsets();
 
-  // const alarms = useAlarmStore((state) => state.alarms);
+  useFocusEffect(
+    useCallback(() => {
+      loadAlarms();
+    }, [loadAlarms]),
+  );
 
-  // const activeAlarm = useMemo(() => alarms.find((a) => a.isActive), [alarms]);
+  const activeAlarms = alarms.filter((a) => a.isActive);
+  const favoriteAlarms = alarms.filter((a) => !a.isActive && a.isFavorite);
+  const otherAlarms = alarms.filter((a) => !a.isActive && !a.isFavorite);
 
-  // const favoriteAlarms = useMemo(
-  //   () => alarms.filter((a) => !a.isActive && a.isFavorite),
-  //   [alarms],
-  // );
+  const sections = [
+    {
+      title: "Alarma activa",
+      isMainCategory: true,
+      data: activeAlarms,
+    },
+    {
+      title: "Favoritas",
+      isMainCategory: false,
+      isFirstRecent: true,
+      icon: <LucideStar size={24} color={"#F9BF53"} />,
+      data: favoriteAlarms,
+    },
+    {
+      title: "Otras",
+      isMainCategory: false,
+      isFirstRecent: !favoriteAlarms.length, // si no hay favoritas, esta será la primera reciente
+      icon: <LucideAlarmClock size={24} color={"#FFF"} />,
+      data: otherAlarms,
+    },
+  ].filter((section) => section.data.length > 0);
 
-  // const otherAlarms = useMemo(
-  //   () => alarms.filter((a) => !a.isActive && !a.isFavorite),
-  //   [alarms],
-  // );
-
-  return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={[
-        styles.scrollContent,
-        { paddingTop: insets.top + 20, paddingBottom: insets.bottom + 40 },
-      ]}
-    >
-      {activeAlarm && (
-        <>
-          <Text style={styles.alarmCategoryTitle}>Alarma activa</Text>
-          <Alarm {...activeAlarm} />
-        </>
-      )}
-
-      <Text style={styles.alarmCategoryTitle}>Alarmas recientes</Text>
-      {favoriteAlarms && (
-        <View style={styles.otherAlarms_container}>
-          <View style={styles.otherAlarms_categoryContainer}>
-            <LucideStar size={18} color={"#F9BF53"} />
-            <Text style={styles.otherAlarms_categoryTitle}>Favoritas</Text>
-          </View>
-          {favoriteAlarms.map((alarm, i) => (
-            <Alarm key={i} {...alarm} />
-          ))}
-        </View>
-      )}
-
-      <View style={styles.otherAlarms_container}>
-        <View style={styles.otherAlarms_categoryContainer}>
-          <LucideAlarmClock size={18} color={"#FFF"} />
-          <Text style={styles.otherAlarms_categoryTitle}>Otras</Text>
-        </View>
-        {otherAlarms.map((alarm, i) => (
-          <Alarm key={i} {...alarm} />
-        ))}
+  if (alarms.length === 0) {
+    return (
+      <View
+        style={[
+          styles.container,
+          { paddingTop: insets.top + 20, paddingHorizontal: 20, gap: 10 },
+        ]}
+      >
+        <Text style={styles.alarmCategoryTitle}>Alarmas</Text>
+        <Text style={{ color: "#257B81" }}>
+          No tienes alarmas guardadas todavía. ¡Agrega una alarma para no
+          perderte tu parada!
+        </Text>
       </View>
-    </ScrollView>
+    );
+  }
+  return (
+    <SectionList
+      style={styles.container}
+      contentContainerStyle={{
+        paddingHorizontal: 20,
+        paddingTop: insets.top + 20,
+        paddingBottom: insets.bottom + 40,
+      }}
+      sections={sections}
+      keyExtractor={(item) => String(item.id)}
+      renderItem={({ item }) => (
+        <Alarm
+          {...item}
+          // onDelete={removeAlarm}
+          // onStop={stopRinging}
+        />
+      )}
+      // título de cada sección
+      renderSectionHeader={({ section }) => (
+        <View style={styles.headerContainer}>
+          {/* título principal */}
+          {!section.isMainCategory && section.isFirstRecent && (
+            <Text style={styles.mainCategoryTitle}>Alarmas recientes</Text>
+          )}
+
+          {/* subcategoría */}
+          {section.isMainCategory ? (
+            <Text style={styles.alarmCategoryTitle}>{section.title}</Text>
+          ) : (
+            <View style={styles.subCategoryContainer}>
+              {section.icon}
+              <Text style={styles.subCategoryTitle}>{section.title}</Text>
+            </View>
+          )}
+        </View>
+      )}
+      ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
+      SectionSeparatorComponent={() => <View style={{ height: 20 }} />}
+    />
   );
 };
 
@@ -129,16 +119,23 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     width: "100%",
   },
-  otherAlarms_container: {
-    gap: 12,
+  mainCategoryTitle: {
+    fontFamily: "Manrope-Extrabold",
+    fontSize: 22,
+    color: "#FFFFFF",
+    marginTop: 10,
+    marginBottom: 20,
   },
-  otherAlarms_categoryContainer: {
+  headerContainer: {
+    backgroundColor: "#0D393C",
+    paddingVertical: 6,
+  },
+  subCategoryContainer: {
     flexDirection: "row",
-    gap: 6,
     alignItems: "center",
-    width: "100%",
+    gap: 8,
   },
-  otherAlarms_categoryTitle: {
+  subCategoryTitle: {
     fontFamily: "Manrope-Semibold",
     fontSize: 16,
     color: "#FFFFFF",

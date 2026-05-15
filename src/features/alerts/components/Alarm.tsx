@@ -1,13 +1,20 @@
 import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
 import { IAlarm } from "@/types";
-import { LucideMapPin, LucideMoveHorizontal } from "lucide-react-native";
+import {
+  LucideMapPin,
+  LucideMoveHorizontal,
+  LucidePencil,
+  LucideStar,
+  LucideTrash,
+} from "lucide-react-native";
 import React, { useState } from "react";
-import { StyleSheet, Switch, Text, View } from "react-native";
+import { Pressable, StyleSheet, Switch, Text, View } from "react-native";
 import {
   Menu,
   MenuOption,
   MenuOptions,
   MenuTrigger,
+  renderers,
 } from "react-native-popup-menu";
 
 export const Alarm = ({
@@ -18,6 +25,9 @@ export const Alarm = ({
   radius,
   isActive,
   isFavorite,
+  soundEnabled,
+  vibrationEnabled,
+  isRinging,
   address,
 }: IAlarm) => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -25,6 +35,7 @@ export const Alarm = ({
   const toggleActive = useAlarmStore((state) => state.toggleActive);
   const toggleFavorite = useAlarmStore((state) => state.toggleFavorite);
   const removeAlarm = useAlarmStore((state) => state.removeAlarm);
+  const stopRinging = useAlarmStore((state) => state.stopRinging);
 
   const handleToggleSwitch = () => {
     toggleActive(id, isActive);
@@ -46,10 +57,22 @@ export const Alarm = ({
   };
 
   return (
-    <Menu>
+    <Menu
+      renderer={renderers.Popover}
+      rendererProps={{
+        placement: "bottom",
+        preferredPlacement: "bottom",
+        anchorStyle: { backgroundColor: "transparent" },
+      }}
+    >
       <MenuTrigger>
-        <View style={styles.alarmContainer}>
-          <LucideMapPin size={46} color={"#89B091"} />
+        <View
+          style={[
+            styles.alarmContainer,
+            isRinging && styles.alarmRingingContainer,
+          ]}
+        >
+          <LucideMapPin size={46} color={isRinging ? "#FF6B6B" : "#89B091"} />
           {/*Ubicacion*/}
           <View style={styles.alarmInfo}>
             <View>
@@ -71,6 +94,15 @@ export const Alarm = ({
               <Text style={styles.alarmInfo_distance_text}>{radius}m</Text>
               <LucideMoveHorizontal size={16} color={"#fff"} />
             </View>
+
+            {isRinging && (
+              <Pressable
+                onPress={() => stopRinging(id)}
+                style={styles.stopButton}
+              >
+                <Text style={styles.stopButtonText}>Detener Alarma</Text>
+              </Pressable>
+            )}
           </View>
 
           {/*Toggle*/}
@@ -86,9 +118,28 @@ export const Alarm = ({
       </MenuTrigger>
 
       <MenuOptions customStyles={{ optionsContainer: styles.menuContainer }}>
-        <MenuOption onSelect={handleFavorite} text="Favorita" />
-        <MenuOption onSelect={handleDelete} text="Eliminar" />
-        <MenuOption onSelect={handleEdit} text="Editar" />
+        <MenuOption onSelect={handleFavorite}>
+          <View style={styles.menuItem}>
+            <LucideStar size={22} color={"#F9BF53"} />
+            <Text style={styles.menuItemText}>
+              {isFavorite ? "Quitar de favoritas" : "Favorita"}
+            </Text>
+          </View>
+        </MenuOption>
+
+        <MenuOption onSelect={handleDelete}>
+          <View style={styles.menuItem}>
+            <LucideTrash size={22} color="#9D1717" />
+            <Text style={[styles.menuItemText]}>Eliminar</Text>
+          </View>
+        </MenuOption>
+
+        <MenuOption onSelect={handleEdit}>
+          <View style={styles.menuItem}>
+            <LucidePencil size={22} color="#000000" />
+            <Text style={styles.menuItemText}>Editar</Text>
+          </View>
+        </MenuOption>
       </MenuOptions>
     </Menu>
   );
@@ -133,12 +184,31 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#fff",
   },
+  alarmRingingContainer: {
+    backgroundColor: "#3A1A1A",
+    borderColor: "#FF6B6B",
+    borderWidth: 1,
+  },
+  stopButton: {
+    backgroundColor: "#FF6B6B",
+    borderRadius: 20,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    alignSelf: "flex-start",
+    marginTop: 4,
+  },
+  stopButtonText: {
+    fontFamily: "Manrope-Bold",
+    color: "#FFFFFF",
+    fontSize: 12,
+  },
   //modal
   modalOverlay: {
     flex: 1,
     backgroundColor: "transparent",
     justifyContent: "center",
-    alignItems: "flex-end",
+    alignItems: "flex-start",
+    alignSelf: "flex-end",
     paddingRight: 25,
   },
   menuContainer: {
@@ -152,6 +222,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 10,
     elevation: 8,
+    left: 60,
   },
   menuItem: {
     flexDirection: "row",
