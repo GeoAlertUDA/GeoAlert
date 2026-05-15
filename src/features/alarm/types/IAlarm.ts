@@ -6,5 +6,8 @@ export interface IAlarm {
   radius: number;
   isActive: boolean;
   isFavorite: boolean;
+  soundEnabled: boolean;
+  vibrationEnabled: boolean;
+  isRinging: boolean;
   address: string | null;
 }

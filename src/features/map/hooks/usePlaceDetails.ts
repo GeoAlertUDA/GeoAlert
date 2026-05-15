@@ -41,10 +41,6 @@ export const usePlaceDetails = (
                     throw new Error(`Error de Google: ${geocodeData.status} - ${geocodeData.error_message || 'Sin mensaje'}`);
                 }
 
-                if (geocodeData.status !== "OK" || !geocodeData.results.length) {
-                    throw new Error("No se pudo obtener la dirección.");
-                }
-
                 const bestResult = geocodeData.results[0];
                 const placeId = bestResult.place_id;
 
@@ -90,7 +86,8 @@ export const usePlaceDetails = (
                     address: finalAddress,
                     distanceText: finalDistanceText,
                     durationText: finalDurationText,
-                    photoUrl: finalPhotoUrl
+                    photoUrl: finalPhotoUrl,
+                    radius: 500
                 });
 
             } catch (err) {

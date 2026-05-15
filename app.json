@@ -11,6 +11,9 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.geoalertuda.geoalert",
+      "infoPlist": {
+        "UIBackgroundModes": ["location", "audio"]
+      },
       "config": {
         "googleMapsApiKey": "${EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS}"
       }
@@ -50,6 +53,17 @@
         }
       ],
       "expo-font",
+      [
+        "expo-location",
+        {
+          "isIosBackgroundLocationEnabled": true,
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true,
+          "locationWhenInUsePermission": "GeoAlert usa tu ubicación para calcular rutas y activar alarmas cercanas.",
+          "locationAlwaysAndWhenInUsePermission": "GeoAlert necesita ubicación en segundo plano para que tus alarmas suenen cuando el teléfono esté bloqueado.",
+          "locationAlwaysPermission": "GeoAlert necesita ubicación en segundo plano para que tus alarmas suenen cuando el teléfono esté bloqueado."
+        }
+      ],
       "expo-sqlite"
     ],
     "experiments": {

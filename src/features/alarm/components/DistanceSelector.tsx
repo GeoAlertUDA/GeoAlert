@@ -5,9 +5,11 @@ import { Slider } from '@miblanchard/react-native-slider';
 interface DistanceSelectorProps {
   value?: number;
   onChange?: (value: number) => void;
+  onSlidingStart?: () => void;
+  onSlidingComplete?: () => void;
 }
 
-export default function DistanceSelector({ value, onChange }: DistanceSelectorProps = {}) {
+export default function DistanceSelector({ value, onChange ,onSlidingStart, onSlidingComplete }: DistanceSelectorProps = {}) {
   const [internalDistance, setInternalDistance] = useState(500);
 
   const distance = value ?? internalDistance;
@@ -52,6 +54,8 @@ export default function DistanceSelector({ value, onChange }: DistanceSelectorPr
             borderWidth: 4,
             borderRadius: 12,
           }}
+          onSlidingStart={() => onSlidingStart?.()}
+          onSlidingComplete={() => onSlidingComplete?.()}
         />
         <View className="w-full flex-row justify-between mt-2 px-1">
           <Text className="text-[#0B2C2B] text-sm font-medium">250m</Text>

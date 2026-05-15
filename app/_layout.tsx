@@ -13,6 +13,8 @@ import {
 } from "@expo-google-fonts/manrope";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { createTables } from "../src/localDB/db";
+import { syncAlarmGeofences } from "../src/features/alarm/service/alarmGeofencingService";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   const [dbReady, setDbReady] = useState(false);
@@ -26,6 +28,7 @@ export default function App() {
 
   useEffect(() => {
     createTables()
+      .then(() => syncAlarmGeofences())
       .then(() => setDbReady(true))
       .catch((e) => {
         console.error("[DB] createTables failed:", e);
@@ -43,11 +46,13 @@ export default function App() {
 
   return (
     <MenuProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <BottomSheetModalProvider>
-          <TabLayout />
-        </BottomSheetModalProvider>
-      </GestureHandlerRootView>
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <TabLayout />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
     </MenuProvider>
   );
 }
