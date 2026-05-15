@@ -5,7 +5,7 @@ import { GooglePlacesAutocompleteRef } from 'react-native-google-places-autocomp
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { LocationCoordinates, MapRegion } from '../types';
 
-const FALLBACK_REGION: MapRegion = {
+export const FALLBACK_REGION: MapRegion = {
   latitude: -32.8895,
   longitude: -68.8458,
   latitudeDelta: 0.0922,
@@ -76,9 +76,9 @@ export const useMapController = (userLocation: LocationCoordinates | null) => {
 
     setTimeout(() => bottomSheetModalRef.current?.present(), 150);
 
-    if (!isSameLocation && !userLocation) {
+    if (!isSameLocation) {
       mapRef.current?.animateToRegion(
-        { ...location, latitudeDelta: 0.005, longitudeDelta: 0.005 },
+        { ...location, latitudeDelta: 0.01, longitudeDelta: 0.01 },
         1000
       );
     }

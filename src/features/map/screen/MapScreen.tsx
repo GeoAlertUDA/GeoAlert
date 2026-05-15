@@ -1,9 +1,11 @@
-import React from "react";
-import { StyleSheet, View, Keyboard, Platform } from "react-native";
-import { PROVIDER_GOOGLE, LongPressEvent, Circle, Marker } from "react-native-maps";
+import React, { useEffect, useRef, useState } from "react";
+import { StyleSheet, View, Keyboard, Platform, Text } from "react-native";
+import MapView, { PROVIDER_GOOGLE, LongPressEvent, Circle, Marker } from "react-native-maps";
 import ClusteredMapView from "react-native-map-clustering";
 import MapViewDirections from "react-native-maps-directions";
-import { MousePointer2 } from "lucide-react-native";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete";
+import { MousePointer2, Leaf, Zap, ShieldCheck } from "lucide-react-native";
 import { LocationSearchBar } from "../components/LocationSearchBar";
 import BusStopMarker from "../components/BusStopMarker";
 import AlarmBottomSheet from "@/features/alarm/components/AlarmBottomSheet";
@@ -12,28 +14,27 @@ import { usePlaceDetails } from "../hooks/usePlaceDetails";
 import { useUserLocation } from "../hooks/useUserLocation";
 import { useDebouncedBusStopsSync } from "../hooks/useDebouncedBusStopsSync";
 import { useBusStopsStore } from "../store/busStopsStore";
-import { useMapController } from "../hooks/useMapController"; // Nuestro nuevo hook
+import { useMapController, FALLBACK_REGION } from "../hooks/useMapController";
 import { CancelAlarmConfirmationModal } from "@/features/alarm/components/CancelAlarmModal";
+import { LocationCoordinates, MapRegion } from "../types";
 
 const GOOGLE_MAPS_APIKEY = Platform.OS === "ios"
   ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS!
   : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
 
 export const MapScreen = () => {
-  const mapRef = useRef<MapView>(null);
-  const searchRef = useRef<GooglePlacesAutocompleteRef>(null);
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const [pendingSheet, setPendingSheet] = useState(false);
-  const [mapRegion, setMapRegion] = useState<MapRegion>(FALLBACK_REGION);
-  const [selectedLocation, setSelectedLocation] = useState<LocationCoordinates | null>(null);
-  const { userLocation, heading } = useUserLocation({
-    latitude: FALLBACK_REGION.latitude,
-    longitude: FALLBACK_REGION.longitude
-  },selectedLocation);
-  const { placeDetails, isLoading } = usePlaceDetails(selectedLocation, userLocation);
-  const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
+  const [userLocation, setUserLocation] = useState<LocationCoordinates | null>(null);
   const { refs, state, actions } = useMapController(userLocation);
+  const { userLocation: newUserLocation, heading, trackingMode } = useUserLocation(FALLBACK_REGION, state.selectedLocation);
   const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, userLocation);
+  const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
+
+  useEffect(() => {
+    if (newUserLocation && (newUserLocation.latitude !== userLocation?.latitude || newUserLocation.longitude !== userLocation?.longitude)) {
+      setUserLocation(newUserLocation);
+    }
+  }, [newUserLocation]);
+
   useDebouncedBusStopsSync(state.mapRegion);
 
   const onMapPress = (e: LongPressEvent) => actions.handleLocationUpdate(e.nativeEvent.coordinate, true);
@@ -92,7 +93,7 @@ export const MapScreen = () => {
               apikey={GOOGLE_MAPS_APIKEY}
               strokeWidth={8}
               strokeColor="rgba(249, 191, 83, 1)"
-              mode="TRANSIT"
+              mode="DRIVING"
               precision="high"
               lineDashPattern={[0]}
               onReady={(result) => {
@@ -122,7 +123,24 @@ export const MapScreen = () => {
           />
 
         )}
-          <CancelAlarmConfirmationModal
+
+        {state.selectedLocation && (
+          <View style={styles.badgeContainer}>
+            <View style={[styles.badge, trackingMode === 'LOW' || trackingMode === 'BALANCED' ? styles.lowResourceBadge : styles.highPrecisionBadge]}>
+              {trackingMode === 'LOW' || trackingMode === 'BALANCED' ? (
+                <Leaf size={14} color="#0D393C" />
+              ) : (
+                <Zap size={14} color="#F9BF53" />
+              )}
+              <View style={{ width: 6 }} />
+              <Text style={styles.badgeText}>
+                {trackingMode === 'LOW' || trackingMode === 'BALANCED' ? 'AHORRO DE RECURSOS' : 'ALTA PRECISIÓN'}
+              </Text>
+            </View>
+          </View>
+        )}
+
+        <CancelAlarmConfirmationModal
           visible={state.showCancelConfirmation}
           onConfirm={actions.handleConfirmCancelAlarm} 
           onCancel={actions.handleDismissCancelConfirmation}
@@ -182,5 +200,39 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginTop: 5,
     elevation: 5,
+  },
+  badgeText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#0D393C',
+    letterSpacing: 0.5,
+  },
+  badgeContainer: {
+    position: "absolute",
+    top: 130,
+    alignSelf: "center",
+    zIndex: 100,
+  },
+  badge: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+  },
+  lowResourceBadge: {
+    backgroundColor: "#E8F5E9",
+    borderWidth: 1,
+    borderColor: "#A5D6A7",
+  },
+  highPrecisionBadge: {
+    backgroundColor: "#FFF8E1",
+    borderWidth: 1,
+    borderColor: "#FFE082",
   },
 });
