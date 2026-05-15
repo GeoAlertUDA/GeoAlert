@@ -8,7 +8,7 @@ import { useUserLocation } from './useUserLocation';
 import { useAlarmStore } from '@/features/alarm/store/useAlarmStore';
 import { stopAlarmAlert } from '@/features/options/service/soundService';
 
-const FALLBACK_REGION: MapRegion = {
+export const FALLBACK_REGION: MapRegion = {
   latitude: -32.8895,
   longitude: -68.8458,
   latitudeDelta: 0.0922,
@@ -43,8 +43,9 @@ export const useMapController = () => {
   const [distanceToTarget, setDistanceToTarget] = useState(0);
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
   const [activeAlarmId, setActiveAlarmId] = useState<number | null>(null);
-  const { userLocation, heading } = useUserLocation(FALLBACK_REGION, selectedLocation);
+  const { userLocation, heading, trackingMode } = useUserLocation(FALLBACK_REGION, selectedLocation);
   const [isFollowingUser, setIsFollowingUser] = useState(true);
+
   const cancelAlarm = useAlarmStore((s) => s.cancelAlarm);
 
   useEffect(() => {
@@ -109,9 +110,9 @@ const handleResumeTracking = () => {
 
     setTimeout(() => bottomSheetModalRef.current?.present(), 150);
 
-    if (!isSameLocation && !userLocation) {
+    if (!isSameLocation) {
       mapRef.current?.animateToRegion(
-        { ...location, latitudeDelta: 0.005, longitudeDelta: 0.005 },
+        { ...location, latitudeDelta: 0.01, longitudeDelta: 0.01 },
         1000
       );
     }
@@ -158,7 +159,7 @@ const handleResumeTracking = () => {
 
   return {
     refs: { mapRef, searchRef, bottomSheetModalRef },
-    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation, userLocation, heading, isFollowingUser },
+    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation, userLocation, heading, isFollowingUser, trackingMode },
     actions: { 
       setMapRegion, 
       setAlarmRadius, 

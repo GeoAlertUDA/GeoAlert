@@ -11,6 +11,7 @@ import { getTierConfig } from '../utils/getTierConfig';
 export const useUserLocation = (fallbackRegion: LocationCoordinates,selectedLocation: LocationCoordinates | null) => {
   const [userLocation, setUserLocation] = useState<LocationCoordinates | null>(null);
   const [heading, setHeading] = useState(0);
+  const [trackingMode, setTrackingMode] = useState<'LOW' | 'BALANCED' | 'HIGH' | 'MAX'>('HIGH');
   
   const [trackingConfig,setTrackingConfig]=useState({
     accuracy: Location.Accuracy.High,
@@ -53,6 +54,8 @@ export const useUserLocation = (fallbackRegion: LocationCoordinates,selectedLoca
 
             if (newConfig.timeInterval !== trackingConfig.timeInterval) {
               setTrackingConfig(newConfig);
+              const mode = distance > 20 ? 'LOW' : distance > 5 ? 'BALANCED' : distance > 2 ? 'HIGH' : 'MAX';
+              setTrackingMode(mode);
             }
           }
 
@@ -72,5 +75,5 @@ export const useUserLocation = (fallbackRegion: LocationCoordinates,selectedLoca
     };
   }, [selectedLocation, trackingConfig]); 
 
-  return { userLocation, heading };
+  return { userLocation, heading, trackingMode };
 };

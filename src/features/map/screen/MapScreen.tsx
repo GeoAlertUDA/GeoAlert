@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, View, Keyboard, Platform, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Keyboard, Platform, TouchableOpacity, Text } from "react-native";
 import { PROVIDER_GOOGLE, LongPressEvent, Circle, Marker } from "react-native-maps";
 import ClusteredMapView from "react-native-map-clustering";
 import MapViewDirections from "react-native-maps-directions";
-import { MousePointer2, Navigation } from "lucide-react-native";
+import { MousePointer2, Navigation, Leaf, Zap, ShieldCheck } from "lucide-react-native";
 import { LocationSearchBar } from "../components/LocationSearchBar";
 import BusStopMarker from "../components/BusStopMarker";
 import AlarmBottomSheet from "@/features/alarm/components/AlarmBottomSheet";
@@ -11,7 +11,7 @@ import { OngoingTripSheet } from "@/features/alarm/components/OngoingTripSheet";
 import { usePlaceDetails } from "../hooks/usePlaceDetails";
 import { useDebouncedBusStopsSync } from "../hooks/useDebouncedBusStopsSync";
 import { useBusStopsStore } from "../store/busStopsStore";
-import { useMapController } from "../hooks/useMapController"; // Nuestro nuevo hook
+import { useMapController } from "../hooks/useMapController";
 import { CancelAlarmConfirmationModal } from "@/features/alarm/components/CancelAlarmModal";
 
 const GOOGLE_MAPS_APIKEY = Platform.OS === "ios"
@@ -19,9 +19,10 @@ const GOOGLE_MAPS_APIKEY = Platform.OS === "ios"
     : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
 
 export const MapScreen = () => {
-  const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
   const { refs, state, actions } = useMapController();
-    const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, state.userLocation);
+  const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, state.userLocation);
+  const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
+
   useDebouncedBusStopsSync(state.mapRegion);
 
   const onMapPress = (e: LongPressEvent) =>
@@ -83,7 +84,7 @@ export const MapScreen = () => {
               apikey={GOOGLE_MAPS_APIKEY}
               strokeWidth={8}
               strokeColor="rgba(249, 191, 83, 1)"
-              mode="TRANSIT"
+              mode="DRIVING"
               precision="high"
               lineDashPattern={[0]}
               onReady={(result) => {
@@ -111,8 +112,25 @@ export const MapScreen = () => {
             distance={state.distanceToTarget}
             onCancelAlarm={actions.handleRequestCancelAlarm}
           />
- 
- )}
+
+        )}
+
+        {state.selectedLocation && (
+          <View style={styles.badgeContainer}>
+            <View style={[styles.badge, state.trackingMode === 'LOW' || state.trackingMode === 'BALANCED' ? styles.lowResourceBadge : styles.highPrecisionBadge]}>
+              {state.trackingMode === 'LOW' || state.trackingMode === 'BALANCED' ? (
+                <Leaf size={14} color="#0D393C" />
+              ) : (
+                <Zap size={14} color="#F9BF53" />
+              )}
+              <View style={{ width: 6 }} />
+              <Text style={styles.badgeText}>
+                {state.trackingMode === 'LOW' || state.trackingMode === 'BALANCED' ? 'AHORRO DE RECURSOS' : 'ALTA PRECISIÓN'}
+              </Text>
+            </View>
+          </View>
+        )}
+
         <CancelAlarmConfirmationModal
           visible={state.showCancelConfirmation}
           onConfirm={actions.handleConfirmCancelAlarm}
@@ -200,4 +218,38 @@ const styles = StyleSheet.create({
   shadowRadius: 5,
   zIndex: 10,
 },
+  badgeText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#0D393C',
+    letterSpacing: 0.5,
+  },
+  badgeContainer: {
+    position: "absolute",
+    top: 130,
+    alignSelf: "center",
+    zIndex: 100,
+  },
+  badge: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+  },
+  lowResourceBadge: {
+    backgroundColor: "#E8F5E9",
+    borderWidth: 1,
+    borderColor: "#A5D6A7",
+  },
+  highPrecisionBadge: {
+    backgroundColor: "#FFF8E1",
+    borderWidth: 1,
+    borderColor: "#FFE082",
+  },
 });
