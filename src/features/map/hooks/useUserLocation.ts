@@ -2,10 +2,21 @@ import { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import * as Location from 'expo-location';
 import { LocationCoordinates } from '../types';
+import { calculateDistance } from '../utils/calculateDistance';
+import { getTierConfig } from '../utils/getTierConfig';
 
-export const useUserLocation = (fallbackRegion: LocationCoordinates) => {
+
+//cambio de juancruz
+//ahora recive un paremetro selectedLocation definido en mapScreen para definir el consumo del recorrido
+export const useUserLocation = (fallbackRegion: LocationCoordinates,selectedLocation: LocationCoordinates | null) => {
   const [userLocation, setUserLocation] = useState<LocationCoordinates | null>(null);
   const [heading, setHeading] = useState(0);
+  
+  const [trackingConfig,setTrackingConfig]=useState({
+    accuracy: Location.Accuracy.High,
+    timeInterval: 2000,
+    distanceInterval: 2
+  })
 
   useEffect(() => {
     let locationSubscription: Location.LocationSubscription;
@@ -25,17 +36,25 @@ export const useUserLocation = (fallbackRegion: LocationCoordinates) => {
         longitude: initialLocation.coords.longitude,
       });
 
+      const distance = calculateDistance(userLocation,selectedLocation);
+
       locationSubscription = await Location.watchPositionAsync(
-        {
-          accuracy: Location.Accuracy.High,
-          timeInterval: 2000,
-          distanceInterval: 2,
-        },
+        trackingConfig,
         (location) => {
-          setUserLocation({
+          const newCoords = {
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
-          });
+          };
+          setUserLocation(newCoords);
+
+          if (selectedLocation) {
+            const distance = calculateDistance(newCoords, selectedLocation);
+            const newConfig = getTierConfig(distance);
+
+            if (newConfig.timeInterval !== trackingConfig.timeInterval) {
+              setTrackingConfig(newConfig);
+            }
+          }
 
           if (location.coords.heading !== null) {
             setHeading(location.coords.heading);
@@ -51,7 +70,7 @@ export const useUserLocation = (fallbackRegion: LocationCoordinates) => {
         locationSubscription.remove();
       }
     };
-  }, []); 
+  }, [selectedLocation, trackingConfig]); 
 
   return { userLocation, heading };
 };

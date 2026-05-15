@@ -1,12 +1,5 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import SettingsScreen from '../src/features/options/screen/settingsScreen'
 
-const options = () => {
-  return (
-    <View>
-      <Text>options</Text>
-    </View>
-  )
+export default function OptionsRoute() {
+  return <SettingsScreen />
 }
-
-export default options

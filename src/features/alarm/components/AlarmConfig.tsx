@@ -34,6 +34,12 @@ export default function AlarmConfig({
   const handleActivate = () => {
     onConfirm({
       radius,
+      isActive: true,
+      isFavorite: false,
+      soundEnabled: sound,
+      vibrationEnabled: vibration,
+      isRinging: false,
+      address: locationData.address,
       sound,
       vibration
     });

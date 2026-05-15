@@ -20,7 +20,17 @@ const GOOGLE_MAPS_APIKEY = Platform.OS === "ios"
   : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
 
 export const MapScreen = () => {
-  const { userLocation, heading } = useUserLocation({ latitude: -32.8895, longitude: -68.8458 });
+  const mapRef = useRef<MapView>(null);
+  const searchRef = useRef<GooglePlacesAutocompleteRef>(null);
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const [pendingSheet, setPendingSheet] = useState(false);
+  const [mapRegion, setMapRegion] = useState<MapRegion>(FALLBACK_REGION);
+  const [selectedLocation, setSelectedLocation] = useState<LocationCoordinates | null>(null);
+  const { userLocation, heading } = useUserLocation({
+    latitude: FALLBACK_REGION.latitude,
+    longitude: FALLBACK_REGION.longitude
+  },selectedLocation);
+  const { placeDetails, isLoading } = usePlaceDetails(selectedLocation, userLocation);
   const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
   const { refs, state, actions } = useMapController(userLocation);
   const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, userLocation);

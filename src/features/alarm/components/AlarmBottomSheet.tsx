@@ -41,6 +41,9 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
         vibration: true,
         isActive: true,
         isFavorite: false,
+        soundEnabled: true,
+        vibrationEnabled: true,
+        isRinging: false,
         address: locationData.address,
       });
       onActivateAlarm();
@@ -164,5 +167,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
     );
   }
 );
+
+AlarmBottomSheet.displayName = 'AlarmBottomSheet';
 
 export default AlarmBottomSheet;

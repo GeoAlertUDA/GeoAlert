@@ -8,5 +8,8 @@ export interface IAlarm {
   vibration: boolean | null;
   isActive: boolean;
   isFavorite: boolean;
+  soundEnabled: boolean;
+  vibrationEnabled: boolean;
+  isRinging: boolean;
   address: string | null;
 }

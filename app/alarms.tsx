@@ -1,17 +1,21 @@
 import { View, Text, FlatList, Pressable } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { useAlarmStore } from '@/features/alarm/store/useAlarmStore'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useFocusEffect } from '@react-navigation/native'
 
 export default function AlarmsScreen() {
   const alarms = useAlarmStore((s) => s.alarms)
   const loadAlarms = useAlarmStore((s) => s.loadAlarms)
   const removeAlarm = useAlarmStore((s) => s.removeAlarm)
+  const stopRinging = useAlarmStore((s) => s.stopRinging)
   const insets = useSafeAreaInsets()
 
-  useEffect(() => {
-    loadAlarms()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      loadAlarms()
+    }, [loadAlarms]),
+  )
 
   return (
     <View style={{ flex: 1, paddingTop: insets.top }} className="bg-white">
@@ -43,6 +47,17 @@ export default function AlarmsScreen() {
                   <Text className="text-[#0D393C] text-sm mt-2 font-medium">
                     Radio: {item.radius}m · {item.isActive ? 'Activa' : 'Inactiva'}
                   </Text>
+                  <Text className="text-[#0D393C] text-xs mt-1">
+                    Sonido {item.soundEnabled ? 'sí' : 'no'} · Vibración {item.vibrationEnabled ? 'sí' : 'no'}
+                  </Text>
+                  {item.isRinging && (
+                    <Pressable
+                      onPress={() => stopRinging(item.id)}
+                      className="bg-[#0D393C] rounded-xl px-4 py-2 mt-3 self-start"
+                    >
+                      <Text className="text-white font-semibold text-sm">Detener</Text>
+                    </Pressable>
+                  )}
                 </View>
                 <Pressable
                   onPress={() => removeAlarm(item.id)}

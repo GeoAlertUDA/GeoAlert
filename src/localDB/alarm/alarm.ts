@@ -11,9 +11,28 @@ export const createAlarmTable = async (db: SQLiteDatabase): Promise<void> => {
       radius          REAL    NOT NULL,
       isActive        INTEGER NOT NULL DEFAULT 1,
       isFavorite      INTEGER NOT NULL DEFAULT 0,
+      soundEnabled    INTEGER NOT NULL DEFAULT 1,
+      vibrationEnabled INTEGER NOT NULL DEFAULT 1,
+      isRinging       INTEGER NOT NULL DEFAULT 0,
       address         TEXT
     );
   `);
+  await ensureAlarmColumn(db, 'soundEnabled', 'INTEGER NOT NULL DEFAULT 1');
+  await ensureAlarmColumn(db, 'vibrationEnabled', 'INTEGER NOT NULL DEFAULT 1');
+  await ensureAlarmColumn(db, 'isRinging', 'INTEGER NOT NULL DEFAULT 0');
+};
+
+const ensureAlarmColumn = async (
+  db: SQLiteDatabase,
+  columnName: string,
+  definition: string,
+): Promise<void> => {
+  const columns = await db.getAllAsync<{ name: string }>(`PRAGMA table_info(alarm);`);
+  const hasColumn = columns.some((column) => column.name === columnName);
+
+  if (!hasColumn) {
+    await db.execAsync(`ALTER TABLE alarm ADD COLUMN ${columnName} ${definition};`);
+  }
 };
 
 export const dropAlarmTable = async (db: SQLiteDatabase): Promise<void> => {
@@ -28,6 +47,9 @@ const rowToAlarm = (row: Record<string, unknown>): IAlarm => ({
   radius:row.radius as number,
   isActive:(row.isActive as number) === 1,
   isFavorite:(row.isFavorite as number) === 1,
+  soundEnabled:(row.soundEnabled as number | undefined ?? 1) === 1,
+  vibrationEnabled:(row.vibrationEnabled as number | undefined ?? 1) === 1,
+  isRinging:(row.isRinging as number | undefined ?? 0) === 1,
   address:row.address as string | null,
 });
 
@@ -55,14 +77,20 @@ export const insertAlarm = async (
   alarm: Omit<IAlarm, 'id'>,
 ): Promise<number> => {
   const result = await db.runAsync(
-    `INSERT INTO alarm (name, latitude, longitude, radius, isActive, isFavorite, address)
-     VALUES (?, ?, ?, ?, ?, ?, ?);`,
+    `INSERT INTO alarm (
+       name, latitude, longitude, radius, isActive, isFavorite,
+       soundEnabled, vibrationEnabled, isRinging, address
+     )
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
     alarm.name,
     alarm.latitude,
     alarm.longitude,
     alarm.radius,
     alarm.isActive  ? 1 : 0,
     alarm.isFavorite ? 1 : 0,
+    alarm.soundEnabled ? 1 : 0,
+    alarm.vibrationEnabled ? 1 : 0,
+    alarm.isRinging ? 1 : 0,
     alarm.address ?? null,
   );
   return result.lastInsertRowId;
@@ -75,7 +103,8 @@ export const updateAlarm = async (
   await db.runAsync(
     `UPDATE alarm
      SET name = ?, latitude = ?, longitude = ?, radius = ?,
-         isActive = ?, isFavorite = ?, address = ?
+         isActive = ?, isFavorite = ?, soundEnabled = ?,
+         vibrationEnabled = ?, isRinging = ?, address = ?
      WHERE id = ?;`,
     alarm.name,
     alarm.latitude,
@@ -83,6 +112,9 @@ export const updateAlarm = async (
     alarm.radius,
     alarm.isActive  ? 1 : 0,
     alarm.isFavorite ? 1 : 0,
+    alarm.soundEnabled ? 1 : 0,
+    alarm.vibrationEnabled ? 1 : 0,
+    alarm.isRinging ? 1 : 0,
     alarm.address ?? null,
     alarm.id,
   );
@@ -103,6 +135,30 @@ export const toggleAlarmActive = async (
   await db.runAsync(
     `UPDATE alarm SET isActive = ? WHERE id = ?;`,
     currentValue ? 0 : 1,
+    id,
+  );
+};
+
+export const setAlarmActive = async (
+  db: SQLiteDatabase,
+  id: number,
+  isActive: boolean,
+): Promise<void> => {
+  await db.runAsync(
+    `UPDATE alarm SET isActive = ? WHERE id = ?;`,
+    isActive ? 1 : 0,
+    id,
+  );
+};
+
+export const setAlarmRinging = async (
+  db: SQLiteDatabase,
+  id: number,
+  isRinging: boolean,
+): Promise<void> => {
+  await db.runAsync(
+    `UPDATE alarm SET isRinging = ? WHERE id = ?;`,
+    isRinging ? 1 : 0,
     id,
   );
 };
