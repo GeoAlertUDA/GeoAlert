@@ -9,7 +9,6 @@ import BusStopMarker from "../components/BusStopMarker";
 import AlarmBottomSheet from "@/features/alarm/components/AlarmBottomSheet";
 import { OngoingTripSheet } from "@/features/alarm/components/OngoingTripSheet";
 import { usePlaceDetails } from "../hooks/usePlaceDetails";
-import { useUserLocation } from "../hooks/useUserLocation";
 import { useDebouncedBusStopsSync } from "../hooks/useDebouncedBusStopsSync";
 import { useBusStopsStore } from "../store/busStopsStore";
 import { useMapController } from "../hooks/useMapController"; // Nuestro nuevo hook
@@ -20,20 +19,9 @@ const GOOGLE_MAPS_APIKEY = Platform.OS === "ios"
   : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
 
 export const MapScreen = () => {
-  const mapRef = useRef<MapView>(null);
-  const searchRef = useRef<GooglePlacesAutocompleteRef>(null);
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const [pendingSheet, setPendingSheet] = useState(false);
-  const [mapRegion, setMapRegion] = useState<MapRegion>(FALLBACK_REGION);
-  const [selectedLocation, setSelectedLocation] = useState<LocationCoordinates | null>(null);
-  const { userLocation, heading } = useUserLocation({
-    latitude: FALLBACK_REGION.latitude,
-    longitude: FALLBACK_REGION.longitude
-  },selectedLocation);
-  const { placeDetails, isLoading } = usePlaceDetails(selectedLocation, userLocation);
   const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
-  const { refs, state, actions } = useMapController(userLocation);
-  const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, userLocation);
+  const { refs, state, actions } = useMapController();
+  const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, state.userLocation);
   useDebouncedBusStopsSync(state.mapRegion);
 
   const onMapPress = (e: LongPressEvent) => actions.handleLocationUpdate(e.nativeEvent.coordinate, true);
@@ -77,17 +65,17 @@ export const MapScreen = () => {
             </>
           )}
 
-          {userLocation && state.isTripActive && (
-            <Marker coordinate={userLocation} rotation={heading} flat anchor={{ x: 0.5, y: 0.5 }}>
+          {state.userLocation && state.isTripActive && (
+            <Marker coordinate={state.userLocation} rotation={state.heading} flat anchor={{ x: 0.5, y: 0.5 }}>
               <View>
                 <MousePointer2 size={24} color="#0D393C" fill="#0D393C" />
               </View>
             </Marker>
           )}
 
-          {userLocation && state.selectedLocation && (
+          {state.userLocation && state.selectedLocation && (
             <MapViewDirections
-              origin={userLocation}
+              origin={state.userLocation}
               destination={state.selectedLocation}
               apikey={GOOGLE_MAPS_APIKEY}
               strokeWidth={8}

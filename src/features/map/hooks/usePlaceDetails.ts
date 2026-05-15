@@ -90,7 +90,8 @@ export const usePlaceDetails = (
                     address: finalAddress,
                     distanceText: finalDistanceText,
                     durationText: finalDurationText,
-                    photoUrl: finalPhotoUrl
+                    photoUrl: finalPhotoUrl,
+                    radius: 500
                 });
 
             } catch (err) {

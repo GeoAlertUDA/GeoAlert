@@ -4,6 +4,7 @@ import MapView from 'react-native-maps';
 import { GooglePlacesAutocompleteRef } from 'react-native-google-places-autocomplete';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { LocationCoordinates, MapRegion } from '../types';
+import { useUserLocation } from './useUserLocation';
 
 const FALLBACK_REGION: MapRegion = {
   latitude: -32.8895,
@@ -27,7 +28,7 @@ const calculateDistanceInMeters = (lat1: number, lon1: number, lat2: number, lon
   return Math.round(R * c);
 };
 
-export const useMapController = (userLocation: LocationCoordinates | null) => {
+export const useMapController = () => {
   const mapRef = useRef<MapView>(null);
   const searchRef = useRef<GooglePlacesAutocompleteRef>(null);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
@@ -39,6 +40,7 @@ export const useMapController = (userLocation: LocationCoordinates | null) => {
   const [isTripActive, setIsTripActive] = useState(false);
   const [distanceToTarget, setDistanceToTarget] = useState(0);
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
+  const { userLocation, heading } = useUserLocation(FALLBACK_REGION, selectedLocation);
 
   useEffect(() => {
     if (isTripActive && userLocation && selectedLocation) {
@@ -118,7 +120,7 @@ export const useMapController = (userLocation: LocationCoordinates | null) => {
 
   return {
     refs: { mapRef, searchRef, bottomSheetModalRef },
-    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation },
+    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation, userLocation, heading },
     actions: { 
       setMapRegion, 
       setAlarmRadius, 
