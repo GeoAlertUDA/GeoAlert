@@ -24,10 +24,6 @@ export default function App() {
     "Manrope-Extrabold": Manrope_800ExtraBold,
   });
 
-  if (!fontsLoaded) {
-    return null; // O un indicador de carga
-  }
-
   useEffect(() => {
     createTables()
       .then(() => setDbReady(true))
@@ -37,7 +33,7 @@ export default function App() {
       });
   }, []);
 
-  if (!dbReady) {
+  if (!dbReady || !fontsLoaded) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" color="#0D393C" />

@@ -1,4 +1,4 @@
-import { useAlarmStore } from "@/store/useAlarmStore";
+import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
 import { IAlarm } from "@/types";
 import { LucideMapPin, LucideMoveHorizontal } from "lucide-react-native";
 import React, { useState } from "react";
