@@ -5,6 +5,8 @@ import { GooglePlacesAutocompleteRef } from 'react-native-google-places-autocomp
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { LocationCoordinates, MapRegion } from '../types';
 import { useUserLocation } from './useUserLocation';
+import { useAlarmStore } from '@/features/alarm/store/useAlarmStore';
+import { stopAlarmAlert } from '@/features/options/service/soundService';
 
 const FALLBACK_REGION: MapRegion = {
   latitude: -32.8895,
@@ -40,7 +42,9 @@ export const useMapController = () => {
   const [isTripActive, setIsTripActive] = useState(false);
   const [distanceToTarget, setDistanceToTarget] = useState(0);
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
+  const [activeAlarmId, setActiveAlarmId] = useState<number | null>(null);
   const { userLocation, heading } = useUserLocation(FALLBACK_REGION, selectedLocation);
+  const cancelAlarm = useAlarmStore((s) => s.cancelAlarm);
 
   useEffect(() => {
     if (isTripActive && userLocation && selectedLocation) {
@@ -99,16 +103,23 @@ export const useMapController = () => {
     }
   };
 
-  const handleActivateAlarm = () => {
+  const handleActivateAlarm = (alarmId: number) => {
     isActivatingRef.current = true;
+    setActiveAlarmId(alarmId);
     setIsTripActive(true);
   };
 
   const handleRequestCancelAlarm = () => {
     setShowCancelConfirmation(true);
   };
-  const handleConfirmCancelAlarm = () => {
+  const handleConfirmCancelAlarm = async () => {
     setShowCancelConfirmation(false); 
+    if (activeAlarmId !== null) {
+      await cancelAlarm(activeAlarmId);
+      setActiveAlarmId(null);
+    } else {
+      await stopAlarmAlert();
+    }
     setIsTripActive(false);           
     clearMapStates();                
   };

@@ -16,7 +16,7 @@ interface AlarmBottomSheetProps {
   isLoading: boolean | null;
   onRadiusChange: (radius: number) => void;
   onDismiss: () => void;
-  onActivateAlarm: () => void;
+  onActivateAlarm: (alarmId: number) => void;
 }
 
 const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
@@ -33,7 +33,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
 
     const handleQuickActivate = useCallback(async () => {
       if (!locationData) return;
-      await addAlarm({
+      const alarm = await addAlarm({
         name: locationData.name,
         latitude: locationData.latitude,
         longitude: locationData.longitude,
@@ -45,7 +45,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
         isRinging: false,
         address: locationData.address,
       });
-      onActivateAlarm();
+      onActivateAlarm(alarm.id);
       dismiss();
     }, [locationData, addAlarm, dismiss, onActivateAlarm]);
 
@@ -53,7 +53,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
     const handleCustomActivate = useCallback(async (customConfig: AlarmConfigValue) => {
       if (!locationData) return;
 
-      await addAlarm({
+      const alarm = await addAlarm({
         name: locationData.name,
         latitude: locationData.latitude,
         longitude: locationData.longitude,
@@ -65,7 +65,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
         isRinging: false,
         address: locationData.address,
       });
-      onActivateAlarm();
+      onActivateAlarm(alarm.id);
       dismiss();
     }, [locationData, addAlarm, dismiss, onActivateAlarm]);
 
