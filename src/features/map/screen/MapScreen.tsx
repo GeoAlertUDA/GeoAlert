@@ -1,31 +1,23 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { StyleSheet, View, Keyboard, Platform } from "react-native";
-import MapView, { Marker, PROVIDER_GOOGLE, LongPressEvent, Circle } from "react-native-maps";
+import { PROVIDER_GOOGLE, LongPressEvent, Circle, Marker } from "react-native-maps";
 import ClusteredMapView from "react-native-map-clustering";
-import { GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import MapViewDirections from "react-native-maps-directions";
 import { MousePointer2 } from "lucide-react-native";
 import { LocationSearchBar } from "../components/LocationSearchBar";
 import BusStopMarker from "../components/BusStopMarker";
 import AlarmBottomSheet from "@/features/alarm/components/AlarmBottomSheet";
+import { OngoingTripSheet } from "@/features/alarm/components/OngoingTripSheet";
 import { usePlaceDetails } from "../hooks/usePlaceDetails";
 import { useUserLocation } from "../hooks/useUserLocation";
 import { useDebouncedBusStopsSync } from "../hooks/useDebouncedBusStopsSync";
 import { useBusStopsStore } from "../store/busStopsStore";
-import { LocationCoordinates, MapRegion } from "../types";
+import { useMapController } from "../hooks/useMapController"; // Nuestro nuevo hook
+import { CancelAlarmConfirmationModal } from "@/features/alarm/components/CancelAlarmModal";
 
-const FALLBACK_REGION: MapRegion = {
-  latitude: -32.8895,
-  longitude: -68.8458,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-};
-
-const GOOGLE_MAPS_APIKEY =
-  Platform.OS === "ios"
-    ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS!
-    : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
+const GOOGLE_MAPS_APIKEY = Platform.OS === "ios"
+  ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS!
+  : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
 
 export const MapScreen = () => {
   const mapRef = useRef<MapView>(null);
@@ -40,108 +32,63 @@ export const MapScreen = () => {
   },selectedLocation);
   const { placeDetails, isLoading } = usePlaceDetails(selectedLocation, userLocation);
   const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
+  const { refs, state, actions } = useMapController(userLocation);
+  const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, userLocation);
+  useDebouncedBusStopsSync(state.mapRegion);
 
-  useDebouncedBusStopsSync(mapRegion);
-
-  const [alarmRadius, setAlarmRadius] = useState(300); //RADIO HARDCODEADO
-
-  const handleLocationUpdate = (location: LocationCoordinates, updateSearchText = false) => {
-    Keyboard.dismiss();
-    const isSameLocation =
-      selectedLocation?.latitude === location.latitude &&
-      selectedLocation?.longitude === location.longitude;
-
-    setSelectedLocation(location);
-
-    if (updateSearchText) {
-      searchRef.current?.setAddressText(
-        `${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)}`
-      );
-    }
-
-    if (isSameLocation) {
-      bottomSheetModalRef.current?.present();
-      return;
-    }
-
-    setPendingSheet(true);
-    mapRef.current?.animateToRegion(
-      { ...location, latitudeDelta: 0.005, longitudeDelta: 0.005 },
-      1000
-    );
-  };
-
-  const handleClearSelection = () => {
-    setSelectedLocation(null);
-    searchRef.current?.setAddressText("");
-    Keyboard.dismiss();
-    bottomSheetModalRef.current?.dismiss();
-  };
-
-  const onMapPress = (e: LongPressEvent) => handleLocationUpdate(e.nativeEvent.coordinate, true);
+  const onMapPress = (e: LongPressEvent) => actions.handleLocationUpdate(e.nativeEvent.coordinate, true);
 
   return (
     <>
       <View style={styles.container}>
         <ClusteredMapView
-          ref={mapRef}
+          ref={refs.mapRef}
           provider={PROVIDER_GOOGLE}
           style={styles.map}
-          showsUserLocation={!selectedLocation}
+          showsUserLocation={!state.isTripActive}
           showsMyLocationButton={false}
-          initialRegion={FALLBACK_REGION}
+          initialRegion={{ latitude: -32.8895, longitude: -68.8458, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
           onLongPress={onMapPress}
           clusterColor="#0D393C"
           clusterTextColor="#F9BF53"
           radius={40}
           maxZoom={16}
           minPoints={3}
-          onRegionChangeComplete={(region) => {
-            setMapRegion(region);
-            if (pendingSheet) {
-              bottomSheetModalRef.current?.present();
-              setPendingSheet(false);
-            }
-          }}
+          onRegionChangeComplete={actions.setMapRegion}
         >
           {visibleBusStops.map((stop) => (
             <BusStopMarker key={`bus-stop-${stop.id}`} stop={stop} />
           ))}
 
-          {selectedLocation && (
+          {state.selectedLocation && (
             <>
               <Circle
-                center={selectedLocation}
-                radius={alarmRadius}
+                center={state.selectedLocation}
+                radius={state.alarmRadius}
                 fillColor="rgba(249, 191, 83, 0.3)"
                 strokeColor="rgba(249, 191, 83, 0.5)"
                 strokeWidth={2}
               />
               <Marker
                 pinColor="#0D393C"
-                coordinate={selectedLocation}
-                onPress={() => bottomSheetModalRef.current?.present()}
+                coordinate={state.selectedLocation}
+                onPress={() => !state.isTripActive && refs.bottomSheetModalRef.current?.present()}
               />
             </>
           )}
 
-          {userLocation && selectedLocation && (
-            <Marker
-              coordinate={userLocation}
-              rotation={heading}
-              flat
-              anchor={{ x: 0.5, y: 0.5 }}
-            >
+          {userLocation && state.isTripActive && (
+            <Marker coordinate={userLocation} rotation={heading} flat anchor={{ x: 0.5, y: 0.5 }}>
               <View>
                 <MousePointer2 size={24} color="#0D393C" fill="#0D393C" />
               </View>
             </Marker>
           )}
 
-          {userLocation && selectedLocation && (
+          {userLocation && state.selectedLocation && (
             <MapViewDirections
               origin={userLocation}
-              destination={selectedLocation}
+              destination={state.selectedLocation}
               apikey={GOOGLE_MAPS_APIKEY}
               strokeWidth={8}
               strokeColor="rgba(249, 191, 83, 1)"
@@ -149,32 +96,52 @@ export const MapScreen = () => {
               precision="high"
               lineDashPattern={[0]}
               onReady={(result) => {
-                mapRef.current?.fitToCoordinates(result.coordinates, {
-                  edgePadding: { right: 50, bottom: 50, left: 50, top: 100 },
+                refs.mapRef.current?.fitToCoordinates(result.coordinates, {
+                  edgePadding: { right: 50, bottom: 350, left: 50, top: 100 },
+                  animated: true,
                 });
               }}
             />
           )}
         </ClusteredMapView>
 
-        <LocationSearchBar
-          ref={searchRef}
-          hasSelection={!!selectedLocation}
-          onLocationSelect={(loc) => handleLocationUpdate(loc, false)}
-          onClear={handleClearSelection}
-          onClose={Keyboard.dismiss}
+        {!state.isTripActive && (
+          <LocationSearchBar
+            ref={refs.searchRef}
+            hasSelection={!!state.selectedLocation}
+            onLocationSelect={(loc) => actions.handleLocationUpdate(loc, false)}
+            onClear={actions.handleSearchBarClear}
+            onClose={Keyboard.dismiss}
+          />
+        )}
+
+        {state.isTripActive && state.selectedLocation && (
+          <OngoingTripSheet
+            distance={state.distanceToTarget}
+            onCancelAlarm={actions.handleRequestCancelAlarm}
+          />
+
+        )}
+          <CancelAlarmConfirmationModal
+          visible={state.showCancelConfirmation}
+          onConfirm={actions.handleConfirmCancelAlarm} 
+          onCancel={actions.handleDismissCancelConfirmation}
         />
       </View>
 
       <AlarmBottomSheet
-        ref={bottomSheetModalRef}
+        ref={refs.bottomSheetModalRef}
         key="constant-bottom-sheet"
         locationData={placeDetails}
         isLoading={isLoading}
+        onRadiusChange={actions.setAlarmRadius}
+        onDismiss={actions.handleBottomSheetDismiss}
+        onActivateAlarm={actions.handleActivateAlarm}
       />
     </>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
