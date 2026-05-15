@@ -12,6 +12,14 @@ export const OngoingTripSheet = ({ distance, onCancelAlarm }: OngoingTripSheetPr
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['21%'], []);
 
+  const formatDistance = (distanceInMeters: number): string => {
+  if (distanceInMeters >= 500) {
+    const distanceInKm = (distanceInMeters / 1000).toFixed(1); 
+    return `${distanceInKm} km`;
+  }
+  return `${distanceInMeters} m`;
+};
+
   useEffect(() => {
     bottomSheetRef.current?.present();
   }, []);
@@ -30,7 +38,7 @@ export const OngoingTripSheet = ({ distance, onCancelAlarm }: OngoingTripSheetPr
               Viaje en curso
             </Text>
             <Text style={{ fontSize: 23}} className="font-bold text-[#0D393C] text-center leading-8">
-              Estás a <Text style={{ color: '#F9BF53', fontSize: 25}}>{distance} mts</Text> de tu parada
+              Estás a <Text style={{ color: '#F9BF53', fontSize: 25}}>{formatDistance(distance)}</Text> de tu parada
             </Text>
           </View>
 

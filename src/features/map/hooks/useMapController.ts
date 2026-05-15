@@ -44,6 +44,7 @@ export const useMapController = () => {
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
   const [activeAlarmId, setActiveAlarmId] = useState<number | null>(null);
   const { userLocation, heading } = useUserLocation(FALLBACK_REGION, selectedLocation);
+  const [isFollowingUser, setIsFollowingUser] = useState(true);
   const cancelAlarm = useAlarmStore((s) => s.cancelAlarm);
 
   useEffect(() => {
@@ -58,12 +59,38 @@ export const useMapController = () => {
     }
   }, [userLocation, selectedLocation, isTripActive]);
 
+  useEffect(() => {
+  if (isTripActive && isFollowingUser && userLocation) {
+    mapRef.current?.animateCamera(
+      {
+        center: { 
+          latitude: userLocation.latitude, 
+          longitude: userLocation.longitude 
+        },
+        pitch: 45,
+        zoom: 16
+      },
+      { duration: 1000 }
+    );
+  }
+}, [userLocation, isTripActive, isFollowingUser]);
+
   // --- Handlers ---
   const clearMapStates = () => {
     setSelectedLocation(null);
     searchRef.current?.setAddressText("");
     Keyboard.dismiss();
   };
+
+  const handleMapDrag = () => {
+  if (isTripActive && isFollowingUser) {
+    setIsFollowingUser(false); 
+  }
+};
+
+const handleResumeTracking = () => {
+  setIsFollowingUser(true); 
+};
 
   const handleLocationUpdate = (location: LocationCoordinates, updateSearchText = false) => {
     Keyboard.dismiss();
@@ -131,7 +158,7 @@ export const useMapController = () => {
 
   return {
     refs: { mapRef, searchRef, bottomSheetModalRef },
-    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation, userLocation, heading },
+    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation, userLocation, heading, isFollowingUser },
     actions: { 
       setMapRegion, 
       setAlarmRadius, 
@@ -141,8 +168,9 @@ export const useMapController = () => {
       handleActivateAlarm,
       handleRequestCancelAlarm,
       handleConfirmCancelAlarm,
-      handleDismissCancelConfirmation
-     
+      handleDismissCancelConfirmation,
+      handleMapDrag,
+      handleResumeTracking
     }
   };
 };

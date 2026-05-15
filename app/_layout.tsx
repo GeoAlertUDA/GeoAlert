@@ -6,6 +6,7 @@ import TabLayout from '../src/navigation/AppNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { createTables } from '../src/localDB/db';
 import { syncAlarmGeofences } from '../src/features/alarm/service/alarmGeofencingService';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   const [dbReady, setDbReady] = useState(false);
@@ -16,7 +17,7 @@ export default function App() {
       .then(() => setDbReady(true))
       .catch((e) => {
         console.error('[DB] createTables failed:', e);
-        setDbReady(true); 
+        setDbReady(true);
       });
   }, []);
 
@@ -29,10 +30,12 @@ export default function App() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <BottomSheetModalProvider>
-        <TabLayout />
-      </BottomSheetModalProvider>
-    </GestureHandlerRootView>
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <BottomSheetModalProvider>
+          <TabLayout />
+        </BottomSheetModalProvider>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   )
 }

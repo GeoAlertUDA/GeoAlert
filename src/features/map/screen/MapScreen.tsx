@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, View, Keyboard, Platform } from "react-native";
+import { StyleSheet, View, Keyboard, Platform, TouchableOpacity } from "react-native";
 import { PROVIDER_GOOGLE, LongPressEvent, Circle, Marker } from "react-native-maps";
 import ClusteredMapView from "react-native-map-clustering";
 import MapViewDirections from "react-native-maps-directions";
-import { MousePointer2 } from "lucide-react-native";
+import { MousePointer2, Navigation } from "lucide-react-native";
 import { LocationSearchBar } from "../components/LocationSearchBar";
 import BusStopMarker from "../components/BusStopMarker";
 import AlarmBottomSheet from "@/features/alarm/components/AlarmBottomSheet";
@@ -15,16 +15,17 @@ import { useMapController } from "../hooks/useMapController"; // Nuestro nuevo h
 import { CancelAlarmConfirmationModal } from "@/features/alarm/components/CancelAlarmModal";
 
 const GOOGLE_MAPS_APIKEY = Platform.OS === "ios"
-  ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS!
-  : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
+    ? process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS!
+    : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
 
 export const MapScreen = () => {
   const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
   const { refs, state, actions } = useMapController();
-  const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, state.userLocation);
+    const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, state.userLocation);
   useDebouncedBusStopsSync(state.mapRegion);
 
-  const onMapPress = (e: LongPressEvent) => actions.handleLocationUpdate(e.nativeEvent.coordinate, true);
+  const onMapPress = (e: LongPressEvent) =>
+    actions.handleLocationUpdate(e.nativeEvent.coordinate, true);
 
   return (
     <>
@@ -34,7 +35,9 @@ export const MapScreen = () => {
           provider={PROVIDER_GOOGLE}
           style={styles.map}
           showsUserLocation={!state.isTripActive}
-          showsMyLocationButton={false}
+          showsMyLocationButton={true}
+          mapPadding={{ top: 0, right: 10, bottom: 70, left: 0 }}
+          onPanDrag={actions.handleMapDrag}
           initialRegion={{ latitude: -32.8895, longitude: -68.8458, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
           onLongPress={onMapPress}
           clusterColor="#0D393C"
@@ -108,13 +111,22 @@ export const MapScreen = () => {
             distance={state.distanceToTarget}
             onCancelAlarm={actions.handleRequestCancelAlarm}
           />
-
-        )}
-          <CancelAlarmConfirmationModal
+ 
+ )}
+        <CancelAlarmConfirmationModal
           visible={state.showCancelConfirmation}
-          onConfirm={actions.handleConfirmCancelAlarm} 
+          onConfirm={actions.handleConfirmCancelAlarm}
           onCancel={actions.handleDismissCancelConfirmation}
         />
+        {state.isTripActive && !state.isFollowingUser && (
+          <TouchableOpacity
+            style={styles.recenterTripButton}
+            onPress={actions.handleResumeTracking}
+            activeOpacity={0.7}
+          >
+            <Navigation size={24} color="#0D393C" />
+          </TouchableOpacity>
+        )}
       </View>
 
       <AlarmBottomSheet
@@ -171,4 +183,21 @@ const styles = StyleSheet.create({
     marginTop: 5,
     elevation: 5,
   },
+  recenterTripButton: {
+  position: "absolute",
+  right: 20,
+  bottom: 220,
+  backgroundColor: "#F9BF53", 
+  width: 50,
+  height: 50,
+  borderRadius: 25,
+  justifyContent: "center",
+  alignItems: "center",
+  elevation: 6,
+  shadowColor: "#000",
+  shadowOpacity: 0.3,
+  shadowOffset: { width: 0, height: 3 },
+  shadowRadius: 5,
+  zIndex: 10,
+},
 });
