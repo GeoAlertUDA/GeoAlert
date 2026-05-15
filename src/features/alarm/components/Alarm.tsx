@@ -16,6 +16,7 @@ import {
   MenuTrigger,
   renderers,
 } from "react-native-popup-menu";
+import { useRouter } from "expo-router";
 
 export const Alarm = ({
   id,
@@ -30,6 +31,7 @@ export const Alarm = ({
   isRinging,
   address,
 }: IAlarm) => {
+  const router = useRouter();
   const [menuVisible, setMenuVisible] = useState(false);
 
   const toggleActive = useAlarmStore((state) => state.toggleActive);
@@ -52,8 +54,19 @@ export const Alarm = ({
   };
 
   const handleEdit = () => {
-    // agregar navegación a screen de edición
     setMenuVisible(false);
+
+    router.push({
+      pathname: "/",
+      params: {
+        editAlarmId: String(id),
+        editName: name || "",
+        editLatitude: String(latitude),
+        editLongitude: String(longitude),
+        editRadius: String(radius),
+        editAddress: address || "",
+      },
+    });
   };
 
   return (
@@ -65,7 +78,7 @@ export const Alarm = ({
         anchorStyle: { backgroundColor: "transparent" },
       }}
     >
-      <MenuTrigger>
+      <MenuTrigger triggerOnLongPress={true}>
         <View
           style={[
             styles.alarmContainer,
@@ -234,5 +247,9 @@ const styles = StyleSheet.create({
     fontFamily: "Manrope-Regular",
     fontSize: 16,
     color: "#000000",
+  },
+  triggerWrapper: {
+    borderRadius: 100,
+    overflow: "hidden",
   },
 });

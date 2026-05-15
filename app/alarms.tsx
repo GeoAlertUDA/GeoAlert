@@ -1,4 +1,4 @@
-import { AlarmScreen } from "@/features/alerts/components/AlarmScreen";
+import { AlarmScreen } from "@/features/alarm/components/AlarmScreen";
 import { View, Text, FlatList, Pressable } from "react-native";
 import { useEffect, useCallback } from "react";
 import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
