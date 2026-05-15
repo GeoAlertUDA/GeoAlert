@@ -11,7 +11,6 @@ import BusStopMarker from "../components/BusStopMarker";
 import AlarmBottomSheet from "@/features/alarm/components/AlarmBottomSheet";
 import { OngoingTripSheet } from "@/features/alarm/components/OngoingTripSheet";
 import { usePlaceDetails } from "../hooks/usePlaceDetails";
-import { useUserLocation } from "../hooks/useUserLocation";
 import { useDebouncedBusStopsSync } from "../hooks/useDebouncedBusStopsSync";
 import { useBusStopsStore } from "../store/busStopsStore";
 import { useMapController, FALLBACK_REGION } from "../hooks/useMapController";
@@ -23,17 +22,9 @@ const GOOGLE_MAPS_APIKEY = Platform.OS === "ios"
   : process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY_ANDROID!;
 
 export const MapScreen = () => {
-  const [userLocation, setUserLocation] = useState<LocationCoordinates | null>(null);
-  const { refs, state, actions } = useMapController(userLocation);
-  const { userLocation: newUserLocation, heading, trackingMode } = useUserLocation(FALLBACK_REGION, state.selectedLocation);
-  const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, userLocation);
+  const { refs, state, actions } = useMapController();
+  const { placeDetails, isLoading } = usePlaceDetails(state.selectedLocation, state.userLocation);
   const visibleBusStops = useBusStopsStore((s) => s.visibleStops);
-
-  useEffect(() => {
-    if (newUserLocation && (newUserLocation.latitude !== userLocation?.latitude || newUserLocation.longitude !== userLocation?.longitude)) {
-      setUserLocation(newUserLocation);
-    }
-  }, [newUserLocation]);
 
   useDebouncedBusStopsSync(state.mapRegion);
 
@@ -78,17 +69,17 @@ export const MapScreen = () => {
             </>
           )}
 
-          {userLocation && state.isTripActive && (
-            <Marker coordinate={userLocation} rotation={heading} flat anchor={{ x: 0.5, y: 0.5 }}>
+          {state.userLocation && state.isTripActive && (
+            <Marker coordinate={state.userLocation} rotation={state.heading} flat anchor={{ x: 0.5, y: 0.5 }}>
               <View>
                 <MousePointer2 size={24} color="#0D393C" fill="#0D393C" />
               </View>
             </Marker>
           )}
 
-          {userLocation && state.selectedLocation && (
+          {state.userLocation && state.selectedLocation && (
             <MapViewDirections
-              origin={userLocation}
+              origin={state.userLocation}
               destination={state.selectedLocation}
               apikey={GOOGLE_MAPS_APIKEY}
               strokeWidth={8}
@@ -126,15 +117,15 @@ export const MapScreen = () => {
 
         {state.selectedLocation && (
           <View style={styles.badgeContainer}>
-            <View style={[styles.badge, trackingMode === 'LOW' || trackingMode === 'BALANCED' ? styles.lowResourceBadge : styles.highPrecisionBadge]}>
-              {trackingMode === 'LOW' || trackingMode === 'BALANCED' ? (
+            <View style={[styles.badge, state.trackingMode === 'LOW' || state.trackingMode === 'BALANCED' ? styles.lowResourceBadge : styles.highPrecisionBadge]}>
+              {state.trackingMode === 'LOW' || state.trackingMode === 'BALANCED' ? (
                 <Leaf size={14} color="#0D393C" />
               ) : (
                 <Zap size={14} color="#F9BF53" />
               )}
               <View style={{ width: 6 }} />
               <Text style={styles.badgeText}>
-                {trackingMode === 'LOW' || trackingMode === 'BALANCED' ? 'AHORRO DE RECURSOS' : 'ALTA PRECISIÓN'}
+                {state.trackingMode === 'LOW' || state.trackingMode === 'BALANCED' ? 'AHORRO DE RECURSOS' : 'ALTA PRECISIÓN'}
               </Text>
             </View>
           </View>

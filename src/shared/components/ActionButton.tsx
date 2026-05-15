@@ -6,7 +6,7 @@ interface ButtonProps {
     text: string | null;
     icon?: boolean;
     variant?: 'primary' | 'secondary'; 
-    onPress?: () => void;
+    onPress?: () => void | Promise<void>;
     className?: string; 
 }
 

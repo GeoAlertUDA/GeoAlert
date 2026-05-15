@@ -1,25 +1,12 @@
 import ActionButton from '@/shared/components/ActionButton';
 import React from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet, Platform } from 'react-native';
+import { View, Text, Modal, StyleSheet } from 'react-native';
 
 interface CancelAlarmConfirmationModalProps {
     visible: boolean;
     onConfirm: () => void;
     onCancel: () => void; 
 }
-
-
-const CancelarAlertaButton = ({ onPress }: { onPress: () => void }) => (
-    <TouchableOpacity
-        onPress={onPress}
-        className="flex-1 border-[1px] border-card-border rounded-[50px] h-[55px] items-center justify-center ml-2 active:bg-gray-50"
-        style={{ borderColor: '#D4DBD1' }}
-    >
-        <Text className="text-black text-[16px] font-medium text-center">
-            Cancelar alerta
-        </Text>
-    </TouchableOpacity>
-);
 
 export const CancelAlarmConfirmationModal = ({
     visible,
@@ -49,14 +36,14 @@ export const CancelAlarmConfirmationModal = ({
                             text="Continuar"
                             variant="primary"
                             icon={false}
-                            onPress={onCancel}
+                            onPress={onConfirm}
                             className="flex-1" 
                         />
                         <ActionButton
                             text="Cancelar"
                             variant="secondary"
                             icon={false}
-                            onPress={onConfirm}
+                            onPress={onCancel}
                             className="flex-1" 
                         />
                     </View>

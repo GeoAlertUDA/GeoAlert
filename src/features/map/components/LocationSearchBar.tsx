@@ -1,5 +1,5 @@
-import React, { forwardRef, useRef, useState } from "react";
-import { StyleSheet, View, TouchableOpacity, Keyboard, Platform } from "react-native";
+import React, { forwardRef, useState } from "react";
+import { StyleSheet, TouchableOpacity, Platform } from "react-native";
 import {
   GooglePlacesAutocomplete,
   GooglePlacesAutocompleteRef,
@@ -20,13 +20,6 @@ export const LocationSearchBar = forwardRef<GooglePlacesAutocompleteRef, Locatio
     const [searchText, setSearchText] = useState("");
 
     const showClearButton = searchText.length > 0 || hasSelection;
-
-    const handleClear = () => {
-      setSearchText("");
-      // @ts-ignore 
-      if (ref && "current" in ref) ref.current?.setAddressText("");
-      onClose();
-    };
 
     const handleIconPress = () => {
       if (showClearButton) {
@@ -87,6 +80,8 @@ export const LocationSearchBar = forwardRef<GooglePlacesAutocompleteRef, Locatio
       </SafeAreaView>
     );
   });
+
+LocationSearchBar.displayName = "LocationSearchBar";
 
 const styles = StyleSheet.create({
   searchContainer: {

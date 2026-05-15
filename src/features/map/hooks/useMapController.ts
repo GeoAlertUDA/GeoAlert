@@ -4,6 +4,9 @@ import MapView from 'react-native-maps';
 import { GooglePlacesAutocompleteRef } from 'react-native-google-places-autocomplete';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { LocationCoordinates, MapRegion } from '../types';
+import { useUserLocation } from './useUserLocation';
+import { useAlarmStore } from '@/features/alarm/store/useAlarmStore';
+import { stopAlarmAlert } from '@/features/options/service/soundService';
 
 export const FALLBACK_REGION: MapRegion = {
   latitude: -32.8895,
@@ -27,7 +30,7 @@ const calculateDistanceInMeters = (lat1: number, lon1: number, lat2: number, lon
   return Math.round(R * c);
 };
 
-export const useMapController = (userLocation: LocationCoordinates | null) => {
+export const useMapController = () => {
   const mapRef = useRef<MapView>(null);
   const searchRef = useRef<GooglePlacesAutocompleteRef>(null);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
@@ -39,6 +42,9 @@ export const useMapController = (userLocation: LocationCoordinates | null) => {
   const [isTripActive, setIsTripActive] = useState(false);
   const [distanceToTarget, setDistanceToTarget] = useState(0);
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
+  const [activeAlarmId, setActiveAlarmId] = useState<number | null>(null);
+  const { userLocation, heading, trackingMode } = useUserLocation(FALLBACK_REGION, selectedLocation);
+  const cancelAlarm = useAlarmStore((s) => s.cancelAlarm);
 
   useEffect(() => {
     if (isTripActive && userLocation && selectedLocation) {
@@ -97,16 +103,23 @@ export const useMapController = (userLocation: LocationCoordinates | null) => {
     }
   };
 
-  const handleActivateAlarm = () => {
+  const handleActivateAlarm = (alarmId: number) => {
     isActivatingRef.current = true;
+    setActiveAlarmId(alarmId);
     setIsTripActive(true);
   };
 
   const handleRequestCancelAlarm = () => {
     setShowCancelConfirmation(true);
   };
-  const handleConfirmCancelAlarm = () => {
+  const handleConfirmCancelAlarm = async () => {
     setShowCancelConfirmation(false); 
+    if (activeAlarmId !== null) {
+      await cancelAlarm(activeAlarmId);
+      setActiveAlarmId(null);
+    } else {
+      await stopAlarmAlert();
+    }
     setIsTripActive(false);           
     clearMapStates();                
   };
@@ -118,7 +131,7 @@ export const useMapController = (userLocation: LocationCoordinates | null) => {
 
   return {
     refs: { mapRef, searchRef, bottomSheetModalRef },
-    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation },
+    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation, userLocation, heading, trackingMode },
     actions: { 
       setMapRegion, 
       setAlarmRadius, 

@@ -1,21 +1,22 @@
 import React, { useCallback, forwardRef, useState } from 'react';
-import { ActivityIndicator, Image, Text, View } from 'react-native';
-import { BottomSheetModal, BottomSheetBackdrop, BottomSheetView } from '@gorhom/bottom-sheet';
+import { ActivityIndicator, Image, Text, TouchableOpacity, View } from 'react-native';
+import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlaceDetails } from '@/features/map/types';
 import YellowButton from '@/shared/components/ActionButton';
 import { useAlarmStore } from '../store/useAlarmStore';
 import ConfigAccordion from './ConfigAccordion';
-import AlarmConfig from './AlarmConfig';
-import { TouchableOpacity } from 'react-native';
+import AlarmConfig, { AlarmConfigValue } from './AlarmConfig';
 import { X } from 'lucide-react-native';
+
+const DEFAULT_ALARM_RADIUS = 500;
 
 interface AlarmBottomSheetProps {
   locationData: PlaceDetails | null;
   isLoading: boolean | null;
   onRadiusChange: (radius: number) => void;
   onDismiss: () => void;
-  onActivateAlarm: () => void;
+  onActivateAlarm: (alarmId: number) => void;
 }
 
 const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
@@ -32,13 +33,11 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
 
     const handleQuickActivate = useCallback(async () => {
       if (!locationData) return;
-      await addAlarm({
+      const alarm = await addAlarm({
         name: locationData.name,
         latitude: locationData.latitude,
         longitude: locationData.longitude,
-        radius: 0,
-        sound: true,
-        vibration: true,
+        radius: locationData.radius ?? DEFAULT_ALARM_RADIUS,
         isActive: true,
         isFavorite: false,
         soundEnabled: true,
@@ -46,26 +45,27 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
         isRinging: false,
         address: locationData.address,
       });
-      onActivateAlarm();
+      onActivateAlarm(alarm.id);
       dismiss();
     }, [locationData, addAlarm, dismiss, onActivateAlarm]);
 
 
-    const handleCustomActivate = useCallback(async (customConfig: { radius: number; sound: boolean; vibration: boolean }) => {
+    const handleCustomActivate = useCallback(async (customConfig: AlarmConfigValue) => {
       if (!locationData) return;
 
-      await addAlarm({
+      const alarm = await addAlarm({
         name: locationData.name,
         latitude: locationData.latitude,
         longitude: locationData.longitude,
         radius: customConfig.radius,
-        sound: customConfig.sound,
-        vibration: customConfig.vibration,
         isActive: true,
         isFavorite: false,
+        soundEnabled: customConfig.soundEnabled,
+        vibrationEnabled: customConfig.vibrationEnabled,
+        isRinging: false,
         address: locationData.address,
       });
-      onActivateAlarm
+      onActivateAlarm(alarm.id);
       dismiss();
     }, [locationData, addAlarm, dismiss, onActivateAlarm]);
 

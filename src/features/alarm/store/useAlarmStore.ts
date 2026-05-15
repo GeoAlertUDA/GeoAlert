@@ -4,6 +4,7 @@ import { getDBConnection } from '@/localDB/db';
 import {
   getAllAlarms,
   insertAlarm,
+  setAlarmActive,
   updateAlarm,
   deleteAlarm,
   setAlarmRinging,
@@ -19,8 +20,9 @@ interface AlarmState {
   error: string | null;
 
   loadAlarms: () => Promise<void>;
-  addAlarm: (alarm: Omit<IAlarm, 'id'>) => Promise<void>;
+  addAlarm: (alarm: Omit<IAlarm, 'id'>) => Promise<IAlarm>;
   editAlarm: (alarm: IAlarm) => Promise<void>;
+  cancelAlarm: (id: number) => Promise<void>;
   removeAlarm: (id: number) => Promise<void>;
   toggleActive: (id: number, currentValue: boolean) => Promise<void>;
   toggleFavorite: (id: number, currentValue: boolean) => Promise<void>;
@@ -62,9 +64,11 @@ export const useAlarmStore = create<AlarmState>((set, get) => ({
       const newAlarm: IAlarm = { ...alarm, id };
       set((state) => ({ alarms: [...state.alarms, newAlarm], isLoading: false }));
       await syncGeofencesSafely(alarm.isActive);
+      return newAlarm;
     } catch (e) {
       set({ error: 'Failed to add alarm.', isLoading: false });
       console.error('[AlarmStore] addAlarm:', e);
+      throw e;
     }
   },
 
@@ -81,6 +85,29 @@ export const useAlarmStore = create<AlarmState>((set, get) => ({
     } catch (e) {
       set({ error: 'Failed to update alarm.', isLoading: false });
       console.error('[AlarmStore] editAlarm:', e);
+    }
+  },
+
+  cancelAlarm: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      await stopAlarmAlert();
+
+      const db = await getDBConnection();
+      await setAlarmRinging(db, id, false);
+      await setAlarmActive(db, id, false);
+
+      set((state) => ({
+        alarms: state.alarms.map((alarm) =>
+          alarm.id === id ? { ...alarm, isActive: false, isRinging: false } : alarm,
+        ),
+        isLoading: false,
+      }));
+
+      await syncGeofencesSafely(false);
+    } catch (e) {
+      set({ error: 'Failed to cancel alarm.', isLoading: false });
+      console.error('[AlarmStore] cancelAlarm:', e);
     }
   },
 

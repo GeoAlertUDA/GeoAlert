@@ -5,14 +5,22 @@ import CustomSwitch from '@/shared/components/CustomSwitch';
 import YellowButton from '@/shared/components/ActionButton';
 import type { PlaceDetails } from '@/features/map/types';
 
+export interface AlarmConfigValue {
+  radius: number;
+  soundEnabled: boolean;
+  vibrationEnabled: boolean;
+}
+
 interface AlarmConfigProps {
   locationData: PlaceDetails;
-  onConfirm: (config: { radius: number; sound: boolean; vibration: boolean }) => void;
+  onConfirm: (config: AlarmConfigValue) => void;
   onRadiusChange: (radius: number) => void;
   onSlidingStart: () => void;
   onSlidingComplete: () => void;
   isSliding: boolean;
 }
+
+const DEFAULT_ALARM_RADIUS = 500;
 
 export default function AlarmConfig({
   locationData,
@@ -22,7 +30,7 @@ export default function AlarmConfig({
   onSlidingComplete,
   isSliding
 }: AlarmConfigProps) {
-  const [radius, setRadius] = useState(locationData.radius);
+  const [radius, setRadius] = useState(locationData.radius ?? DEFAULT_ALARM_RADIUS);
   const [sound, setSound] = useState(true);
   const [vibration, setVibration] = useState(true);
 
@@ -34,14 +42,8 @@ export default function AlarmConfig({
   const handleActivate = () => {
     onConfirm({
       radius,
-      isActive: true,
-      isFavorite: false,
       soundEnabled: sound,
       vibrationEnabled: vibration,
-      isRinging: false,
-      address: locationData.address,
-      sound,
-      vibration
     });
   };
 
