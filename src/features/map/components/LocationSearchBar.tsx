@@ -69,7 +69,7 @@ export const LocationSearchBar = forwardRef<GooglePlacesAutocompleteRef, Locatio
             language: "es",
             components: "country:ar",
             location: "-32.8895,-68.8458",
-            radius: "30000",
+            radius: "200000",
             strictbounds: false,
           }}
           renderRightButton={() => (
