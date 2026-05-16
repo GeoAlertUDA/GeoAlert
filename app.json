@@ -12,10 +12,7 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.geoalertuda.geoalert",
       "infoPlist": {
-        "UIBackgroundModes": [
-          "location",
-          "audio"
-        ]
+        "UIBackgroundModes": ["location", "audio"]
       },
       "config": {
         "googleMapsApiKey": "${EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS}"
@@ -55,6 +52,7 @@
           }
         }
       ],
+      "expo-font",
       [
         "expo-location",
         {

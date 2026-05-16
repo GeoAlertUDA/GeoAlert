@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import DistanceSelector from './DistanceSelector';
-import CustomSwitch from '@/shared/components/CustomSwitch';
-import YellowButton from '@/shared/components/ActionButton';
-import type { PlaceDetails } from '@/features/map/types';
+import React, { useState } from "react";
+import { View } from "react-native";
+import DistanceSelector from "./DistanceSelector";
+import CustomSwitch from "@/shared/components/CustomSwitch";
+import YellowButton from "@/shared/components/ActionButton";
+import type { PlaceDetails } from "@/features/map/types";
+import { useAlarmStore } from "../store/useAlarmStore";
 
 export interface AlarmConfigValue {
   radius: number;
@@ -18,6 +19,8 @@ interface AlarmConfigProps {
   onSlidingStart: () => void;
   onSlidingComplete: () => void;
   isSliding: boolean;
+  isEditing: boolean;
+  alarmId: number | null;
 }
 
 const DEFAULT_ALARM_RADIUS = 500;
@@ -28,11 +31,30 @@ export default function AlarmConfig({
   onRadiusChange,
   onSlidingStart,
   onSlidingComplete,
-  isSliding
+  isSliding,
+  isEditing,
+  alarmId,
 }: AlarmConfigProps) {
-  const [radius, setRadius] = useState(locationData.radius ?? DEFAULT_ALARM_RADIUS);
-  const [sound, setSound] = useState(true);
-  const [vibration, setVibration] = useState(true);
+  const alarms = useAlarmStore((s) => s.alarms);
+  const currentAlarm = isEditing
+    ? alarms.find(
+        (a) =>
+          a.latitude === locationData.latitude &&
+          a.longitude === locationData.longitude,
+      )
+    : null;
+
+  const [radius, setRadius] = useState(
+    currentAlarm
+      ? currentAlarm.radius
+      : (locationData.radius ?? DEFAULT_ALARM_RADIUS),
+  );
+  const [sound, setSound] = useState(
+    currentAlarm ? currentAlarm.soundEnabled : true,
+  );
+  const [vibration, setVibration] = useState(
+    currentAlarm ? currentAlarm.vibrationEnabled : true,
+  );
 
   const handleRadiusChange = (newRadius: number) => {
     setRadius(newRadius);
@@ -48,18 +70,30 @@ export default function AlarmConfig({
   };
 
   return (
-    <View className="flex flex-col gap-4 mt-3 justify-center items-center">
+    <View className="mt-3 flex flex-col items-center justify-center gap-4">
       <DistanceSelector
         value={radius}
         onChange={handleRadiusChange}
         onSlidingStart={onSlidingStart}
         onSlidingComplete={onSlidingComplete}
       />
-      <View style={{ opacity: isSliding ? 0 : 1, width: '100%' }}>
-        <CustomSwitch title="Sonido" initialValue={true} onValueChange={setSound} />
-        <CustomSwitch title="Vibración" initialValue={true} onValueChange={setVibration} />
+      <View style={{ opacity: isSliding ? 0 : 1, width: "100%" }}>
+        <CustomSwitch
+          title="Sonido"
+          initialValue={sound}
+          onValueChange={setSound}
+        />
+        <CustomSwitch
+          title="Vibración"
+          initialValue={vibration}
+          onValueChange={setVibration}
+        />
         <View className="mt-6">
-          <YellowButton text="Activar alarma" icon={true} onPress={handleActivate} />
+          <YellowButton
+            text={isEditing ? "Guardar cambios" : "Activar alarma"}
+            icon={true}
+            onPress={handleActivate}
+          />
         </View>
       </View>
     </View>

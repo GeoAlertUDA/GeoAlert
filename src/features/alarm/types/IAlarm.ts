@@ -1,6 +1,6 @@
 export interface IAlarm {
   id: number;
-  name: string;
+  name: string | null;
   latitude: number;
   longitude: number;
   radius: number;

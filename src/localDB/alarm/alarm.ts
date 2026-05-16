@@ -1,5 +1,5 @@
-import { SQLiteDatabase } from 'expo-sqlite';
-import { IAlarm } from '../../features/alarm/types/IAlarm';
+import { SQLiteDatabase } from "expo-sqlite";
+import { IAlarm } from "../../features/alarm/types/IAlarm";
 
 export const createAlarmTable = async (db: SQLiteDatabase): Promise<void> => {
   await db.execAsync(`
@@ -17,9 +17,9 @@ export const createAlarmTable = async (db: SQLiteDatabase): Promise<void> => {
       address         TEXT
     );
   `);
-  await ensureAlarmColumn(db, 'soundEnabled', 'INTEGER NOT NULL DEFAULT 1');
-  await ensureAlarmColumn(db, 'vibrationEnabled', 'INTEGER NOT NULL DEFAULT 1');
-  await ensureAlarmColumn(db, 'isRinging', 'INTEGER NOT NULL DEFAULT 0');
+  await ensureAlarmColumn(db, "soundEnabled", "INTEGER NOT NULL DEFAULT 1");
+  await ensureAlarmColumn(db, "vibrationEnabled", "INTEGER NOT NULL DEFAULT 1");
+  await ensureAlarmColumn(db, "isRinging", "INTEGER NOT NULL DEFAULT 0");
 };
 
 const ensureAlarmColumn = async (
@@ -27,11 +27,15 @@ const ensureAlarmColumn = async (
   columnName: string,
   definition: string,
 ): Promise<void> => {
-  const columns = await db.getAllAsync<{ name: string }>(`PRAGMA table_info(alarm);`);
+  const columns = await db.getAllAsync<{ name: string }>(
+    `PRAGMA table_info(alarm);`,
+  );
   const hasColumn = columns.some((column) => column.name === columnName);
 
   if (!hasColumn) {
-    await db.execAsync(`ALTER TABLE alarm ADD COLUMN ${columnName} ${definition};`);
+    await db.execAsync(
+      `ALTER TABLE alarm ADD COLUMN ${columnName} ${definition};`,
+    );
   }
 };
 
@@ -40,19 +44,18 @@ export const dropAlarmTable = async (db: SQLiteDatabase): Promise<void> => {
 };
 
 const rowToAlarm = (row: Record<string, unknown>): IAlarm => ({
-  id:row.id as number,
-  name:row.name as string,
-  latitude:row.latitude as number,
-  longitude:row.longitude as number,
-  radius:row.radius as number,
-  isActive:(row.isActive as number) === 1,
-  isFavorite:(row.isFavorite as number) === 1,
-  soundEnabled:(row.soundEnabled as number | undefined ?? 1) === 1,
-  vibrationEnabled:(row.vibrationEnabled as number | undefined ?? 1) === 1,
-  isRinging:(row.isRinging as number | undefined ?? 0) === 1,
-  address:row.address as string | null,
+  id: row.id as number,
+  name: row.name as string,
+  latitude: row.latitude as number,
+  longitude: row.longitude as number,
+  radius: row.radius as number,
+  isActive: (row.isActive as number) === 1,
+  isFavorite: (row.isFavorite as number) === 1,
+  soundEnabled: ((row.soundEnabled as number | undefined) ?? 1) === 1,
+  vibrationEnabled: ((row.vibrationEnabled as number | undefined) ?? 1) === 1,
+  isRinging: ((row.isRinging as number | undefined) ?? 0) === 1,
+  address: row.address as string | null,
 });
-
 
 export const getAllAlarms = async (db: SQLiteDatabase): Promise<IAlarm[]> => {
   const rows = await db.getAllAsync<Record<string, unknown>>(
@@ -74,7 +77,7 @@ export const getAlarmById = async (
 
 export const insertAlarm = async (
   db: SQLiteDatabase,
-  alarm: Omit<IAlarm, 'id'>,
+  alarm: Omit<IAlarm, "id">,
 ): Promise<number> => {
   const result = await db.runAsync(
     `INSERT INTO alarm (
@@ -86,7 +89,7 @@ export const insertAlarm = async (
     alarm.latitude,
     alarm.longitude,
     alarm.radius,
-    alarm.isActive  ? 1 : 0,
+    alarm.isActive ? 1 : 0,
     alarm.isFavorite ? 1 : 0,
     alarm.soundEnabled ? 1 : 0,
     alarm.vibrationEnabled ? 1 : 0,
@@ -110,7 +113,7 @@ export const updateAlarm = async (
     alarm.latitude,
     alarm.longitude,
     alarm.radius,
-    alarm.isActive  ? 1 : 0,
+    alarm.isActive ? 1 : 0,
     alarm.isFavorite ? 1 : 0,
     alarm.soundEnabled ? 1 : 0,
     alarm.vibrationEnabled ? 1 : 0,

@@ -1,12 +1,13 @@
-import { useRef, useState, useEffect } from 'react';
-import { Keyboard } from 'react-native';
-import MapView from 'react-native-maps';
-import { GooglePlacesAutocompleteRef } from 'react-native-google-places-autocomplete';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { LocationCoordinates, MapRegion } from '../types';
-import { useUserLocation } from './useUserLocation';
-import { useAlarmStore } from '@/features/alarm/store/useAlarmStore';
-import { stopAlarmAlert } from '@/features/options/service/soundService';
+import { useRef, useState, useEffect } from "react";
+import { Keyboard } from "react-native";
+import MapView from "react-native-maps";
+import { GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { LocationCoordinates, MapRegion } from "../types";
+import { useUserLocation } from "./useUserLocation";
+import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
+import { stopAlarmAlert } from "@/features/options/service/soundService";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 export const FALLBACK_REGION: MapRegion = {
   latitude: -32.8895,
@@ -15,35 +16,56 @@ export const FALLBACK_REGION: MapRegion = {
   longitudeDelta: 0.0421,
 };
 
-const calculateDistanceInMeters = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-  const R = 6371e3; 
+const calculateDistanceInMeters = (
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+) => {
+  const R = 6371e3;
   const φ1 = lat1 * (Math.PI / 180);
   const φ2 = lat2 * (Math.PI / 180);
   const Δφ = (lat2 - lat1) * (Math.PI / 180);
   const Δλ = (lon2 - lon1) * (Math.PI / 180);
 
-  const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-            Math.cos(φ1) * Math.cos(φ2) *
-            Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+  const a =
+    Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
   return Math.round(R * c);
 };
 
 export const useMapController = () => {
+  const params = useLocalSearchParams<{
+    editAlarmId?: string;
+    editName?: string;
+    editLatitude?: string;
+    editLongitude?: string;
+    editRadius?: string;
+    editAddress?: string;
+  }>();
+  const router = useRouter();
+
+  const [editingAlarmId, setEditingAlarmId] = useState<number | null>(null);
+
   const mapRef = useRef<MapView>(null);
   const searchRef = useRef<GooglePlacesAutocompleteRef>(null);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const isActivatingRef = useRef(false);
 
   const [mapRegion, setMapRegion] = useState<MapRegion>(FALLBACK_REGION);
-  const [selectedLocation, setSelectedLocation] = useState<LocationCoordinates | null>(null);
+  const [selectedLocation, setSelectedLocation] =
+    useState<LocationCoordinates | null>(null);
   const [alarmRadius, setAlarmRadius] = useState(500);
   const [isTripActive, setIsTripActive] = useState(false);
   const [distanceToTarget, setDistanceToTarget] = useState(0);
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
   const [activeAlarmId, setActiveAlarmId] = useState<number | null>(null);
-  const { userLocation, heading, trackingMode } = useUserLocation(FALLBACK_REGION, selectedLocation);
+  const { userLocation, heading, trackingMode } = useUserLocation(
+    FALLBACK_REGION,
+    selectedLocation,
+  );
   const [isFollowingUser, setIsFollowingUser] = useState(true);
 
   const cancelAlarm = useAlarmStore((s) => s.cancelAlarm);
@@ -54,27 +76,60 @@ export const useMapController = () => {
         userLocation.latitude,
         userLocation.longitude,
         selectedLocation.latitude,
-        selectedLocation.longitude
+        selectedLocation.longitude,
       );
       setDistanceToTarget(distance);
     }
   }, [userLocation, selectedLocation, isTripActive]);
 
   useEffect(() => {
-  if (isTripActive && isFollowingUser && userLocation) {
-    mapRef.current?.animateCamera(
-      {
-        center: { 
-          latitude: userLocation.latitude, 
-          longitude: userLocation.longitude 
+    if (isTripActive && isFollowingUser && userLocation) {
+      mapRef.current?.animateCamera(
+        {
+          center: {
+            latitude: userLocation.latitude,
+            longitude: userLocation.longitude,
+          },
+          pitch: 45,
+          zoom: 16,
         },
-        pitch: 45,
-        zoom: 16
-      },
-      { duration: 1000 }
-    );
-  }
-}, [userLocation, isTripActive, isFollowingUser]);
+        { duration: 1000 },
+      );
+    }
+  }, [userLocation, isTripActive, isFollowingUser]);
+
+  useEffect(() => {
+    if (params.editAlarmId && params.editLatitude && params.editLongitude) {
+      const lat = parseFloat(params.editLatitude);
+      const lon = parseFloat(params.editLongitude);
+      const rad = parseInt(params.editRadius || "500", 10);
+
+      setEditingAlarmId(Number(params.editAlarmId));
+      setSelectedLocation({ latitude: lat, longitude: lon });
+      setAlarmRadius(rad);
+
+      mapRef.current?.animateToRegion(
+        {
+          latitude: lat,
+          longitude: lon,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        },
+        800,
+      );
+
+      setTimeout(() => bottomSheetModalRef.current?.present(), 150);
+
+      router.setParams({
+        editAlarmId: undefined,
+        editName: undefined,
+        editLatitude: undefined,
+        editLongitude: undefined,
+        editRadius: undefined,
+        editAddress: undefined,
+      });
+    }
+  }, [params.editAlarmId, params.editLatitude, params.editLongitude]);
 
   // --- Handlers ---
   const clearMapStates = () => {
@@ -84,27 +139,31 @@ export const useMapController = () => {
   };
 
   const handleMapDrag = () => {
-  if (isTripActive && isFollowingUser) {
-    setIsFollowingUser(false); 
-  }
-};
+    if (isTripActive && isFollowingUser) {
+      setIsFollowingUser(false);
+    }
+  };
 
-const handleResumeTracking = () => {
-  setIsFollowingUser(true); 
-};
+  const handleResumeTracking = () => {
+    setIsFollowingUser(true);
+  };
 
-  const handleLocationUpdate = (location: LocationCoordinates, updateSearchText = false) => {
+  const handleLocationUpdate = (
+    location: LocationCoordinates,
+    updateSearchText = false,
+  ) => {
     Keyboard.dismiss();
     setAlarmRadius(500);
 
-    const isSameLocation = selectedLocation?.latitude === location.latitude &&
-                           selectedLocation?.longitude === location.longitude;
+    const isSameLocation =
+      selectedLocation?.latitude === location.latitude &&
+      selectedLocation?.longitude === location.longitude;
 
     setSelectedLocation(location);
 
     if (updateSearchText) {
       searchRef.current?.setAddressText(
-        `${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)}`
+        `${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)}`,
       );
     }
 
@@ -113,7 +172,7 @@ const handleResumeTracking = () => {
     if (!isSameLocation) {
       mapRef.current?.animateToRegion(
         { ...location, latitudeDelta: 0.01, longitudeDelta: 0.01 },
-        1000
+        1000,
       );
     }
   };
@@ -124,6 +183,7 @@ const handleResumeTracking = () => {
   };
 
   const handleBottomSheetDismiss = () => {
+    setEditingAlarmId(null);
     if (isActivatingRef.current) {
       isActivatingRef.current = false;
     } else if (!isTripActive) {
@@ -141,37 +201,48 @@ const handleResumeTracking = () => {
     setShowCancelConfirmation(true);
   };
   const handleConfirmCancelAlarm = async () => {
-    setShowCancelConfirmation(false); 
+    setShowCancelConfirmation(false);
     if (activeAlarmId !== null) {
       await cancelAlarm(activeAlarmId);
       setActiveAlarmId(null);
     } else {
       await stopAlarmAlert();
     }
-    setIsTripActive(false);           
-    clearMapStates();                
+    setIsTripActive(false);
+    clearMapStates();
   };
 
   const handleDismissCancelConfirmation = () => {
     setShowCancelConfirmation(false);
   };
 
-
   return {
     refs: { mapRef, searchRef, bottomSheetModalRef },
-    state: { mapRegion, selectedLocation, alarmRadius, isTripActive, distanceToTarget,  showCancelConfirmation, userLocation, heading, isFollowingUser, trackingMode },
-    actions: { 
-      setMapRegion, 
-      setAlarmRadius, 
-      handleLocationUpdate, 
-      handleSearchBarClear, 
-      handleBottomSheetDismiss, 
+    state: {
+      mapRegion,
+      selectedLocation,
+      alarmRadius,
+      isTripActive,
+      distanceToTarget,
+      showCancelConfirmation,
+      userLocation,
+      heading,
+      isFollowingUser,
+      trackingMode,
+      editingAlarmId,
+    },
+    actions: {
+      setMapRegion,
+      setAlarmRadius,
+      handleLocationUpdate,
+      handleSearchBarClear,
+      handleBottomSheetDismiss,
       handleActivateAlarm,
       handleRequestCancelAlarm,
       handleConfirmCancelAlarm,
       handleDismissCancelConfirmation,
       handleMapDrag,
-      handleResumeTracking
-    }
+      handleResumeTracking,
+    },
   };
 };
