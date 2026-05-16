@@ -1,66 +1,171 @@
-import React, { useCallback, forwardRef, useState } from 'react';
-import { ActivityIndicator, Image, Text, View } from 'react-native';
-import { BottomSheetModal, BottomSheetBackdrop, BottomSheetView } from '@gorhom/bottom-sheet';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { PlaceDetails } from '@/features/map/types';
-import YellowButton from '@/shared/components/YellowButton';
-import { useLocationPermissionFlow } from '@/features/location';
-import { useAlarmStore } from '../store/useAlarmStore';
-import ConfigAccordion from './ConfigAccordion';
-import AlarmConfig from './AlarmConfig';
+import React, { useCallback, forwardRef, useState } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { PlaceDetails } from "@/features/map/types";
+import YellowButton from "@/shared/components/ActionButton";
+import { useAlarmStore } from "../store/useAlarmStore";
+import ConfigAccordion from "./ConfigAccordion";
+import AlarmConfig, { AlarmConfigValue } from "./AlarmConfig";
+import { X } from "lucide-react-native";
+import { useLocationPermissionFlow } from "@/features/location/permissions/useLocationPermissionFlow";
+
+const DEFAULT_ALARM_RADIUS = 500;
 
 interface AlarmBottomSheetProps {
   locationData: PlaceDetails | null;
   isLoading: boolean | null;
+  onRadiusChange: (radius: number) => void;
+  onDismiss: () => void;
+  onActivateAlarm: (alarmId: number) => void;
+  isEditing: boolean;
+  alarmId: number | null;
 }
 
 const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
-  ({ locationData, isLoading }, ref) => {
+  (
+    {
+      locationData,
+      isLoading,
+      onRadiusChange,
+      onDismiss,
+      onActivateAlarm,
+      isEditing,
+      alarmId,
+    },
+    ref,
+  ) => {
     const [isConfigExpanded, setIsConfigExpanded] = useState(false);
     const insets = useSafeAreaInsets();
+    const alarms = useAlarmStore((s) => s.alarms);
     const addAlarm = useAlarmStore((s) => s.addAlarm);
+    const editAlarm = useAlarmStore((s) => s.editAlarm);
+    const [isSliding, setIsSliding] = useState(false);
     const { explainAndRequestBackgroundAccess } = useLocationPermissionFlow();
 
     const dismiss = useCallback(() => {
-      if (ref && typeof ref !== 'function') ref.current?.dismiss();
+      if (ref && typeof ref !== "function") ref.current?.dismiss();
     }, [ref]);
 
     const handleQuickActivate = useCallback(async () => {
       if (!locationData) return;
-      await explainAndRequestBackgroundAccess();
-      await addAlarm({
-        name: locationData.name,
-        latitude: locationData.latitude,
-        longitude: locationData.longitude,
-        radius: 500,
-        isActive: true,
-        isFavorite: false,
-        address: locationData.address,
-      });
-      dismiss();
-    }, [locationData, addAlarm, dismiss, explainAndRequestBackgroundAccess]);
 
-    const renderBackdrop = useCallback(
-      (props: any) => (
-        <BottomSheetBackdrop
-          {...props}
-          disappearsOnIndex={-1}
-          appearsOnIndex={0}
-          pressBehavior="close"
-        />
-      ),
-      []
+      if (!isEditing) {
+        await explainAndRequestBackgroundAccess();
+      }
+
+      if (isEditing && alarmId !== null) {
+        const currentAlarm = alarms.find((a) => a.id === alarmId);
+
+        await editAlarm({
+          id: alarmId,
+          name: locationData.name,
+          latitude: locationData.latitude,
+          longitude: locationData.longitude,
+          radius: locationData.radius ?? DEFAULT_ALARM_RADIUS,
+          isActive: currentAlarm ? currentAlarm.isActive : false,
+          isFavorite: currentAlarm ? currentAlarm.isFavorite : false,
+          soundEnabled: true,
+          vibrationEnabled: true,
+          isRinging: false,
+          address: locationData.address,
+        });
+      } else {
+        const alarm = await addAlarm({
+          name: locationData.name,
+          latitude: locationData.latitude,
+          longitude: locationData.longitude,
+          radius: locationData.radius ?? DEFAULT_ALARM_RADIUS,
+          isActive: true,
+          isFavorite: false,
+          soundEnabled: true,
+          vibrationEnabled: true,
+          isRinging: false,
+          address: locationData.address,
+        });
+        onActivateAlarm(alarm.id);
+      }
+      dismiss();
+    }, [
+      locationData,
+      isEditing,
+      alarmId,
+      alarms,
+      addAlarm,
+      editAlarm,
+      dismiss,
+      onActivateAlarm,
+      explainAndRequestBackgroundAccess,
+    ]);
+
+    const handleCustomActivate = useCallback(
+      async (customConfig: AlarmConfigValue) => {
+        if (!locationData) return;
+
+        if (isEditing && alarmId !== null) {
+          const currentAlarm = alarms.find((a) => a.id === alarmId);
+          await editAlarm({
+            id: alarmId,
+            name: locationData.name,
+            latitude: locationData.latitude,
+            longitude: locationData.longitude,
+            radius: customConfig.radius,
+            isActive: currentAlarm ? currentAlarm.isActive : false,
+            isFavorite: currentAlarm ? currentAlarm.isFavorite : false,
+            soundEnabled: customConfig.soundEnabled,
+            vibrationEnabled: customConfig.vibrationEnabled,
+            isRinging: false,
+            address: locationData.address,
+          });
+        } else {
+          const alarm = await addAlarm({
+            name: locationData.name,
+            latitude: locationData.latitude,
+            longitude: locationData.longitude,
+            radius: customConfig.radius,
+            isActive: true,
+            isFavorite: false,
+            soundEnabled: customConfig.soundEnabled,
+            vibrationEnabled: customConfig.vibrationEnabled,
+            isRinging: false,
+            address: locationData.address,
+          });
+          onActivateAlarm(alarm.id);
+        }
+        dismiss();
+      },
+      [
+        locationData,
+        isEditing,
+        alarmId,
+        alarms,
+        addAlarm,
+        editAlarm,
+        dismiss,
+        onActivateAlarm,
+      ],
     );
 
     return (
       <BottomSheetModal
         ref={ref}
         index={0}
+        enablePanDownToClose={false}
         enableDynamicSizing={true}
-        backdropComponent={renderBackdrop}
-        enablePanDownToClose={true}
         failOffsetX={[-5, 5]}
         activeOffsetY={[-1, 1]}
+        backgroundStyle={{
+          backgroundColor: isSliding ? "transparent" : "white",
+          elevation: isSliding ? 0 : 5,
+        }}
+        handleIndicatorStyle={{ opacity: isSliding ? 0 : 1 }}
+        onDismiss={onDismiss}
       >
         <BottomSheetView
           style={{
@@ -68,19 +173,35 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
             paddingHorizontal: 24,
             paddingTop: 12,
             paddingBottom: insets.bottom + 16,
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: -2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 8,
           }}
         >
           {isLoading ? (
             <View className="items-center justify-center py-10">
               <ActivityIndicator size="large" color="#000" />
-              <Text className="mt-3 text-gray-500">Obteniendo datos del lugar...</Text>
+              <Text className="mt-3 text-gray-500">
+                Obteniendo datos del lugar...
+              </Text>
             </View>
           ) : (
-            <>
-              <View className="flex-row justify-between items-center mb-4">
-                <Text className="text-[23px] font-bold text-black flex-1" numberOfLines={1}>
-                  {locationData?.name || 'Ubicación seleccionada'}
+            <View style={{ opacity: isSliding ? 0 : 1 }}>
+              <View className="mb-4 flex-row items-center justify-between">
+                <Text
+                  className="flex-1 text-[23px] font-bold text-black"
+                  numberOfLines={1}
+                >
+                  {locationData?.name || "Ubicación seleccionada"}
                 </Text>
+                <TouchableOpacity
+                  onPress={dismiss}
+                  className="ml-2 rounded-full bg-gray-100 p-2"
+                  activeOpacity={0.7}
+                >
+                  <X size={20} color="#111" />
+                </TouchableOpacity>
               </View>
 
               {locationData && (
@@ -88,20 +209,30 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
                   {locationData.photoUrl && (
                     <Image
                       source={{ uri: locationData.photoUrl }}
-                      className="w-20 h-20 rounded-lg mr-4"
+                      className="mr-4 h-20 w-20 rounded-lg"
                     />
                   )}
                   <View className="flex-1">
-                    <Text className="text-[13px] text-gray-600 mb-2" numberOfLines={2}>
+                    <Text
+                      className="mb-2 text-[13px] text-gray-600"
+                      numberOfLines={2}
+                    >
                       {locationData.address}
                     </Text>
-                    <View className="flex-row items-center mt-0.5">
-                      <Text className="font-bold text-[#111] text-md">{locationData.distanceText}</Text>
-                      <Text className="text-gray-500 text-sm"> ↔ distancia</Text>
+                    <View className="mt-0.5 flex-row items-center">
+                      <Text className="text-md font-bold text-[#111]">
+                        {locationData.distanceText}
+                      </Text>
+                      <Text className="text-sm text-gray-500">
+                        {" "}
+                        ↔ distancia
+                      </Text>
                     </View>
-                    <View className="flex-row items-center mt-0.5">
-                      <Text className="font-bold text-[#111] text-md">{locationData.durationText}</Text>
-                      <Text className="text-gray-500 text-sm"> ⏱ tiempo</Text>
+                    <View className="mt-0.5 flex-row items-center">
+                      <Text className="text-md font-bold text-[#111]">
+                        {locationData.durationText}
+                      </Text>
+                      <Text className="text-sm text-gray-500"> ⏱ tiempo</Text>
                     </View>
                   </View>
                 </View>
@@ -109,24 +240,42 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
 
               {!isConfigExpanded && (
                 <View className="mt-6">
-                  <YellowButton text="Activar alarma" icon={true} onPress={handleQuickActivate} />
+                  <YellowButton
+                    text={isEditing ? "Guardar cambios" : "Activar alarma"}
+                    icon={true}
+                    onPress={() => {
+                      void handleQuickActivate();
+                    }}
+                  />
                 </View>
               )}
 
               <ConfigAccordion
                 isExpanded={isConfigExpanded}
                 onToggle={() => setIsConfigExpanded(!isConfigExpanded)}
+                isSliding={isSliding}
               >
                 {locationData && (
-                  <AlarmConfig locationData={locationData} onConfirm={dismiss} />
+                  <AlarmConfig
+                    locationData={locationData}
+                    onConfirm={handleCustomActivate}
+                    onRadiusChange={onRadiusChange}
+                    isSliding={isSliding}
+                    onSlidingStart={() => setIsSliding(true)}
+                    onSlidingComplete={() => setIsSliding(false)}
+                    isEditing={isEditing}
+                    alarmId={alarmId}
+                  />
                 )}
               </ConfigAccordion>
-            </>
+            </View>
           )}
         </BottomSheetView>
       </BottomSheetModal>
     );
-  }
+  },
 );
+
+AlarmBottomSheet.displayName = "AlarmBottomSheet";
 
 export default AlarmBottomSheet;

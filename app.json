@@ -12,9 +12,10 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.geoalertuda.geoalert",
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "GeoAlert usa tu ubicación para mostrarte en el mapa y calcular distancias.",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "GeoAlert necesita acceder a tu ubicación en segundo plano para evaluar alarmas activas.",
-        "NSLocationAlwaysUsageDescription": "GeoAlert necesita acceder a tu ubicación en segundo plano para evaluar alarmas activas."
+        "NSLocationWhenInUseUsageDescription": "GeoAlert usa tu ubicación para mostrarte en el mapa, calcular rutas y activar alarmas cercanas.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "GeoAlert necesita ubicación en segundo plano para que tus alarmas funcionen cuando el teléfono está bloqueado o la app no está abierta.",
+        "NSLocationAlwaysUsageDescription": "GeoAlert necesita ubicación en segundo plano para que tus alarmas funcionen cuando el teléfono está bloqueado o la app no está abierta.",
+        "UIBackgroundModes": ["location", "audio"]
       },
       "config": {
         "googleMapsApiKey": "${EXPO_PUBLIC_GOOGLE_MAPS_KEY_IOS}"
@@ -48,8 +49,9 @@
           "isIosBackgroundLocationEnabled": true,
           "isAndroidBackgroundLocationEnabled": true,
           "isAndroidForegroundServiceEnabled": true,
-          "locationWhenInUsePermission": "GeoAlert usa tu ubicación para mostrarte en el mapa y calcular distancias.",
-          "locationAlwaysAndWhenInUsePermission": "GeoAlert necesita acceder a tu ubicación en segundo plano para evaluar alarmas activas."
+          "locationWhenInUsePermission": "GeoAlert usa tu ubicación para calcular rutas y activar alarmas cercanas.",
+          "locationAlwaysAndWhenInUsePermission": "GeoAlert necesita ubicación en segundo plano para que tus alarmas suenen cuando el teléfono esté bloqueado.",
+          "locationAlwaysPermission": "GeoAlert necesita ubicación en segundo plano para que tus alarmas suenen cuando el teléfono esté bloqueado."
         }
       ],
       [
@@ -64,6 +66,7 @@
           }
         }
       ],
+      "expo-font",
       "expo-sqlite"
     ],
     "experiments": {

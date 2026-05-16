@@ -1,21 +1,18 @@
-import { create } from 'zustand';
-import { IAlarm } from '../types/IAlarm';
-import { getDBConnection } from '@/localDB/db';
+import { create } from "zustand";
+import { IAlarm } from "../types/IAlarm";
+import { getDBConnection } from "@/localDB/db";
 import {
   getAllAlarms,
   insertAlarm,
+  setAlarmActive,
   updateAlarm,
   deleteAlarm,
+  setAlarmRinging,
   toggleAlarmActive,
   toggleAlarmFavorite,
-} from '@/localDB/alarm/alarm';
-import { syncBackgroundLocationTracking } from '@/features/location';
-
-const syncBackgroundTracking = () => {
-  syncBackgroundLocationTracking().catch((e) => {
-    console.error('[AlarmStore] syncBackgroundLocationTracking:', e);
-  });
-};
+} from "@/localDB/alarm/alarm";
+import { stopAlarmAlert } from "@/features/options/service/soundService";
+import { syncAlarmGeofences } from "../service/alarmGeofencingService";
 
 interface AlarmState {
   alarms: IAlarm[];
@@ -23,15 +20,25 @@ interface AlarmState {
   error: string | null;
 
   loadAlarms: () => Promise<void>;
-  addAlarm: (alarm: Omit<IAlarm, 'id'>) => Promise<void>;
+  addAlarm: (alarm: Omit<IAlarm, "id">) => Promise<IAlarm>;
   editAlarm: (alarm: IAlarm) => Promise<void>;
+  cancelAlarm: (id: number) => Promise<void>;
   removeAlarm: (id: number) => Promise<void>;
   toggleActive: (id: number, currentValue: boolean) => Promise<void>;
   toggleFavorite: (id: number, currentValue: boolean) => Promise<void>;
+  stopRinging: (id: number) => Promise<void>;
   clearError: () => void;
 }
 
-export const useAlarmStore = create<AlarmState>((set) => ({
+async function syncGeofencesSafely(requestPermissions = false) {
+  try {
+    await syncAlarmGeofences({ requestPermissions });
+  } catch (e) {
+    console.error("[AlarmStore] syncAlarmGeofences:", e);
+  }
+}
+
+export const useAlarmStore = create<AlarmState>((set, get) => ({
   alarms: [],
   isLoading: false,
   error: null,
@@ -42,9 +49,10 @@ export const useAlarmStore = create<AlarmState>((set) => ({
       const db = await getDBConnection();
       const alarms = await getAllAlarms(db);
       set({ alarms, isLoading: false });
+      await syncGeofencesSafely(false);
     } catch (e) {
-      set({ error: 'Failed to load alarms.', isLoading: false });
-      console.error('[AlarmStore] loadAlarms:', e);
+      set({ error: "Failed to load alarms.", isLoading: false });
+      console.error("[AlarmStore] loadAlarms:", e);
     }
   },
 
@@ -54,11 +62,16 @@ export const useAlarmStore = create<AlarmState>((set) => ({
       const db = await getDBConnection();
       const id = await insertAlarm(db, alarm);
       const newAlarm: IAlarm = { ...alarm, id };
-      set((state) => ({ alarms: [...state.alarms, newAlarm], isLoading: false }));
-      syncBackgroundTracking();
+      set((state) => ({
+        alarms: [...state.alarms, newAlarm],
+        isLoading: false,
+      }));
+      await syncGeofencesSafely(alarm.isActive);
+      return newAlarm;
     } catch (e) {
-      set({ error: 'Failed to add alarm.', isLoading: false });
-      console.error('[AlarmStore] addAlarm:', e);
+      set({ error: "Failed to add alarm.", isLoading: false });
+      console.error("[AlarmStore] addAlarm:", e);
+      throw e;
     }
   },
 
@@ -71,26 +84,56 @@ export const useAlarmStore = create<AlarmState>((set) => ({
         alarms: state.alarms.map((a) => (a.id === alarm.id ? alarm : a)),
         isLoading: false,
       }));
-      syncBackgroundTracking();
+      await syncGeofencesSafely(alarm.isActive);
     } catch (e) {
-      set({ error: 'Failed to update alarm.', isLoading: false });
-      console.error('[AlarmStore] editAlarm:', e);
+      set({ error: "Failed to update alarm.", isLoading: false });
+      console.error("[AlarmStore] editAlarm:", e);
+    }
+  },
+
+  cancelAlarm: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      await stopAlarmAlert();
+
+      const db = await getDBConnection();
+      await setAlarmRinging(db, id, false);
+      await setAlarmActive(db, id, false);
+
+      set((state) => ({
+        alarms: state.alarms.map((alarm) =>
+          alarm.id === id
+            ? { ...alarm, isActive: false, isRinging: false }
+            : alarm,
+        ),
+        isLoading: false,
+      }));
+
+      await syncGeofencesSafely(false);
+    } catch (e) {
+      set({ error: "Failed to cancel alarm.", isLoading: false });
+      console.error("[AlarmStore] cancelAlarm:", e);
     }
   },
 
   removeAlarm: async (id) => {
     set({ isLoading: true, error: null });
     try {
+      const alarm = get().alarms.find((item) => item.id === id);
+      if (alarm?.isRinging) {
+        await stopAlarmAlert();
+      }
+
       const db = await getDBConnection();
       await deleteAlarm(db, id);
       set((state) => ({
         alarms: state.alarms.filter((a) => a.id !== id),
         isLoading: false,
       }));
-      syncBackgroundTracking();
+      await syncGeofencesSafely(false);
     } catch (e) {
-      set({ error: 'Failed to delete alarm.', isLoading: false });
-      console.error('[AlarmStore] removeAlarm:', e);
+      set({ error: "Failed to delete alarm.", isLoading: false });
+      console.error("[AlarmStore] removeAlarm:", e);
     }
   },
 
@@ -103,10 +146,10 @@ export const useAlarmStore = create<AlarmState>((set) => ({
           a.id === id ? { ...a, isActive: !currentValue } : a,
         ),
       }));
-      syncBackgroundTracking();
+      await syncGeofencesSafely(!currentValue);
     } catch (e) {
-      set({ error: 'Failed to toggle alarm.' });
-      console.error('[AlarmStore] toggleActive:', e);
+      set({ error: "Failed to toggle alarm." });
+      console.error("[AlarmStore] toggleActive:", e);
     }
   },
 
@@ -120,8 +163,26 @@ export const useAlarmStore = create<AlarmState>((set) => ({
         ),
       }));
     } catch (e) {
-      set({ error: 'Failed to toggle favorite.' });
-      console.error('[AlarmStore] toggleFavorite:', e);
+      set({ error: "Failed to toggle favorite." });
+      console.error("[AlarmStore] toggleFavorite:", e);
+    }
+  },
+
+  stopRinging: async (id) => {
+    try {
+      await stopAlarmAlert();
+
+      const db = await getDBConnection();
+      await setAlarmRinging(db, id, false);
+
+      set((state) => ({
+        alarms: state.alarms.map((alarm) =>
+          alarm.id === id ? { ...alarm, isRinging: false } : alarm,
+        ),
+      }));
+    } catch (e) {
+      set({ error: "Failed to stop alarm." });
+      console.error("[AlarmStore] stopRinging:", e);
     }
   },
 
