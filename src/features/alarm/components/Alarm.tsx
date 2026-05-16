@@ -56,17 +56,19 @@ export const Alarm = ({
   const handleEdit = () => {
     setMenuVisible(false);
 
-    router.push({
-      pathname: "/",
-      params: {
-        editAlarmId: String(id),
-        editName: name || "",
-        editLatitude: String(latitude),
-        editLongitude: String(longitude),
-        editRadius: String(radius),
-        editAddress: address || "",
-      },
-    });
+    setTimeout(() => {
+      router.push({
+        pathname: "/",
+        params: {
+          editAlarmId: String(id),
+          editName: name || "",
+          editLatitude: String(latitude),
+          editLongitude: String(longitude),
+          editRadius: String(radius),
+          editAddress: address || "",
+        },
+      });
+    }, 100);
   };
 
   return (
