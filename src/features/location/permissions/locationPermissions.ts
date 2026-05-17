@@ -1,4 +1,5 @@
 import { Alert, Linking, Platform } from 'react-native';
+import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 export interface BackgroundLocationPermissionResult {
   foregroundGranted: boolean;
@@ -6,6 +7,10 @@ export interface BackgroundLocationPermissionResult {
   canAskBackgroundAgain: boolean;
   /** iOS: el binario no incluye NSLocation* en Info.plist (p. ej. Expo Go o build desactualizado). */
   nativeLocationConfigMissing?: boolean;
+}
+
+export function shouldSkipStrictIosLocationFlow(): boolean {
+  return Platform.OS === 'ios' && Constants.appOwnership === 'expo';
 }
 
 function isIosLocationPlistConfigError(error: unknown): boolean {

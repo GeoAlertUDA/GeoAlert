@@ -15,6 +15,12 @@ import ConfigAccordion from "./ConfigAccordion";
 import AlarmConfig, { AlarmConfigValue } from "./AlarmConfig";
 import { X } from "lucide-react-native";
 import { useLocationPermissionFlow } from "@/features/location/permissions/useLocationPermissionFlow";
+import { shouldSkipStrictIosLocationFlow } from "@/features/location/permissions/locationPermissions";
+import {
+  isAtActiveAlarmLimit,
+  isMaxActiveAlarmsLimitError,
+} from "../constants/maxActiveAlarms";
+import { MaxActiveAlarmsLimitModal } from "./MaxActiveAlarmsLimitModal";
 
 const DEFAULT_ALARM_RADIUS = 500;
 
@@ -42,6 +48,8 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
     ref,
   ) => {
     const [isConfigExpanded, setIsConfigExpanded] = useState(false);
+    const [maxActiveLimitModalVisible, setMaxActiveLimitModalVisible] =
+      useState(false);
     const insets = useSafeAreaInsets();
     const alarms = useAlarmStore((s) => s.alarms);
     const addAlarm = useAlarmStore((s) => s.addAlarm);
@@ -57,7 +65,13 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
       if (!locationData) return;
 
       if (!isEditing) {
-        await explainAndRequestBackgroundAccess();
+        if (isAtActiveAlarmLimit(alarms)) {
+          setMaxActiveLimitModalVisible(true);
+          return;
+        }
+        if (!shouldSkipStrictIosLocationFlow()) {
+          await explainAndRequestBackgroundAccess();
+        }
       }
 
       if (isEditing && alarmId !== null) {
@@ -77,19 +91,27 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
           address: locationData.address,
         });
       } else {
-        const alarm = await addAlarm({
-          name: locationData.name,
-          latitude: locationData.latitude,
-          longitude: locationData.longitude,
-          radius: locationData.radius ?? DEFAULT_ALARM_RADIUS,
-          isActive: true,
-          isFavorite: false,
-          soundEnabled: true,
-          vibrationEnabled: true,
-          isRinging: false,
-          address: locationData.address,
-        });
-        onActivateAlarm(alarm.id);
+        try {
+          const alarm = await addAlarm({
+            name: locationData.name,
+            latitude: locationData.latitude,
+            longitude: locationData.longitude,
+            radius: locationData.radius ?? DEFAULT_ALARM_RADIUS,
+            isActive: true,
+            isFavorite: false,
+            soundEnabled: true,
+            vibrationEnabled: true,
+            isRinging: false,
+            address: locationData.address,
+          });
+          onActivateAlarm(alarm.id);
+        } catch (e) {
+          if (isMaxActiveAlarmsLimitError(e)) {
+            setMaxActiveLimitModalVisible(true);
+            return;
+          }
+          throw e;
+        }
       }
       dismiss();
     }, [
@@ -102,17 +124,24 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
       dismiss,
       onActivateAlarm,
       explainAndRequestBackgroundAccess,
+      shouldSkipStrictIosLocationFlow,
     ]);
 
     const handleCustomActivate = useCallback(
       async (customConfig: AlarmConfigValue) => {
         if (!locationData) return;
 
+        const displayName =
+          customConfig.name.trim() ||
+          locationData.name?.trim() ||
+          locationData.address?.trim() ||
+          "Alarma";
+
         if (isEditing && alarmId !== null) {
           const currentAlarm = alarms.find((a) => a.id === alarmId);
           await editAlarm({
             id: alarmId,
-            name: locationData.name,
+            name: displayName,
             latitude: locationData.latitude,
             longitude: locationData.longitude,
             radius: customConfig.radius,
@@ -124,19 +153,31 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
             address: locationData.address,
           });
         } else {
-          const alarm = await addAlarm({
-            name: locationData.name,
-            latitude: locationData.latitude,
-            longitude: locationData.longitude,
-            radius: customConfig.radius,
-            isActive: true,
-            isFavorite: false,
-            soundEnabled: customConfig.soundEnabled,
-            vibrationEnabled: customConfig.vibrationEnabled,
-            isRinging: false,
-            address: locationData.address,
-          });
-          onActivateAlarm(alarm.id);
+          if (isAtActiveAlarmLimit(alarms)) {
+            setMaxActiveLimitModalVisible(true);
+            return;
+          }
+          try {
+            const alarm = await addAlarm({
+              name: displayName,
+              latitude: locationData.latitude,
+              longitude: locationData.longitude,
+              radius: customConfig.radius,
+              isActive: true,
+              isFavorite: false,
+              soundEnabled: customConfig.soundEnabled,
+              vibrationEnabled: customConfig.vibrationEnabled,
+              isRinging: false,
+              address: locationData.address,
+            });
+            onActivateAlarm(alarm.id);
+          } catch (e) {
+            if (isMaxActiveAlarmsLimitError(e)) {
+              setMaxActiveLimitModalVisible(true);
+              return;
+            }
+            throw e;
+          }
         }
         dismiss();
       },
@@ -153,7 +194,8 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
     );
 
     return (
-      <BottomSheetModal
+      <>
+        <BottomSheetModal
         ref={ref}
         index={0}
         enablePanDownToClose={false}
@@ -271,7 +313,12 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
             </View>
           )}
         </BottomSheetView>
-      </BottomSheetModal>
+        </BottomSheetModal>
+        <MaxActiveAlarmsLimitModal
+          visible={maxActiveLimitModalVisible}
+          onDismiss={() => setMaxActiveLimitModalVisible(false)}
+        />
+      </>
     );
   },
 );

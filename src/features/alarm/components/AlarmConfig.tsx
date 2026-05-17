@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, TextInput, Text, StyleSheet } from "react-native";
 import DistanceSelector from "./DistanceSelector";
 import CustomSwitch from "@/shared/components/CustomSwitch";
 import YellowButton from "@/shared/components/ActionButton";
 import type { PlaceDetails } from "@/features/map/types";
 import { useAlarmStore } from "../store/useAlarmStore";
 import { useLocationPermissionFlow } from "@/features/location/permissions/useLocationPermissionFlow";
+import { shouldSkipStrictIosLocationFlow } from "@/features/location/permissions/locationPermissions";
 
 export interface AlarmConfigValue {
+  name: string;
   radius: number;
   soundEnabled: boolean;
   vibrationEnabled: boolean;
@@ -39,13 +41,10 @@ export default function AlarmConfig({
   const alarms = useAlarmStore((s) => s.alarms);
   const { explainAndRequestBackgroundAccess } = useLocationPermissionFlow();
 
-  const currentAlarm = isEditing
-    ? alarms.find(
-        (a) =>
-          a.latitude === locationData.latitude &&
-          a.longitude === locationData.longitude,
-      )
-    : null;
+  const currentAlarm =
+    isEditing && _alarmId != null
+      ? alarms.find((a) => a.id === _alarmId)
+      : null;
 
   const [radius, setRadius] = useState(
     currentAlarm
@@ -58,6 +57,44 @@ export default function AlarmConfig({
   const [vibration, setVibration] = useState(
     currentAlarm ? currentAlarm.vibrationEnabled : true,
   );
+  const [name, setName] = useState(
+    () =>
+      currentAlarm?.name?.trim() ||
+      locationData.name?.trim() ||
+      "",
+  );
+
+  useEffect(() => {
+    const next =
+      currentAlarm?.name?.trim() ||
+      locationData.name?.trim() ||
+      "";
+    setName(next);
+  }, [
+    currentAlarm?.id,
+    currentAlarm?.name,
+    locationData.name,
+    locationData.latitude,
+    locationData.longitude,
+  ]);
+
+  useEffect(() => {
+    setRadius(
+      currentAlarm
+        ? currentAlarm.radius
+        : (locationData.radius ?? DEFAULT_ALARM_RADIUS),
+    );
+    setSound(currentAlarm ? currentAlarm.soundEnabled : true);
+    setVibration(currentAlarm ? currentAlarm.vibrationEnabled : true);
+  }, [
+    currentAlarm?.id,
+    currentAlarm?.radius,
+    currentAlarm?.soundEnabled,
+    currentAlarm?.vibrationEnabled,
+    locationData.radius,
+    locationData.latitude,
+    locationData.longitude,
+  ]);
 
   const handleRadiusChange = (newRadius: number) => {
     setRadius(newRadius);
@@ -66,9 +103,19 @@ export default function AlarmConfig({
 
   const handleActivate = async () => {
     if (!isEditing) {
-      await explainAndRequestBackgroundAccess();
+      if (!shouldSkipStrictIosLocationFlow()) {
+        await explainAndRequestBackgroundAccess();
+      }
     }
+    const trimmed = name.trim();
+    const resolvedName =
+      trimmed ||
+      locationData.name?.trim() ||
+      locationData.address?.trim() ||
+      "Alarma";
+
     onConfirm({
+      name: resolvedName,
       radius,
       soundEnabled: sound,
       vibrationEnabled: vibration,
@@ -77,6 +124,19 @@ export default function AlarmConfig({
 
   return (
     <View className="mt-3 flex flex-col items-center justify-center gap-4">
+      <View style={{ width: "100%", opacity: isSliding ? 0 : 1 }}>
+        <Text style={styles.inputLabel}>Nombre de la alarma</Text>
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          placeholder={locationData.name || "Ej.: Casa, Trabajo…"}
+          placeholderTextColor="#94a3b8"
+          style={styles.nameInput}
+          autoCorrect
+          autoCapitalize="sentences"
+          editable={!isSliding}
+        />
+      </View>
       <DistanceSelector
         value={radius}
         onChange={handleRadiusChange}
@@ -107,3 +167,22 @@ export default function AlarmConfig({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  inputLabel: {
+    fontSize: 13,
+    fontWeight: "700",
+    color: "#0D393C",
+    marginBottom: 6,
+  },
+  nameInput: {
+    borderWidth: 1,
+    borderColor: "#D4DBD1",
+    borderRadius: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    fontSize: 16,
+    color: "#111",
+    backgroundColor: "#fafafa",
+  },
+});

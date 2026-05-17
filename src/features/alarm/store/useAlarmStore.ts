@@ -13,6 +13,11 @@ import {
 } from "@/localDB/alarm/alarm";
 import { stopAlarmAlert } from "@/features/options/service/soundService";
 import { syncAlarmGeofences } from "../service/alarmGeofencingService";
+import {
+  countActiveAlarms,
+  MAX_ACTIVE_ALARMS,
+  MAX_ACTIVE_ALARMS_LIMIT_ERROR,
+} from "../constants/maxActiveAlarms";
 
 interface AlarmState {
   alarms: IAlarm[];
@@ -59,6 +64,14 @@ export const useAlarmStore = create<AlarmState>((set, get) => ({
   addAlarm: async (alarm) => {
     set({ isLoading: true, error: null });
     try {
+      if (alarm.isActive) {
+        const activeCount = countActiveAlarms(get().alarms);
+        if (activeCount >= MAX_ACTIVE_ALARMS) {
+          set({ isLoading: false });
+          throw new Error(MAX_ACTIVE_ALARMS_LIMIT_ERROR);
+        }
+      }
+
       const db = await getDBConnection();
       const id = await insertAlarm(db, alarm);
       const newAlarm: IAlarm = { ...alarm, id };
@@ -139,6 +152,13 @@ export const useAlarmStore = create<AlarmState>((set, get) => ({
 
   toggleActive: async (id, currentValue) => {
     try {
+      if (!currentValue) {
+        const activeCount = countActiveAlarms(get().alarms);
+        if (activeCount >= MAX_ACTIVE_ALARMS) {
+          return;
+        }
+      }
+
       const db = await getDBConnection();
       await toggleAlarmActive(db, id, currentValue);
       set((state) => ({

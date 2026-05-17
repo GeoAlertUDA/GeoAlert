@@ -2,7 +2,7 @@ import { Audio } from 'expo-av';
 import { Vibration } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { GlobalSoundSettings, AlarmSoundOverride } from '../types/settingsTypes';
-import { AVAILABLE_SOUNDS } from '../constants/sound';
+import { AVAILABLE_SOUNDS, normalizeSoundId, DEFAULT_SOUND_ID } from '../constants/sound';
  
 // ─── Vibración ────────────────────────────────────────────────────────────────
  
@@ -72,7 +72,8 @@ async function playSound(
   progressive: boolean,
   options?: { preview?: boolean; alarm?: boolean; durationMs?: number },
 ) {
-  const soundDef = AVAILABLE_SOUNDS.find((s) => s.id === soundId);
+  const resolvedId = normalizeSoundId(soundId);
+  const soundDef = AVAILABLE_SOUNDS.find((s) => s.id === resolvedId);
   if (!soundDef) return;
 
   const isPreview = options?.preview ?? false;
@@ -173,7 +174,9 @@ export async function triggerAlarmAlert(
 ): Promise<void> {
   // Resolver config efectiva
   const useGlobal = !override || override.useGlobal;
-  const soundId = useGlobal ? global.selectedSoundId : override!.selectedSoundId;
+  const soundId = normalizeSoundId(
+    useGlobal ? global.selectedSoundId : override!.selectedSoundId,
+  );
   const vibration =
     options.vibrationEnabled ?? (useGlobal ? global.vibrationEnabled : override!.vibrationEnabled);
   const progressive = useGlobal ? global.progressiveVolume : override!.progressiveVolume;
@@ -196,8 +199,9 @@ export async function stopAlarmAlert(): Promise<void> {
 export async function previewAlert(
   settings: GlobalSoundSettings | AlarmSoundOverride,
 ): Promise<void> {
-  const soundId =
-    'selectedSoundId' in settings ? settings.selectedSoundId : DEFAULT_SOUND_ID;
+  const soundId = normalizeSoundId(
+    'selectedSoundId' in settings ? settings.selectedSoundId : DEFAULT_SOUND_ID,
+  );
   const vibration = settings.vibrationEnabled;
   const progressive =
     'progressiveVolume' in settings ? settings.progressiveVolume : false;
@@ -208,6 +212,3 @@ export async function previewAlert(
     durationMs: PREVIEW_DURATION_MS,
   });
 }
- 
-const DEFAULT_SOUND_ID = 'default';
- 
