@@ -28,11 +28,11 @@ export default function App() {
 
   useEffect(() => {
     createTables()
-      .then(() => syncAlarmGeofences())
+      .then(() => syncAlarmGeofences({ requestPermissions: false }))
       .then(() => setDbReady(true))
       .catch((e) => {
         console.error("[DB] createTables failed:", e);
-        setDbReady(true); // igual dejamos pasar para no bloquear la app
+        setDbReady(true);
       });
   }, []);
 

@@ -14,6 +14,7 @@ import { useAlarmStore } from "../store/useAlarmStore";
 import ConfigAccordion from "./ConfigAccordion";
 import AlarmConfig, { AlarmConfigValue } from "./AlarmConfig";
 import { X } from "lucide-react-native";
+import { useLocationPermissionFlow } from "@/features/location/permissions/useLocationPermissionFlow";
 
 const DEFAULT_ALARM_RADIUS = 500;
 
@@ -46,6 +47,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
     const addAlarm = useAlarmStore((s) => s.addAlarm);
     const editAlarm = useAlarmStore((s) => s.editAlarm);
     const [isSliding, setIsSliding] = useState(false);
+    const { explainAndRequestBackgroundAccess } = useLocationPermissionFlow();
 
     const dismiss = useCallback(() => {
       if (ref && typeof ref !== "function") ref.current?.dismiss();
@@ -54,10 +56,13 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
     const handleQuickActivate = useCallback(async () => {
       if (!locationData) return;
 
+      if (!isEditing) {
+        await explainAndRequestBackgroundAccess();
+      }
+
       if (isEditing && alarmId !== null) {
         const currentAlarm = alarms.find((a) => a.id === alarmId);
 
-        // edit alarm
         await editAlarm({
           id: alarmId,
           name: locationData.name,
@@ -72,7 +77,6 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
           address: locationData.address,
         });
       } else {
-        // create and start alarm
         const alarm = await addAlarm({
           name: locationData.name,
           latitude: locationData.latitude,
@@ -97,6 +101,7 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
       editAlarm,
       dismiss,
       onActivateAlarm,
+      explainAndRequestBackgroundAccess,
     ]);
 
     const handleCustomActivate = useCallback(
@@ -105,7 +110,6 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
 
         if (isEditing && alarmId !== null) {
           const currentAlarm = alarms.find((a) => a.id === alarmId);
-          //edit alarm
           await editAlarm({
             id: alarmId,
             name: locationData.name,
@@ -120,7 +124,6 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
             address: locationData.address,
           });
         } else {
-          //create and start alarm
           const alarm = await addAlarm({
             name: locationData.name,
             latitude: locationData.latitude,
@@ -240,7 +243,9 @@ const AlarmBottomSheet = forwardRef<BottomSheetModal, AlarmBottomSheetProps>(
                   <YellowButton
                     text={isEditing ? "Guardar cambios" : "Activar alarma"}
                     icon={true}
-                    onPress={handleQuickActivate}
+                    onPress={() => {
+                      void handleQuickActivate();
+                    }}
                   />
                 </View>
               )}

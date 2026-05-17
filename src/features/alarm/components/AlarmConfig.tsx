@@ -5,6 +5,7 @@ import CustomSwitch from "@/shared/components/CustomSwitch";
 import YellowButton from "@/shared/components/ActionButton";
 import type { PlaceDetails } from "@/features/map/types";
 import { useAlarmStore } from "../store/useAlarmStore";
+import { useLocationPermissionFlow } from "@/features/location/permissions/useLocationPermissionFlow";
 
 export interface AlarmConfigValue {
   radius: number;
@@ -33,9 +34,11 @@ export default function AlarmConfig({
   onSlidingComplete,
   isSliding,
   isEditing,
-  alarmId,
+  alarmId: _alarmId,
 }: AlarmConfigProps) {
   const alarms = useAlarmStore((s) => s.alarms);
+  const { explainAndRequestBackgroundAccess } = useLocationPermissionFlow();
+
   const currentAlarm = isEditing
     ? alarms.find(
         (a) =>
@@ -61,7 +64,10 @@ export default function AlarmConfig({
     onRadiusChange(newRadius);
   };
 
-  const handleActivate = () => {
+  const handleActivate = async () => {
+    if (!isEditing) {
+      await explainAndRequestBackgroundAccess();
+    }
     onConfirm({
       radius,
       soundEnabled: sound,
@@ -92,7 +98,9 @@ export default function AlarmConfig({
           <YellowButton
             text={isEditing ? "Guardar cambios" : "Activar alarma"}
             icon={true}
-            onPress={handleActivate}
+            onPress={() => {
+              void handleActivate();
+            }}
           />
         </View>
       </View>

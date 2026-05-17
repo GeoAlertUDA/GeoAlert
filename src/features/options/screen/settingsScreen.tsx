@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+  Alert,
+  Linking,
+  Platform,
+} from 'react-native';
 import {
   BellRing,
   Music2,
@@ -9,6 +18,8 @@ import {
   Wifi,
   ChevronDown,
   Play,
+  ShieldAlert,
+  Smartphone,
 } from 'lucide-react-native';
 import CustomSwitch from '../../../shared/components/CustomSwitch';
 import { useGlobalSettingsStore } from '../store/globalSettingsStore';
@@ -31,6 +42,35 @@ export default function SettingsScreen() {
     setPreviewing(true);
     await previewAlert(settings);
     setTimeout(() => setPreviewing(false), PREVIEW_DURATION_MS);
+  }
+
+  function promptOpenAppSettings(title: string, body: string) {
+    Alert.alert(title, body, [
+      { text: 'Cancelar', style: 'cancel' },
+      { text: 'Abrir ajustes', onPress: () => void Linking.openSettings() },
+    ]);
+  }
+
+  function handleBatteryOptimizationToggle(value: boolean) {
+    setSettings({ reduceBatteryOptimizationBlocks: value });
+    if (value) {
+      const hint =
+        Platform.OS === 'android'
+          ? 'En muchos Android la app aparece en "Batería" u "Optimización". Elegí sin restricciones o desactivá el ahorro agresivo para GeoAlert.'
+          : 'En Ajustes podés revisar permisos de ubicación y segundo plano para que las alarmas sigan activas.';
+      promptOpenAppSettings('Optimización de batería', hint);
+    }
+  }
+
+  function handleBackgroundStabilityToggle(value: boolean) {
+    setSettings({ reduceUnexpectedBackgroundStops: value });
+    if (value) {
+      const hint =
+        Platform.OS === 'android'
+          ? 'Algunos fabricantes cortan apps en segundo plano. Revisá inicio automático / actividad en segundo plano para GeoAlert en los ajustes del sistema.'
+          : 'iOS puede limitar apps en segundo plano. Mantené la ubicación permitida y evitá cerrar la app desde el multitarea si tenés una alarma activa.';
+      promptOpenAppSettings('Evitar cierres inesperados', hint);
+    }
   }
 
   return (
@@ -126,7 +166,7 @@ export default function SettingsScreen() {
           </View>
 
           {/* Ahorro Datos */}
-          <View className="flex-row items-center justify-between">
+          <View className="flex-row items-center justify-between mb-6">
             <View className="flex-row items-center">
               <Wifi size={22} color="#A8D5BA" />
               <Text className="text-white text-[17px] font-medium ml-4">Ahorro datos móviles</Text>
@@ -136,6 +176,49 @@ export default function SettingsScreen() {
                 title=""
                 initialValue={settings.dataSaving}
                 onValueChange={(v) => setSettings({ dataSaving: v })}
+              />
+            </View>
+          </View>
+
+          {/* GEO-32: mitigar bloqueo por batería / cierre del sistema (guía + ajustes) */}
+          <View className="flex-row items-start justify-between mb-6">
+            <View className="flex-row items-start flex-1 mr-4">
+              <ShieldAlert size={22} color="#A8D5BA" className="mt-1" />
+              <View className="ml-4 flex-1">
+                <Text className="text-white text-[17px] font-medium">
+                  Evitar bloqueo por batería
+                </Text>
+                <Text className="text-[#9BAEAE] text-[13px] mt-0.5 leading-4">
+                   GeoAlert se mantiene resguardada de la optimización agresiva del sistema cuando haya una alarma activa.
+                </Text>
+              </View>
+            </View>
+            <View className="w-32">
+              <CustomSwitch
+                title=""
+                initialValue={settings.reduceBatteryOptimizationBlocks}
+                onValueChange={handleBatteryOptimizationToggle}
+              />
+            </View>
+          </View>
+
+          <View className="flex-row items-start justify-between">
+            <View className="flex-row items-start flex-1 mr-4">
+              <Smartphone size={22} color="#A8D5BA" className="mt-1" />
+              <View className="ml-4 flex-1">
+                <Text className="text-white text-[17px] font-medium">
+                  Evitar cierre inesperado
+                </Text>
+                <Text className="text-[#9BAEAE] text-[13px] mt-0.5 leading-4">
+                  Reduce suspensiones del sistema en segundo plano.
+                </Text>
+              </View>
+            </View>
+            <View className="w-32">
+              <CustomSwitch
+                title=""
+                initialValue={settings.reduceUnexpectedBackgroundStops}
+                onValueChange={handleBackgroundStabilityToggle}
               />
             </View>
           </View>

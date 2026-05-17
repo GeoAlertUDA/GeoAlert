@@ -13,6 +13,8 @@ export type GlobalSoundSettings = {
   progressiveVolume: boolean;
   energySaving: boolean;
   dataSaving: boolean;
+  reduceBatteryOptimizationBlocks: boolean;
+  reduceUnexpectedBackgroundStops: boolean;
 };
  
 /**
