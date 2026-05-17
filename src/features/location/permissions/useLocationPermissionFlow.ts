@@ -14,7 +14,7 @@ export function useLocationPermissionFlow() {
     try {
       const result = await requestBackgroundLocationPermissions();
 
-      if (!result.backgroundGranted) {
+      if (!result.backgroundGranted && !result.nativeLocationConfigMissing) {
         showOpenSettingsAlert();
       }
 

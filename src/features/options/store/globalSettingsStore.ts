@@ -13,6 +13,8 @@ const DEFAULT_SETTINGS: GlobalSoundSettings = {
   progressiveVolume: false,
   energySaving: false,
   dataSaving: false,
+  reduceBatteryOptimizationBlocks: false,
+  reduceUnexpectedBackgroundStops: false,
 };
 
 export const useGlobalSettingsStore = create<GlobalSettingsStore>((set) => ({
