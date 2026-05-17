@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { Keyboard } from "react-native";
 import MapView from "react-native-maps";
 import { GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete";
@@ -6,8 +6,8 @@ import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { LocationCoordinates, MapRegion } from "../types";
 import { useUserLocation } from "./useUserLocation";
 import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
-import { stopAlarmAlert } from "@/features/options/service/soundService";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import type { IAlarm } from "@/features/alarm/types/IAlarm";
 
 export const FALLBACK_REGION: MapRegion = {
   latitude: -32.8895,
@@ -15,6 +15,14 @@ export const FALLBACK_REGION: MapRegion = {
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 };
+
+export function alarmDestinationLabel(alarm: IAlarm): string {
+  const n = alarm.name?.trim();
+  if (n) return n;
+  const addr = alarm.address?.trim();
+  if (addr) return addr;
+  return "esta ubicación";
+}
 
 const calculateDistanceInMeters = (
   lat1: number,
@@ -36,6 +44,9 @@ const calculateDistanceInMeters = (
   return Math.round(R * c);
 };
 
+const FOLLOW_CAMERA_MIN_MOVE_M = 14;
+const FOLLOW_CAMERA_MIN_INTERVAL_MS = 4500;
+
 export const useMapController = () => {
   const params = useLocalSearchParams<{
     editAlarmId?: string;
@@ -46,6 +57,16 @@ export const useMapController = () => {
     editAddress?: string;
   }>();
   const router = useRouter();
+
+  const alarms = useAlarmStore((s) => s.alarms);
+  const loadAlarms = useAlarmStore((s) => s.loadAlarms);
+  const cancelAlarm = useAlarmStore((s) => s.cancelAlarm);
+
+  const activeAlarms = useMemo(
+    () => alarms.filter((a: IAlarm) => a.isActive),
+    [alarms],
+  );
+  const isTripActive = activeAlarms.length > 0;
 
   const [editingAlarmId, setEditingAlarmId] = useState<number | null>(null);
 
@@ -58,44 +79,111 @@ export const useMapController = () => {
   const [selectedLocation, setSelectedLocation] =
     useState<LocationCoordinates | null>(null);
   const [alarmRadius, setAlarmRadius] = useState(500);
-  const [isTripActive, setIsTripActive] = useState(false);
   const [distanceToTarget, setDistanceToTarget] = useState(0);
-  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
-  const [activeAlarmId, setActiveAlarmId] = useState<number | null>(null);
+  const [showCancelPicker, setShowCancelPicker] = useState(false);
+  const [showCancelConfirm, setShowCancelConfirm] = useState(false);
+  const [pendingCancelAlarmId, setPendingCancelAlarmId] = useState<
+    number | null
+  >(null);
+
+  const cancelConfirmDestinationLabel = useMemo(() => {
+    if (pendingCancelAlarmId == null) return "";
+    const a = activeAlarms.find((x) => x.id === pendingCancelAlarmId);
+    return a ? alarmDestinationLabel(a) : "";
+  }, [pendingCancelAlarmId, activeAlarms]);
+
+  const referencePoints = useMemo(() => {
+    const fromAlarms = activeAlarms.map((a) => ({
+      latitude: a.latitude,
+      longitude: a.longitude,
+    }));
+    if (selectedLocation) {
+      return [...fromAlarms, selectedLocation];
+    }
+    return fromAlarms;
+  }, [activeAlarms, selectedLocation]);
+
   const { userLocation, heading, trackingMode } = useUserLocation(
     FALLBACK_REGION,
-    selectedLocation,
+    referencePoints,
   );
   const [isFollowingUser, setIsFollowingUser] = useState(true);
-
-  const cancelAlarm = useAlarmStore((s) => s.cancelAlarm);
+  const lastFollowCameraRef = useRef<{
+    lat: number;
+    lng: number;
+    time: number;
+  } | null>(null);
 
   useEffect(() => {
-    if (isTripActive && userLocation && selectedLocation) {
-      const distance = calculateDistanceInMeters(
-        userLocation.latitude,
-        userLocation.longitude,
-        selectedLocation.latitude,
-        selectedLocation.longitude,
-      );
-      setDistanceToTarget(distance);
+    void loadAlarms();
+  }, [loadAlarms]);
+
+  useEffect(() => {
+    if (!userLocation || activeAlarms.length === 0) {
+      setDistanceToTarget(0);
+      return;
     }
-  }, [userLocation, selectedLocation, isTripActive]);
+    const minM = Math.min(
+      ...activeAlarms.map((a) =>
+        calculateDistanceInMeters(
+          userLocation.latitude,
+          userLocation.longitude,
+          a.latitude,
+          a.longitude,
+        ),
+      ),
+    );
+    setDistanceToTarget(minM);
+  }, [userLocation, activeAlarms]);
 
   useEffect(() => {
-    if (isTripActive && isFollowingUser && userLocation) {
-      mapRef.current?.animateCamera(
-        {
-          center: {
-            latitude: userLocation.latitude,
-            longitude: userLocation.longitude,
-          },
-          pitch: 45,
-          zoom: 16,
+    if (!isTripActive || !isFollowingUser || !userLocation) {
+      if (!isTripActive || !isFollowingUser) {
+        lastFollowCameraRef.current = null;
+      }
+      return;
+    }
+
+    const now = Date.now();
+    const last = lastFollowCameraRef.current;
+
+    const movedM =
+      last == null
+        ? Number.POSITIVE_INFINITY
+        : calculateDistanceInMeters(
+            last.lat,
+            last.lng,
+            userLocation.latitude,
+            userLocation.longitude,
+          );
+
+    const elapsedMs = last == null ? Number.POSITIVE_INFINITY : now - last.time;
+
+    if (
+      last != null &&
+      movedM < FOLLOW_CAMERA_MIN_MOVE_M &&
+      elapsedMs < FOLLOW_CAMERA_MIN_INTERVAL_MS
+    ) {
+      return;
+    }
+
+    lastFollowCameraRef.current = {
+      lat: userLocation.latitude,
+      lng: userLocation.longitude,
+      time: now,
+    };
+
+    mapRef.current?.animateCamera(
+      {
+        center: {
+          latitude: userLocation.latitude,
+          longitude: userLocation.longitude,
         },
-        { duration: 1000 },
-      );
-    }
+        pitch: 45,
+        zoom: 16,
+      },
+      { duration: 1000 },
+    );
   }, [userLocation, isTripActive, isFollowingUser]);
 
   useEffect(() => {
@@ -118,7 +206,7 @@ export const useMapController = () => {
         800,
       );
 
-      setTimeout(() => bottomSheetModalRef.current?.present(), 150);
+      setTimeout(() => bottomSheetModalRef.current?.present(), 280);
 
       router.setParams({
         editAlarmId: undefined,
@@ -131,7 +219,6 @@ export const useMapController = () => {
     }
   }, [params.editAlarmId, params.editLatitude, params.editLongitude]);
 
-  // --- Handlers ---
   const clearMapStates = () => {
     setSelectedLocation(null);
     searchRef.current?.setAddressText("");
@@ -145,6 +232,7 @@ export const useMapController = () => {
   };
 
   const handleResumeTracking = () => {
+    lastFollowCameraRef.current = null;
     setIsFollowingUser(true);
   };
 
@@ -167,7 +255,7 @@ export const useMapController = () => {
       );
     }
 
-    setTimeout(() => bottomSheetModalRef.current?.present(), 150);
+    setTimeout(() => bottomSheetModalRef.current?.present(), 280);
 
     if (!isSameLocation) {
       mapRef.current?.animateToRegion(
@@ -191,29 +279,47 @@ export const useMapController = () => {
     }
   };
 
-  const handleActivateAlarm = (alarmId: number) => {
+  const handleActivateAlarm = (_alarmId: number) => {
     isActivatingRef.current = true;
-    setActiveAlarmId(alarmId);
-    setIsTripActive(true);
   };
 
   const handleRequestCancelAlarm = () => {
-    setShowCancelConfirmation(true);
-  };
-  const handleConfirmCancelAlarm = async () => {
-    setShowCancelConfirmation(false);
-    if (activeAlarmId !== null) {
-      await cancelAlarm(activeAlarmId);
-      setActiveAlarmId(null);
-    } else {
-      await stopAlarmAlert();
+    if (activeAlarms.length === 0) return;
+    if (activeAlarms.length === 1) {
+      setPendingCancelAlarmId(activeAlarms[0].id);
+      setShowCancelConfirm(true);
+      return;
     }
-    setIsTripActive(false);
-    clearMapStates();
+    setShowCancelPicker(true);
   };
 
-  const handleDismissCancelConfirmation = () => {
-    setShowCancelConfirmation(false);
+  const handleDismissCancelPicker = () => {
+    setShowCancelPicker(false);
+  };
+
+  const handleSelectAlarmToCancel = (id: number) => {
+    setShowCancelPicker(false);
+    setPendingCancelAlarmId(id);
+    setShowCancelConfirm(true);
+  };
+
+  const handleContinueTripFromConfirm = () => {
+    setShowCancelConfirm(false);
+    setPendingCancelAlarmId(null);
+  };
+
+  const handleConfirmCancelAlarm = async () => {
+    const id = pendingCancelAlarmId;
+    setShowCancelConfirm(false);
+    setPendingCancelAlarmId(null);
+    if (id == null) return;
+    await cancelAlarm(id);
+    const stillActive = useAlarmStore
+      .getState()
+      .alarms.some((a) => a.isActive);
+    if (!stillActive) {
+      clearMapStates();
+    }
   };
 
   return {
@@ -224,12 +330,16 @@ export const useMapController = () => {
       alarmRadius,
       isTripActive,
       distanceToTarget,
-      showCancelConfirmation,
+      showCancelPicker,
+      showCancelConfirm,
+      cancelConfirmDestinationLabel,
       userLocation,
       heading,
       isFollowingUser,
       trackingMode,
       editingAlarmId,
+      activeAlarms,
+      activeAlarmCount: activeAlarms.length,
     },
     actions: {
       setMapRegion,
@@ -239,8 +349,10 @@ export const useMapController = () => {
       handleBottomSheetDismiss,
       handleActivateAlarm,
       handleRequestCancelAlarm,
+      handleDismissCancelPicker,
+      handleSelectAlarmToCancel,
+      handleContinueTripFromConfirm,
       handleConfirmCancelAlarm,
-      handleDismissCancelConfirmation,
       handleMapDrag,
       handleResumeTracking,
     },

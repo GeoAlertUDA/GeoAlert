@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { GlobalSoundSettings } from '../types/settingsTypes';
-import { DEFAULT_SOUND_ID } from '../constants/sound';
+import { DEFAULT_SOUND_ID, normalizeSoundId } from '../constants/sound';
 
 type GlobalSettingsStore = {
   settings: GlobalSoundSettings;
@@ -20,5 +20,11 @@ const DEFAULT_SETTINGS: GlobalSoundSettings = {
 export const useGlobalSettingsStore = create<GlobalSettingsStore>((set) => ({
   settings: DEFAULT_SETTINGS,
   setSettings: (patch) =>
-    set((state) => ({ settings: { ...state.settings, ...patch } })),
+    set((state) => {
+      const next = { ...state.settings, ...patch };
+      if (patch.selectedSoundId !== undefined) {
+        next.selectedSoundId = normalizeSoundId(patch.selectedSoundId);
+      }
+      return { settings: next };
+    }),
 }));

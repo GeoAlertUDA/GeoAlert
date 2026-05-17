@@ -1,4 +1,9 @@
 import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
+import { isAtActiveAlarmLimit } from "@/features/alarm/constants/maxActiveAlarms";
+import { MaxActiveAlarmsLimitModal } from "@/features/alarm/components/MaxActiveAlarmsLimitModal";
+import { DeleteAlarmConfirmationModal } from "@/features/alarm/components/DeleteAlarmConfirmationModal";
+import { useLocationPermissionFlow } from "@/features/location/permissions/useLocationPermissionFlow";
+import { shouldSkipStrictIosLocationFlow } from "@/features/location/permissions/locationPermissions";
 import { IAlarm } from "@/types";
 import {
   LucideMapPin,
@@ -8,7 +13,7 @@ import {
   LucideTrash,
 } from "lucide-react-native";
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Switch, Text, View } from "react-native";
+import { Pressable, StyleSheet, Switch, Text, View, InteractionManager } from "react-native";
 import {
   Menu,
   MenuOption,
@@ -32,30 +37,59 @@ export const Alarm = ({
   address,
 }: IAlarm) => {
   const router = useRouter();
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [maxActiveModalVisible, setMaxActiveModalVisible] = useState(false);
+  const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
+
+  const deleteDestinationLabel =
+    (name?.trim() || address?.trim() || "esta ubicación");
 
   const toggleActive = useAlarmStore((state) => state.toggleActive);
   const toggleFavorite = useAlarmStore((state) => state.toggleFavorite);
   const removeAlarm = useAlarmStore((state) => state.removeAlarm);
   const stopRinging = useAlarmStore((state) => state.stopRinging);
+  const alarms = useAlarmStore((state) => state.alarms);
+  const { explainAndRequestBackgroundAccess } = useLocationPermissionFlow();
 
-  const handleToggleSwitch = () => {
-    toggleActive(id, isActive);
+  const goToMapAfterToggle = () => {
+    InteractionManager.runAfterInteractions(() => {
+      router.navigate("/");
+    });
+  };
+
+  const handleToggleSwitch = async () => {
+    if (!isActive) {
+      if (isAtActiveAlarmLimit(alarms)) {
+        setMaxActiveModalVisible(true);
+        return;
+      }
+      if (shouldSkipStrictIosLocationFlow()) {
+        await toggleActive(id, isActive);
+        goToMapAfterToggle();
+        return;
+      }
+      const result = await explainAndRequestBackgroundAccess();
+      if (!result.foregroundGranted) return;
+      await toggleActive(id, isActive);
+      goToMapAfterToggle();
+    } else {
+      await toggleActive(id, isActive);
+    }
   };
 
   const handleFavorite = () => {
     toggleFavorite(id, isFavorite);
-    setMenuVisible(false);
   };
 
-  const handleDelete = () => {
-    removeAlarm(id);
-    setMenuVisible(false);
+  const handleDeleteMenuSelect = () => {
+    setDeleteConfirmVisible(true);
+  };
+
+  const handleConfirmDelete = () => {
+    setDeleteConfirmVisible(false);
+    void removeAlarm(id);
   };
 
   const handleEdit = () => {
-    setMenuVisible(false);
-
     setTimeout(() => {
       router.push({
         pathname: "/",
@@ -72,14 +106,15 @@ export const Alarm = ({
   };
 
   return (
-    <Menu
-      renderer={renderers.Popover}
-      rendererProps={{
-        placement: "bottom",
-        preferredPlacement: "bottom",
-        anchorStyle: { backgroundColor: "transparent" },
-      }}
-    >
+    <>
+      <Menu
+        renderer={renderers.Popover}
+        rendererProps={{
+          placement: "bottom",
+          preferredPlacement: "bottom",
+          anchorStyle: { backgroundColor: "transparent" },
+        }}
+      >
       <MenuTrigger triggerOnLongPress={true}>
         <View
           style={[
@@ -126,7 +161,9 @@ export const Alarm = ({
             trackColor={{ false: "#000000", true: "#89B091" }}
             thumbColor={"#ffffff"}
             ios_backgroundColor="#000000"
-            onValueChange={handleToggleSwitch}
+            onValueChange={() => {
+              void handleToggleSwitch();
+            }}
             value={isActive}
           />
         </View>
@@ -142,7 +179,7 @@ export const Alarm = ({
           </View>
         </MenuOption>
 
-        <MenuOption onSelect={handleDelete}>
+        <MenuOption onSelect={handleDeleteMenuSelect}>
           <View style={styles.menuItem}>
             <LucideTrash size={22} color="#9D1717" />
             <Text style={[styles.menuItemText]}>Eliminar</Text>
@@ -157,6 +194,17 @@ export const Alarm = ({
         </MenuOption>
       </MenuOptions>
     </Menu>
+    <MaxActiveAlarmsLimitModal
+      visible={maxActiveModalVisible}
+      onDismiss={() => setMaxActiveModalVisible(false)}
+    />
+    <DeleteAlarmConfirmationModal
+      visible={deleteConfirmVisible}
+      destinationLabel={deleteDestinationLabel}
+      onDismiss={() => setDeleteConfirmVisible(false)}
+      onConfirmDelete={handleConfirmDelete}
+    />
+  </>
   );
 };
 

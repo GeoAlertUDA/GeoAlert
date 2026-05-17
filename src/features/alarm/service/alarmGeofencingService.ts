@@ -92,6 +92,12 @@ export async function syncAlarmGeofences(
 
     if (!hasPermissions) return false;
 
+    await stopGeofencingIfStarted();
+    // Pequeña pausa para evitar condiciones de carrera al reiniciar geofencing (2ª alarma, etc.)
+    await new Promise<void>((resolve) => {
+      setTimeout(resolve, 200);
+    });
+
     await Location.startGeofencingAsync(
       ALARM_GEOFENCE_TASK,
       activeAlarms.map((alarm) => ({

@@ -1,8 +1,7 @@
-import { ScrollView, SectionList, StyleSheet, Text, View } from "react-native";
+import { SectionList, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { IAlarm } from "@/types";
 import { Alarm } from "./Alarm";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { LucideAlarmClock, LucideStar } from "lucide-react-native";
 import { useAlarmStore } from "@/features/alarm/store/useAlarmStore";
 import { useFocusEffect } from "expo-router";
@@ -24,7 +23,7 @@ export const AlarmScreen = () => {
 
   const sections = [
     {
-      title: "Alarma activa",
+      title: "Alarmas activas",
       isMainCategory: true,
       data: activeAlarms,
     },
